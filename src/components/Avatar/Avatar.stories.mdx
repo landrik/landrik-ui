@@ -1,0 +1,211 @@
+import Avatar from "./Avatar";
+import { ArgsTable, Meta, Story, Canvas } from "@storybook/addon-docs";
+
+<Meta title="Design System/Avatar" component={Avatar} />
+
+# Avatar
+
+Avatars can be used to represent people or objects. It supports images or letters.
+
+`Props` are listed at the end of this page.
+
+[View source](https://github.com/landrik/landrik-ui/tree/main/src/components/Avatar)
+
+## Imports
+
+```js
+import { Avatar } from "@landrik/ui";
+```
+
+## Usage
+
+<Canvas withSource="open">
+  <Story 
+    name="default"
+    parameters={{
+      docs:{
+        source:{
+          code:`
+          <Avatar />
+          `,
+        }
+      }
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Avatar />
+    </div>
+   
+  </Story>
+</Canvas>
+
+
+
+### Circular
+
+<Canvas withSource="open">
+  <Story 
+    name="shape"
+    parameters={{
+      docs:{
+        source:{
+          code:`
+          <Avatar shape="circle" />
+          `,
+        }
+      }
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Avatar shape="circle" />
+    </div>
+   
+  </Story>
+</Canvas>
+
+
+### With Image
+
+Use the `src` prop to add image
+
+<Canvas withSource="open">
+  <Story 
+    name="with-image"
+    parameters={{
+      docs:{
+        source:{
+          code:`
+          <Avatar shape="circle" src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+          />
+          `,
+        }
+      }
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Avatar 
+        shape="circle"
+        src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+      />
+    </div>
+   
+  </Story>
+</Canvas>
+
+
+### Custom Text
+
+<Canvas withSource="open">
+  <Story 
+    name="custom-text"
+    parameters={{
+      docs:{
+        source:{
+          code:`
+          <Avatar text="JD" />
+          `,
+        }
+      }
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Avatar text="JD" />
+    </div>
+   
+  </Story>
+</Canvas>
+
+### Custom Color
+
+provide a string of _hex_, _rgb_, _hsla_ in `color` prop to change color
+
+<Canvas withSource="open">
+  <Story 
+    name="custom-color"
+    parameters={{
+      docs:{
+        source:{
+          code:`
+            <Avatar shape="circle" color="#1f35fa" />
+          `,
+        }
+      }
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Avatar shape="circle" color="#1f35fa" />
+    </div>
+   
+  </Story>
+</Canvas>
+
+### Sizes
+
+<Canvas withSource="open">
+  <Story
+    name="sizes"
+    parameters={{
+      docs: {
+        source: {
+          code: `
+            <Avatar size="sm" />
+            <Avatar size="md" />
+            <Avatar size="lg" />
+            `,
+        },
+      },
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Avatar size="sm" />
+      <Avatar size="md" />
+      <Avatar size="lg" />
+    </div>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Avatar} />

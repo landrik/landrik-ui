@@ -1,0 +1,180 @@
+/**
+ * Variables
+ * =================================
+ * - Typography
+ * - Breakpoints
+ * - Paths
+ * - Layout & Grid
+ * - App-specific
+ */
+
+/* stylelint-disable indentation */
+
+/**
+ * Typography
+ * =================================
+ *
+ * Base sizes:
+ * Set this in pixels (but do not add px),
+ * the font-size mixin will convert to REMS
+ */
+ 
+@forward '../../fonts/BasisGrotesqueArabicPro/BasisGrotesqueArabicPro.scss';
+
+$font-size-base           : 20;
+$font-size-base-px        : $font-size-base * 1px;
+$font-size-base-narrow    : $font-size-base - 2;
+$font-size-base-narrow-px : $font-size-base-narrow * 1px;
+
+$leading-base             : 1.4;
+$line-height-base         : round($font-size-base * $leading-base); // 20 * 1.4
+$baseline                 : $line-height-base * 1px;
+
+$type-scale               : 1.25; // Major third
+
+$type: (
+	micro                   : lk-ms(-2),
+	small                   : lk-ms(-1), // h5, h6
+	base                    : lk-ms(0),  // p, h4
+	mid                     : lk-ms(1),  // h3
+	large                   : lk-ms(2),  // h2
+	jumbo                   : lk-ms(3)   // h1
+);
+
+// Useful to set here when bold webfonts come as 400 font-weight.
+$font-weight-light        : 300;
+$font-weight-regular      : 400;
+$font-weight-medium       : 500;
+$font-weight-bold         : 700;
+$font-weight-black        : 900;
+
+
+
+// Font stacks
+
+$font-family-system       :'Basis Grotesque Arabic Pro', 'Helvetica Neue', arial, sans-serif !default;
+$font-family-sans         : "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-serif        : Georgia, "Times New Roman", Times, serif;
+$font-family-mono         : Menlo, Monaco, "Courier New", monospace;
+
+$font-family-base         : $font-family-system;
+$font-family-alt          : $font-family-serif;
+
+$font-family-headings     : $font-family-base; // using inherit will use $font-family-base for all headings
+$font-weight-headings     : $font-weight-bold;    // instead of browser default, bold
+$line-height-headings     : 1.1;
+
+/**
+
+*/
+$default-font-family: 'Basis Grotesque Arabic Pro', 'Open Sans', 'Helvetica Neue', arial, sans-serif !default;
+
+$font-light        : 300;
+$font-regular      : 400;
+$font-medium       : 500;
+$font-bold         : 700;
+$font-black        : 900;
+
+// Font sizes
+$default-font-size: 1rem !default; // 16px
+$font-size-xs: $default-font-size * 0.75; // 12px
+$font-size-sm: $default-font-size * 0.875; // 14px
+$font-size-md: $default-font-size; // 16px
+$font-size-lg: $default-font-size * 1.1875; // 19px
+
+// Line height
+$font-lh-xs: 1.4; // 16/12px
+$font-lh-sm: 1.45; // 20/14px
+$font-lh-md: 1.5; // 24/16px
+$font-lh-lg: 1.6; // 30/19px
+
+/* FONT STYLES */
+/* stylelint-disable */
+$font-heading-1: #{$font-black} #{$default-font-size * 2.875}/ 1.15 #{$default-font-family}; // 46/52px
+$font-heading-2: #{$font-black} #{$default-font-size * 2}/ 1.15 #{$default-font-family}; // 32/36px
+$font-heading-3: #{$font-black} #{$default-font-size * 1.5}/ 1.2 #{$default-font-family}; // 24/28px
+$font-intro: #{$font-black} #{$font-size-lg}/#{$font-lh-lg} #{$default-font-family};
+
+$font-p-heavy: #{$font-bold} #{$font-size-md}/#{$font-lh-md} #{$default-font-family};
+$font-p-med: #{$font-medium} #{$font-size-md}/#{$font-lh-md} #{$default-font-family};
+$font-p-reg: #{$font-regular} #{$font-size-md}/#{$font-lh-md} #{$default-font-family};
+
+$font-ps-heavy: #{$font-bold} #{$font-size-sm}/#{$font-lh-sm} #{$default-font-family};
+$font-ps-med: #{$font-medium} #{$font-size-sm}/#{$font-lh-sm} #{$default-font-family};
+$font-ps-reg: #{$font-regular} #{$font-size-sm}/#{$font-lh-sm} #{$default-font-family};
+
+$font-tiny-heavy: #{$font-bold} #{$font-size-xs}/#{$font-lh-xs} #{$default-font-family};
+$font-tiny-med: #{$font-medium} #{$font-size-xs}/#{$font-lh-xs} #{$default-font-family};
+$font-tiny-reg: #{$font-regular} #{$font-size-xs}/#{$font-lh-xs} #{$default-font-family};
+/* stylelint-enable */
+
+/**END of experimental font stack*/
+
+
+/**
+ * Breakpoints
+ * =================================
+ * There are no common breakpoints so these are just a suggestions
+ * You'll need to define your own breakpoints to suit your design
+ * Add your breakpoints to this Sass map
+ * Used in the Kickoff grid
+ */
+$breakpoints: (
+	narrow                  : 400px,
+	mid                     : 750px,
+	wide                    : 1000px,
+	huge                    : 1250px
+);
+
+
+// Setup layout max-width
+$layout-margin                : 0; // [in pixels] Space outside the grid
+$layout-max-width             : 1000; // [in pixels]
+$layout-min-width             : 960;  // [in pixels] Minimum width for layout in <IE9
+$layout-max-width--huge       : 1100; // [in pixels]
+$layout-min-width--huge       : 1100; // [in pixels] Minimum width for layout in <IE9
+
+
+/**
+ * Grid
+ * =================================
+ * These variables will control the grid module.
+ *
+ * if your project doesnt use Kickoff’s default grid, you can delete these
+ */
+
+$grid-column-count        : 12; // Total column count
+$grid-gutter-width        : 20; // [in pixels]
+
+//Settings here override & affect the grid classes output
+$responsive-grid-sizes    : true; // Disable this if you don't want grid sizes for each breakpoint
+$use-legacy-grid          : true; // Disable this is you on’t want to output .no-flexbox classes for older browsers to use
+
+
+/**
+ * Path variables
+ * =================================
+ */
+$img-path                 : "/assets/dist/img"; // Usage: background: url('#{$img-path}/img.jpg') 0 0 no-repeat;
+
+
+/**
+ * Z-index variables
+ * =================================
+ */
+$z-low                       : 10;
+$z-mid                       : 100;
+$z-high                      : 1000;
+
+
+/**
+ * App-specific variables
+ * =================================
+ */
+$default-transition-timing   : cubic-bezier(0.77, 0, 0.175, 1);
+$default-transition-duration : 300ms;
+$default-transition          : all $default-transition-duration $default-transition-timing;
+
+// Add your own :)
+
+$borderRadius                : 5px;

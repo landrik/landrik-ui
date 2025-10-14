@@ -1,0 +1,255 @@
+/**
+ * Global color palette
+ * =================================
+ * - Generic colors
+ * - Color scheme
+ * - Common colors
+ * - Links
+ * - Text selection
+ * - <hr>
+ * - Any others..
+ */
+
+// Generic colors
+$blue                         : #288ad6;
+$green                        : #16c98d;
+$red                          : #fa5e5b;
+$yellow                       : #feef6d;
+$orange                       : #fe7c08;
+$pink                         : #ff708e;
+$purple                       : #8e44ad;
+$gray                         : #95a5a6;
+
+$dark                         : #000000;
+$bright                       : #ffffff;
+
+$color-kickoff-blue           : #181830;
+$color-kickoff-orange         : #fe7c08;
+
+// Color Scheme
+$color-primary                : #181830;
+$color-secondary              : $orange;
+$color-highlight              : $blue;
+
+// Common colors
+$color-text                   : #444444;
+$color-bg                     : #f1f1f1;
+$color-border                 : #dddddd;
+
+
+// Links
+$color-link-default           : $color-highlight;
+$color-link-visited           : $color-link-default;
+$color-link-hover             : darken($color-link-default, 20%);
+$color-link-active            : darken($color-link-default, 20%);
+
+// Text Selection
+$color-selection              : #ffffff;
+$color-selection-bg           : $color-primary;
+
+//Review this and remove accordigly
+
+// define your color variables here
+
+
+
+$primary-100: #f0f0f0;
+$primary-200: #d9d8ff;
+$primary-500: #7b79ff;
+$primary-600: #4945ff;
+$primary-700: #271fe0;
+
+$success-100: #eafbe7;
+$success-200: #c6f0c2;
+$success-500: #5cb176;
+$success-600: #328048;
+$success-700: #2f6846;
+
+$danger-100: #fcecea;
+$danger-200: #f5c0b8;
+$danger-500: #ee5e52;
+$danger-600: #d02b20;
+$danger-700: #b72b1a;
+
+$warning-100: #fdf4dc;
+$warning-200: #fae7b9;
+$warning-500: #f29d41;
+$warning-600: #d9822f;
+$warning-700: #be5d01;
+
+$alternative-100: #f0f0f0;
+$alternative-200: #d9d8ff;
+$alternative-500: #7b79ff;
+$alternative-600: #4945ff;
+$alternative-700: #271fe0;
+
+$neutral-100: #f6f6f6;
+$neutral-150: #eaeaef;
+$neutral-200: #dcdce4;
+$neutral-300: #c0c0cf;
+$neutral-400: #a5a5ba;
+$neutral-500: #8e8ea9;
+$neutral-600: #666687;
+$neutral-700: #4a4a6a;
+$neutral-800: #32324d;
+$neutral-900: #212134;
+
+$neutral-0: #fff;
+
+$backdrop: rgba(0, 0, 0, 0.4);
+
+//remove above
+
+
+
+// <hr> border color
+$hr-color                     : lighten(#000, 70%);
+
+// 3rd party brand colors - find more at brandcolors.net
+$color-twitter                : #55acee;
+$color-facebook               : #3b5998;
+$color-youtube                : #cd201f;
+$color-pinterest              : #bd081c;
+$color-instagram              : #e4405f;
+$color-whatsapp               : #25d366;
+
+
+.color-pallete{
+  font-family: 'Open Sans';
+  &__title{
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  &__tip{
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+  &__list{
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // margin: 20px auto;
+    // max-width: 1300px;
+    &-item{
+      display: flex;
+      height: 100px;
+      padding: 12px;
+      border-radius: 4px;
+      background-color: #fff;
+      margin-bottom: 8px;
+      box-sizing: border-box;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      &-square{
+        width: 76px;
+        height: 76px;
+        border-radius: 2px;
+        margin-right: 20px;
+      }
+      &-prop{
+        width: 124px;
+        margin-right: 94px;
+        line-height: 20px;
+        font-weight: normal;
+        padding: 12px 0;
+
+        &>p {
+          color: #79879c;
+          font-family: PingFang SC;
+          margin: 0;
+          margin-bottom: 8px;
+        }
+
+        &>div {
+          color: #242e42;
+        }
+      }
+      
+      // align-items: center;
+      // backface-visibility: hidden;
+      // cursor: pointer;
+      // display: flex;
+      // margin: 15px 0;
+      // transition: transform .2s ease;
+      // width: 28%;
+      // &:hover {transform: scale(1.05) translateZ(0)}
+      .color-block{
+        // border: 1px solid #7c7575;
+        // height: 30px;
+        // width: 50px;
+        width: 76px;
+        height: 76px;
+        border-radius: 2px;
+        margin-right: 20px;
+      }
+      .texts{
+        margin-left: 20px;
+        > p {margin: 0}
+      }
+    }
+  }
+}
+
+.color {
+  &-card {
+    margin-bottom: 12px;
+
+    &-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #242e42;
+      line-height: 20px;
+      margin: 24px 0;
+    }
+  }
+
+  &-item {
+    display: flex;
+    height: 100px;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    &-square {
+      width: 76px;
+      height: 76px;
+      border-radius: 2px;
+      margin-right: 20px;
+    }
+
+    &-prop {
+      width: 124px;
+      margin-right: 94px;
+      line-height: 20px;
+      font-weight: normal;
+      padding: 12px 0;
+
+      &>p {
+        color: #79879c;
+        font-family: PingFang SC;
+        margin: 0;
+        margin-bottom: 8px;
+      }
+
+      &>div {
+        color: #242e42;
+      }
+    }
+  }
+}
+  
+
+    
+
+    
+
+    
+
+      

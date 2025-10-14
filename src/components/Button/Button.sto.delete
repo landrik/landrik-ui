@@ -1,0 +1,100 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+
+import Button from './Button';
+
+const meta = {
+  title: 'Example/Button',
+  component: Button,
+  argTypes: {
+    label: { control: 'text' },
+    isDisabled: { control: 'boolean' },
+    shadow: { control: 'boolean' },
+    size: {
+      control: { type: 'select', options: ['small', 'medium', 'large'] },
+    },
+    type: {
+      control: { type: 'select', options: ['filled', 'outline', 'text'] },
+    },
+    textColor: {
+      control: { type: 'select', options: ['default', 'white', 'primary'] },
+    },
+  },
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const defaultButton: Story = {
+  args: {
+    label: 'Default',
+    backgroundColor: 'default',
+    textColor: 'default',
+    shadow: true,
+  }
+}
+export const outlineButton: Story = {
+  args: {
+    label: 'Default',
+    textColor: 'primary',
+    type: 'outline',
+  },
+};
+export const textButton: Story = {
+  args: {
+    label: 'Default',
+    backgroundColor: 'transparent',
+    textColor: 'primary',
+    type: 'text'
+  },
+};
+export const primaryButton: Story = {
+  args: {
+    primary: true,
+    label: 'Primary',
+    backgroundColor: 'primary',
+    textColor: 'white',
+    shadow: true,
+    isDisabled: false,
+    variant: 'rectangular',
+    type: 'filled',
+    size:'medium',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    label: 'Secondary',
+  },
+};
+
+// export const All: Story ={}
+// export const Size: Story ={}
+export const iconButton: Story = {
+  args: {
+    size: 'large',
+    label: 'Button with icon',
+    startIcon: true,
+    icon: 'add'
+  },
+}
+// export const loading: Story ={}
+
+export const Small: Story = {
+  args: {
+    size: 'small',
+    label: 'Small Button',
+  },
+};
+export const Medium: Story = {
+  args: {
+    size: 'medium',
+    label: 'Medium Button',
+  },
+};
+export const Large: Story = {
+  args: {
+    size: 'large',
+    label: 'Large Button',
+  },
+};

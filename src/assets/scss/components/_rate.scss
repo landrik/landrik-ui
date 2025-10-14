@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+
+.lk{
+  &-rate{
+    color: $warning-500;
+    font-size: 1.2rem;
+  }
+}  

@@ -1,0 +1,38 @@
+@use "../abstracts" as *;
+
+
+.lk{
+  &-avatar{
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: $neutral-500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: $neutral-0;
+    .ant-avatar-img{
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      border-radius: inherit;
+    }
+
+    //shape
+    &-circle{border-radius: 100%;}
+    
+    //size
+    &-sm{
+      height: 2rem;
+      width: 2rem;
+    }
+    &-md{
+      height: 3rem;
+      width: 3rem;
+    }
+    &-lg{
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+}
