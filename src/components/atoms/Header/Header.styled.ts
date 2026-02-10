@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { HeaderVariant, HeadingSize, HeadingWeight  } from "./Header.types";
+import { HeaderVariant, HeadingSize, HeadingWeight, HeadingAlign  } from "./Header.types";
 
 const sizeStyles: Record<HeadingSize, ReturnType<typeof css>> = {
   xs: css`font-size: ${p => p.theme.typography.fontSize.xs};`,
@@ -21,19 +21,24 @@ const weightStyles: Record<HeadingWeight, ReturnType<typeof css>> = {
   bold: css`font-weight: ${p => p.theme.typography.fontWeight.bold};`,
 };
 
+const alignStyles : Record<HeadingAlign, ReturnType<typeof css>> = {
+  left: css`align-items: left; text-align: left;`,
+  center: css`align-items: center; text-align: center;`,
+  right: css`align-items: right; text-align: right;`,
+}
+
 
 interface StyledHeaderProps {
   $size: HeadingSize;
   $weight: HeadingWeight;
   $variant: HeaderVariant;
-  $align: 'left' | 'center' | 'right';
+  $align: HeadingAlign;
 }
 
 export const StyledHeader = styled.h1<StyledHeaderProps>`
   margin: 0;
   font-family: ${p => p.theme.typography.fontFamily.sans};
   line-height: ${p => p.theme.typography.lineHeight.tight};
-  text-align: ${p => p.$align};
   letter-spacing: ${p => p.theme.typography.letterSpacing.tight};
   color: ${p =>
     p.$variant === 'primary' ? p.theme.colors.primary[700] :
@@ -41,7 +46,7 @@ export const StyledHeader = styled.h1<StyledHeaderProps>`
     p.$variant === 'muted' ? p.theme.colors.neutral[600] :
     p.theme.colors.neutral[900]
   };
-
-  ${p => sizeStyles[p.$size]}
+  ${p => alignStyles[p.$align]};
+  ${p => sizeStyles[p.$size]};
   ${p => weightStyles[p.$weight]}
 `;

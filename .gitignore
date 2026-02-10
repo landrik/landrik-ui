@@ -56,3 +56,21 @@ Thumbs.db
 storybook-static
 
 stats.html
+
+.env
+.secrets
+
+# test coverage 
+coverage/
+
+# Compiled story files
+**/stories.js*
+
+# Storybook/Chromatic logs
+build-storybook.log
+doctor-storybook.log
+
+TODO.md
+
+./src/assets/fonts
+./src/assets/scss

@@ -10,7 +10,7 @@ export const Header:FC<HeaderProps> = ({
   size = '2xl',
   weight = 'bold',
   variant = 'default',
-  ...props
+  align = 'left'
 }) => {
   return (
   <StyledHeader
@@ -18,6 +18,7 @@ export const Header:FC<HeaderProps> = ({
     $size={size}
     $weight={weight}
     $variant={variant}
+    $align={align}
   >
     {children}
   </StyledHeader>

@@ -1,12 +1,15 @@
 # A bunch of React Components
 
+A library of React components and patterns for Landrik Design System
+
 ## Including in your project
 
-```
+```bash
 npm install @landrik/ui
-```
 
 ```
+
+```bash
 @import { Button } from '@landrik/ui'
 
 ```
@@ -29,8 +32,9 @@ function App() {
 
 ## Running Storybook
 
-```
+```bash
 npm run storybook
+
 ```
 
 ## Documentation
@@ -46,6 +50,7 @@ Please follow the Standard ReactNamingConventions, and name the component the si
 Good: TextField Button CheckBox
 
 Bad: TextField text-input text input Buttons
+
 ```
 
 A new directory will be created in the `./src/components` directory with the following files:
@@ -55,7 +60,7 @@ A new directory will be created in the `./src/components` directory with the fol
 ├── src
 |   ├── Component
 |   |   ├── Component.tsx
-|   |   ├── Component.styled.tsx
+|   |   ├── Component.styled.ts
 |   |   ├── Component.stories.tsx
 |   |   ├── Component.test.ts
 |   |   ├── Component.types.ts
@@ -63,4 +68,18 @@ A new directory will be created in the `./src/components` directory with the fol
 ```
 ## License
 
-MIT
+## Contributing
+
+We welcome contributions! Please see our email us for details on contributing for:
+
+- Setting up your development environment
+- Creating new components
+- Testing and code style
+- Submitting pull requests
+
+For advanced topics like testing in external applications and publishing, see our [Developer Guide](./DEVELOPER.md).
+
+## License
+
+The source files in this repository are made available under the terms of the MIT License.
+

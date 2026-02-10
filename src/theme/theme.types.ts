@@ -50,14 +50,20 @@ export interface Typography {
     bold: number;
   };
   lineHeight: {
+    none: number,
     tight: number;
-    normal: number;
-    relaxed: number;
+    snug:number,
+    normal: number,
+    relaxed: number,
+    loose: number,
   };
   letterSpacing:{
-    tight: number;
-    normal: number;
-    relaxed: number;
+    tighter:string,
+    tight: string,
+    normal: string,
+    wide: string,
+    wider:string,
+    widest: string
   };
 }
 export interface Radii {

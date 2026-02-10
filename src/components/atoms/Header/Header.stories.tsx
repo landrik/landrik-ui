@@ -55,10 +55,10 @@ export const AllSizes: Story = {
 export const AllWeights: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Header weight="normal">Normal Weight</Header>
-      <Header weight="medium">Medium Weight</Header>
-      <Header weight="semibold">Semibold Weight</Header>
-      <Header weight="bold">Bold Weight</Header>
+      <Header weight="normal">Normal - The quick brown fox jumps over the lazy dog.</Header>
+      <Header weight="medium">Medium - The quick brown fox jumps over the lazy dog.</Header>
+      <Header weight="semibold">Semibold - The quick brown fox jumps over the lazy dog.</Header>
+      <Header weight="bold">Bold - The quick brown fox jumps over the lazy dog.</Header>
     </div>
   ),
 };
@@ -78,7 +78,7 @@ export const SemanticLevels: Story = {
 
 export const Alignment: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <div style={{ minWidth: '800px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Header align="left">Left Aligned Heading</Header>
       <Header align="center">Center Aligned Heading</Header>
       <Header align="right">Right Aligned Heading</Header>
