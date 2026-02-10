@@ -1,0 +1,10 @@
+.lk-segment {
+    max-height: 3000px;
+    overflow: hidden;
+    @include transition-ease-in(all, 250ms);
+}
+
+.lk-segment--collapse {
+    max-height: 0;
+    @include transition-ease-out(all, 250ms);
+}

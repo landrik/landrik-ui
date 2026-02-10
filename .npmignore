@@ -1,0 +1,31 @@
+src
+rollup.*
+.babelrc
+.eslintrc
+stats.html
+
+
+# Source files
+src/
+.storybook/
+
+# Config files
+tsconfig.json
+rollup.config.mjs
+jest.config.js
+.eslintrc.js
+.prettierrc
+
+# Development
+node_modules/
+.git/
+.github/
+*.test.ts
+*.test.tsx
+*.stories.tsx
+*.stories.ts
+
+# Build artifacts
+*.log
+.DS_Store
+coverage/

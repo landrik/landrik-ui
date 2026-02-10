@@ -1,0 +1,437 @@
+@use 'sass:math';
+
+.lk-table {
+    font-family: $pri-font-regular;
+    width: 100%;
+    max-width: 100%;
+    font-size: $table-font-size-normal;
+    border-spacing: 0;
+    border: none;
+    color: $lk-dark-4;
+    background-color: rgba(white, 0.25);
+}
+
+.lk-table th,
+.lk-table td,
+.lk-table thead,
+.lk-table tbody {
+    border: none;
+}
+
+// Wrap around table for horizontal scrolling on mobile
+.lk-table--responsive {
+    width: 100%;
+    min-height: 0.01%;
+    overflow: auto;
+
+    .lk-table__header,
+    .rt-resizable-header,
+    .lk-table__row td {
+        white-space: nowrap;
+    }
+}
+
+.lk-table__header,
+.rt-resizable-header {
+    position: relative;
+    background-color: $tableHeaderPrimaryBackgroundDefaultColor;
+    color: $grayDark3Color;
+    border: none;
+    cursor: pointer;
+    padding: $table-padding-normal;
+
+    // &:after {
+    //   content: "";
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0;
+    //   height: $cap-size;
+    //   width: 100%;
+    //   background-color: $tableHeaderPrimaryUnderlineDefaultColor;
+    //   @include transition-back(all, 250ms);
+    // }
+    &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: math.div($unit, 3) solid transparent;
+        border-right: math.div($unit, 3) solid transparent;
+        border-top: math.div($unit, 3) solid white;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: $unit;
+        @include transition-ease-out(all, 150ms);
+    }
+    &:hover,
+    &.lk-table__header--selected {
+        background-color: $tableHeaderPrimaryBackgroundSelectedColor;
+        &:after {
+            height: ($cap-size * 1.5);
+            background-color: $tableHeaderPrimaryUnderlineSelectedColor;
+        }
+    }
+}
+
+.lk-table__header--sort-desc:before {
+    right: $unit;
+    opacity: 1;
+}
+
+.lk-table__header--sort-asc:before {
+    right: $unit;
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+.lk-table__header--white {
+    color: $lk-dark-4;
+    background-color: white;
+    &:after {
+        background-color: $lk-light-2;
+        height: 1px;
+        box-shadow: none;
+    }
+    &:hover,
+    &.lk-table__header--selected {
+        color: $primaryColor;
+        background-color: white;
+        &:after {
+            background-color: $primaryColor;
+            height: 2px;
+        }
+        &:before {
+            border-top-color: $primaryColor;
+        }
+    }
+}
+
+.lk-table__row:not(.lk-table--expandable-row) {
+    background-color: rgba($lk-light-4, 0);
+    @include transition-ease-out(all, 250ms);
+
+    &:hover {
+        background-color: rgba($lk-light-4, 0.2);
+    }
+    td,
+    th {
+        padding: $table-padding-normal;
+        border-bottom: 1px solid $grayLight2Color;
+    }
+    // For proper flow on mobile, to trigger overflow-x scroll
+    th:last-child,
+    td:last-child {
+        word-break: break-all;
+        word-break: break-word;
+    }
+}
+
+.lk-table__row--selected {
+    background-color: rgba($tableRowPrimaryColor, 0.65);
+    color: white;
+    &:hover {
+        background-color: rgba($tableRowPrimaryColor, 0.5);
+    }
+}
+
+.lk-table__row--secondary-selected {
+    background-color: rgba($tableRowSecondaryColor, 0.65);
+    color: white;
+    &:hover {
+        background-color: rgba($tableRowSecondaryColor, 0.5);
+    }
+}
+
+.lk-table__row--disabled {
+    background-color: rgba($lk-light-2, 0.75);
+    color: $lk-light-3;
+    cursor: not-allowed;
+}
+
+// Tightly spaced table
+.lk-table--sm {
+    font-size: $font-size-minus-3;
+    .lk-table__row td,
+    .lk-table__row th {
+        padding: $table-padding-tight;
+    }
+    .lk-table__header--sort-desc:before,
+    .lk-table__header--sort-asc:before {
+        top: $unit;
+        border-left: $unit * 0.25 solid transparent;
+        border-right: $unit * 0.25 solid transparent;
+        border-top: $unit * 0.25 solid white;
+    }
+}
+
+// Tightly spaced table
+.lk-table--xs {
+    font-size: $font-size-minus-4;
+    .lk-table__row td,
+    .lk-table__row th {
+        padding: $table-padding-extratight;
+    }
+    .lk-table__header--sort-desc:before,
+    .lk-table__header--sort-asc:before {
+        top: $unit * 0.6;
+        border-left: $unit * 0.2 solid transparent;
+        border-right: $unit * 0.2 solid transparent;
+        border-top: $unit * 0.2 solid white;
+    }
+}
+
+// Loosely spaced table
+.lk-table--lg {
+    font-size: $font-size-plus-1;
+    .lk-table__row td,
+    .lk-table__row th {
+        padding: $table-padding-loose;
+    }
+    .lk-table__header--sort-desc:before,
+    .lk-table__header--sort-asc:before {
+        top: $unit * 1.6;
+        border-left: $unit * 0.5 solid transparent;
+        border-right: $unit * 0.5 solid transparent;
+        border-top: $unit * 0.5 solid white;
+    }
+}
+
+// Loosely spaced table
+.lk-table--xl {
+    font-size: $font-size-plus-3;
+    .lk-table__row td,
+    .lk-table__row th {
+        padding: $table-padding-extraloose;
+    }
+    .lk-table__header--sort-desc:before,
+    .lk-table__header--sort-asc:before {
+        top: $unit * 2.75;
+        border-left: math.div($unit, 1.5) solid transparent;
+        border-right: math.div($unit, 1.5) solid transparent;
+        border-top: math.div($unit, 1.5) solid white;
+    }
+}
+
+// Color-coded table cells
+.lk-table__cell--positive {
+    background-color: rgba($successColor, 0.2);
+}
+
+.lk-table__cell--neutral {
+    background-color: rgba($warningColor, 0.2);
+}
+
+.lk-table__cell--negative {
+    background-color: rgba($dangerColor, 0.2);
+}
+
+.lk-table__header--secondary {
+    background-color: $tableHeaderSecondaryBackgroundDefaultColor;
+    &:after {
+        background-color: $tableHeaderSecondaryUnderlineDefaultColor;
+    }
+    &:hover,
+    &.lk-table__header--selected {
+        background-color: $tableHeaderSecondaryBackgroundSelectedColor;
+        &:after {
+            background-color: $tableHeaderSecondaryUnderlineSelectedColor;
+        }
+    }
+}
+
+// Inverse table (light on dark)
+.lk-table__row--inverse {
+    color: $lk-light-3;
+    background-color: $lk-dark-2;
+
+    &:hover {
+        background-color: $lk-dark-3;
+    }
+    &.lk-table__row--inverse-selected {
+        background-color: rgba($lk-dark-4, 1);
+        color: white;
+    }
+
+    &.lk-table__row--inverse-disabled {
+        background-color: rgba($lk-dark-4, 0.75);
+        color: $lk-light-3;
+        cursor: not-allowed;
+    }
+}
+
+// Striped table
+.lk-table--striped {
+    tr:nth-child(even of :not(.lk-table--expandable-row)) {
+        background-color: rgba($lk-light-4, 0.1);
+        &:hover {
+            background-color: rgba($lk-light-4, 0.2);
+        }
+    }
+    .lk-table__row--selected,
+    .lk-table__row--selected:nth-child(even of :not(.lk-table--expandable-row)) {
+        background-color: rgba($tableRowPrimaryColor, 0.65);
+        color: white;
+        &:hover {
+            background-color: rgba($tableRowPrimaryColor, 0.5);
+        }
+    }
+}
+
+.lk-table--inverse,
+.lk-table--inverse-striped {
+    background-color: $lk-dark-2;
+}
+
+// Inverse striped table
+.lk-table--inverse-striped {
+    tr:hover,
+    tr:nth-child(even of :not(.lk-table--expandable-row)):hover {
+        background-color: $lk-dark-3;
+    }
+
+    tr:nth-child(even of :not(.lk-table--expandable-row)) {
+        background-color: mix($lk-dark-2, white, 96%);
+    }
+    .lk-table__row--inverse-selected,
+    .lk-table__row--inverse-selected:nth-of-type(even of :not(.lk-table--expandable-row)) {
+        background-color: rgba($lk-dark-4, 1);
+        color: white;
+        &:hover {
+            background-color: rgba($lk-dark-4, 0.95);
+        }
+    }
+}
+.lk-table__row--inverse-selected {
+    background-color: rgba($lk-dark-4, 1);
+    color: white;
+    &:hover {
+        background-color: rgba($lk-dark-4, 0.95);
+    }
+}
+
+.lk-table__row--inverse-disabled {
+    color: rgba(white, 0.25) !important;
+    cursor: not-allowed !important;
+}
+
+.lk-table__sub-header-contents {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: flex-start;
+}
+
+.lk-table__sub-section {
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(0, 0, 0, 0.25);
+    font-family: $pri-font-bold;
+    text-transform: uppercase;
+    color: $lk-dark-4;
+    font-size: $unit * 0.75;
+    background-color: white;
+    font-weight: bold;
+    @include transition-ease-out(all, 150ms);
+}
+
+.lk-table__sub-section--collapsed {
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.lk-table__sub-section--inverse {
+    background-color: mix($lk-dark-2, $lk-dark-1, 50%);
+    color: white;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 1), inset 0px 1px 0px rgba(0, 0, 0, 0.75);
+    &.lk-table__sub-section--primary {
+        background-color: $primaryDark4Color;
+        color: white;
+    }
+
+    &.lk-table__sub-section--secondary {
+        background-color: $secondaryDark4Color;
+        color: white;
+    }
+    &.lk-table__sub-section--tertiary {
+        background-color: $tertiaryDark4Color;
+        color: white;
+    }
+}
+
+.lk-table__sub-section--primary {
+    background-color: $primaryLight4Color;
+    color: white;
+}
+
+.lk-table__sub-section--secondary {
+    background-color: $secondaryLight4Color;
+    color: white;
+}
+
+.lk-table__sub-section--tertiary {
+    background-color: $tertiaryLight4Color;
+    color: white;
+}
+
+.lk-table--collapse-indicator {
+    @include transition-ease-out(all, 250ms);
+}
+
+.lk-table__sub-section--collapsed {
+    &.lk-table__sub-section--inverse {
+        box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.75);
+    }
+    .lk-table--collapse-indicator {
+        transform: rotate(180deg);
+    }
+}
+
+.lk-table__sub-section > .lk-table__row {
+    @include transition-ease-out(all, 150ms);
+    background-color: transparent !important;
+}
+
+.lk-table__sub-header {
+    background-color: transparent;
+}
+
+.lk-table__sub-section-content {
+    @include transition-ease-out(all, 250ms);
+    transform-origin: 50% 0;
+}
+
+.lk-table__sub-section-content--inverse > .lk-table__row:first-of-type {
+    box-shadow: inset 0 2px 3px -1px black;
+}
+
+.lk-table__sub-section--collapsed + .lk-table__sub-section-content {
+    opacity: 0;
+    > .lk-table__row {
+        display: none;
+    }
+}
+
+.lk-table--expandable tbody tr {
+    &.lk-table--expandable-row {
+        td {
+            border-bottom: 0;
+            padding: 0;
+            .lk-table--collapsible {
+                overflow: hidden;
+                transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+                transition-property: opacity;
+                transition-duration: 1s;
+                opacity: 1;
+                > div {
+                    padding: 1.5rem;
+                    border-bottom: 1px solid $grayLight2Color;
+                }
+            }
+        }
+    }
+    &:not(:has(.expanded)) + tr.lk-table--expandable-row {
+        td .lk-table--collapsible {
+            opacity: 0;
+            transition-duration: 0.25s;
+        }
+    }
+}

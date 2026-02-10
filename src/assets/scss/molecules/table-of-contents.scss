@@ -1,0 +1,69 @@
+@use 'sass:math';
+
+.lk-table-of-contents .nav > li > a {
+    border-left: math.div($unit, 6) solid transparent;
+    padding: ($unit * 0.25) ($unit * 1.25);
+    font-weight: 400;
+}
+
+// Nested links
+.lk-table-of-contents .nav .nav > li > a {
+    padding: 0 ($unit * 2);
+    font-weight: 300;
+}
+
+.lk-table-of-contents .nav .nav > li > a:hover {
+    text-decoration: none;
+}
+
+// Active & hover links
+.lk-table-of-contents .nav > .active > a,
+.lk-table-of-contents .nav > li > a:hover,
+.lk-table-of-contents .nav > li > a:focus {
+    border-left-color: $primaryColor;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+// All active links
+.lk-table-of-contents .nav > .active > a,
+.lk-table-of-contents .nav > .active:hover > a,
+.lk-table-of-contents .nav > .active:focus > a {
+    font-weight: 700;
+}
+
+// Nested active links
+.lk-table-of-contents .nav .nav > .active > a,
+.lk-table-of-contents .nav .nav > .active:hover > a,
+.lk-table-of-contents .nav .nav > .active:focus > a {
+    font-weight: 500;
+}
+
+// Hide inactive nested list
+.lk-table-of-contents .nav ul.nav {
+    display: none;
+}
+
+// Show active nested list
+.lk-table-of-contents .nav > .active > ul.nav {
+    display: block;
+}
+
+.lk-table-of-contents__fixed-nav {
+    position: fixed;
+    top: ($unit * 7);
+    left: 0;
+    width: 100%;
+    z-index: $z-index-3;
+    -webkit-transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.lk-table-of-contents__fixed-nav--scrolled {
+    top: ($unit * 5);
+}
+
+.lk-slide-out .lk-table-of-contents__fixed-nav {
+    -webkit-transform: translateX($unit * 25);
+    transform: translateX($unit * 25);
+}

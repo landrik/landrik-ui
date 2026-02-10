@@ -1,0 +1,73 @@
+@use 'sass:math';
+
+.lk-divider {
+    width: 100%;
+    height: $unit;
+    color: $lk-light-3;
+    display: flex;
+    margin-bottom: $unit;
+}
+
+.lk-divider--reversed {
+    flex-direction: row-reverse;
+    .lk-divider__label {
+        margin-left: $unit * 0.25;
+        margin-right: 0;
+    }
+    .lk-divider__arrow {
+        margin-right: $unit * 0.25;
+        margin-left: 0;
+    }
+}
+
+.lk-divider--centered {
+    .lk-divider__label {
+        margin-left: $unit * 0.25;
+    }
+}
+
+.lk-divider--collapsible {
+    cursor: pointer;
+    &:hover {
+        color: $dividerTextColor;
+        .lk-divider__line {
+            background-color: $dividerLineColor;
+        }
+        .lk-divider__arrow {
+            border-top: math.div($unit, 3) solid $dividerArrowColor;
+        }
+    }
+}
+
+.lk-divider__label {
+    display: block;
+    font-size: $unit * 0.75;
+    flex-basis: auto;
+    margin-right: $unit * 0.25;
+    @include transition-ease-out(all, 250ms);
+}
+
+.lk-divider__line {
+    flex: 1;
+    display: block;
+    height: 1px;
+    background-color: $lk-light-2;
+    top: $unit * 0.6;
+    @include transition-ease-out(all, 250ms);
+}
+
+.lk-divider__arrow {
+    width: 0;
+    height: 0;
+    top: 0.5 * $unit;
+    border-left: math.div($unit, 3) solid transparent;
+    border-right: math.div($unit, 3) solid transparent;
+    border-top: math.div($unit, 3) solid $lk-light-2;
+    margin-left: $unit * 0.25;
+    transform: rotate(0deg);
+    @include transition-ease-out(all, 250ms);
+}
+
+.lk-divider__arrow--collapse {
+    transform: rotate(180deg);
+}

@@ -1,0 +1,45 @@
+.lk-text--link {
+    color: $primaryColor;
+
+    &:hover {
+        text-decoration: underline;
+        color: $primaryLight2Color;
+    }
+}
+
+.lk-text--link-secondary {
+    color: $secondaryColor;
+
+    &:hover {
+        text-decoration: underline;
+        color: $secondaryLight2Color;
+    }
+}
+
+.lk-text--link-grey,
+.lk-text--link-gray {
+    color: $grayDark2Color;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        color: $primaryColor;
+    }
+    &:active {
+        color: $primaryDark3Color;
+    }
+}
+
+.lk-text--link-light-grey,
+.lk-text--link-light-gray {
+    color: $grayLight3Color;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        color: $primaryColor;
+    }
+    &:active {
+        color: $primaryDark3Color;
+    }
+}

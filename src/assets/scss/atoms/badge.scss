@@ -1,0 +1,91 @@
+.lk-badge {
+    display: inline-block;
+    font-size: 60%;
+    margin: 0 ($unit * 0.25);
+    background: $primaryLight5Color;
+    color: $primaryDark5Color;
+    padding: 1px ($unit * 0.25) 0;
+    border-radius: ($border-radius * 0.5);
+    vertical-align: text-top;
+    font-family: $pri-font-regular;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    @include no-select();
+    &--empty {
+        background: $primaryColor;
+    }
+}
+
+.lk-badge--inverse {
+    color: $primaryDark2Color;
+}
+
+.lk-badge--dark {
+    background: $lk-dark-4 !important;
+    color: #fff;
+}
+
+.lk-badge--success {
+    background: $successLight5Color;
+    color: $successDark5Color;
+    &.lk-badge--empty {
+        background: $successColor;
+    }
+}
+
+.lk-badge--success-inverse {
+    color: $successDark2Color;
+}
+
+.lk-badge--info {
+    background: $infoLight5Color;
+    color: $infoDark5Color;
+    &.lk-badge--empty {
+        background: $infoColor;
+    }
+}
+
+.lk-badge--info-inverse {
+    color: $infoDark2Color;
+}
+
+.lk-badge--warning {
+    background: $warningLight5Color;
+    color: $warningDark5Color;
+    &.lk-badge--empty {
+        background: $warningColor;
+    }
+}
+
+.lk-badge--warning-inverse {
+    color: $warningDark3Color;
+}
+
+.lk-badge--danger {
+    background: $dangerLight5Color;
+    color: $dangerDark5Color;
+    &.lk-badge--empty {
+        background: $dangerColor;
+    }
+}
+
+.lk-badge--danger-inverse {
+    color: $dangerDark2Color;
+}
+
+.lk-badge--inverse,
+.lk-badge--success-inverse,
+.lk-badge--info-inverse,
+.lk-badge--warning-inverse,
+.lk-badge--danger-inverse {
+    background: white;
+}
+
+.lk-badge--empty {
+    width: ($unit * 0.5);
+    height: ($unit * 0.5);
+    border-radius: ($unit * 0.25);
+    vertical-align: super;
+}

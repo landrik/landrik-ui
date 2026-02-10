@@ -1,0 +1,344 @@
+.lk-card {
+    display: block;
+    position: relative;
+    margin-bottom: ($unit * 0.75);
+    border-radius: $border-radius;
+    background-color: white;
+    border: 1px solid $lk-light-2;
+    color: $lk-dark-4;
+    @include transition-back(all, 250ms);
+
+    &.active {
+        box-shadow: $ds-nd-3, inset 0 0 ($unit * 2.5) rgba(0, 0, 0, 0.05),
+            inset 0 0 1px rgba($primaryColor, 1);
+        border-color: $primaryDark2Color;
+
+        .lk-card-footer,
+        .lk-card-header {
+            background: $primaryColor;
+            color: white;
+        }
+    }
+}
+
+.lk-card--no-top {
+    border-radius: 0 0 $border-radius $border-radius;
+    border-top: none;
+}
+
+.lk-card--no-shadow {
+    border: none;
+    box-shadow: none;
+}
+
+.lk-card--dark {
+    background-color: $lk-dark-3;
+    border: 1px solid $lk-dark-4;
+    color: $lk-light-4;
+
+    .lk-card__hero {
+        color: white;
+    }
+}
+
+.lk-card--xl {
+    height: ($unit * 30);
+}
+
+.lk-card--lg {
+    height: ($unit * 24);
+}
+
+.lk-card--md {
+    height: ($unit * 18);
+}
+
+.lk-card--sm {
+    height: ($unit * 12);
+}
+
+.lk-card--xs {
+    height: ($unit * 8);
+}
+
+.lk-card--no-height {
+    height: auto;
+}
+
+.lk-card--underlined {
+    border-bottom: $cap-size solid $primaryColor;
+}
+
+.lk-card--underlined-secondary {
+    border-bottom: $cap-size solid $secondaryColor;
+}
+
+.lk-card--no-bg {
+    background: none;
+    box-shadow: 0 0 ($unit * 1.5) 0px rgba(0, 0, 0, 0.1);
+}
+
+.lk-card--white {
+    background: white;
+}
+
+// Tile cards
+.lk-card--tile {
+    height: ($unit * 18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.lk-card--tile__block {
+    display: block;
+}
+
+.lk-card--tile__icon {
+    height: ($unit * 4);
+    font-size: ($unit * 4);
+    line-height: ($unit * 4);
+    margin-bottom: ($unit * 0.5);
+}
+
+.lk-card--tile__text {
+    height: ($unit * 6);
+    overflow: visible;
+}
+
+// Header & footer
+.lk-card__footer,
+.lk-card__header {
+    padding: ($unit * 0.5);
+    font-family: $pri-font-regular;
+    font-size: $unit;
+    background-color: $cardCapBackgroundColor;
+    color: white;
+    border: none;
+    @include transition-back(all, 250ms);
+}
+
+.lk-card__footer {
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: $cardCapUnderlineColor;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}
+
+.lk-card__header {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: $cardCapUnderlineColor;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+}
+
+.lk-card__block {
+    padding: ($unit * 0.5);
+    height: 100%;
+    border-color: inherit;
+}
+
+.lk-card__block--divide-top {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: inherit;
+}
+
+.lk-card__block--divide-bottom {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: inherit;
+}
+
+.lk-card__link {
+    color: $primaryColor;
+
+    &:hover {
+        text-decoration: underline;
+        color: $primaryLight2Color;
+    }
+}
+
+.lk-card__block--abs {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.lk-card__title {
+    display: block;
+    cursor: pointer;
+    margin: 0;
+}
+
+.lk-card__link {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.lk-card__text {
+    color: $lk-light-5;
+    margin-bottom: $unit;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.lk-card__control {
+    z-index: $z-index-1;
+
+    > * {
+        display: block;
+    }
+}
+
+.lk-card__control--t-r {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+.lk-card__control--t-l {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.lk-card__control--b-r {
+    position: absolute !important;
+    bottom: 0;
+    right: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.lk-card__control--b-l {
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+.lk-card__chart {
+    height: 100%;
+    width: 100%;
+    opacity: 0.4;
+    @include transition-ease-out(all, 250ms);
+}
+
+.lk-card__chart--abs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: ($unit * 2) $unit $unit $unit;
+}
+
+.lk-card__chart--no-fade {
+    opacity: 1;
+}
+
+.lk-card__trend {
+    display: inline-block;
+
+    &:before {
+        display: inline-block;
+        vertical-align: middle;
+        font-family: 'Font Awesome 6 Free';
+        margin-right: ($unit * 0.25);
+        font-size: ($font-size * 0.75);
+        position: relative;
+        top: -2px;
+    }
+}
+
+.lk-card__trend--up {
+    color: $successColor;
+
+    &:before {
+        content: fa-content($fa-var-angle-up);
+    }
+}
+
+.lk-card__trend--same {
+    color: $warningColor;
+
+    &:before {
+        content: fa-content($fa-var-minus);
+    }
+}
+
+.lk-card__trend--down {
+    color: $dangerColor;
+
+    &:before {
+        content: fa-content($fa-var-angle-down);
+    }
+}
+
+.lk-card__trend--chart-trend {
+    position: absolute;
+    bottom: ($unit * 0.5);
+    right: ($unit * 0.5);
+}
+
+.lk-card__img-container {
+    max-height: ($unit * 8);
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lk-card__img-container--xs {
+    max-height: ($unit * 4);
+}
+
+.lk-card__img-container--sm {
+    max-height: ($unit * 6);
+}
+
+.lk-card__img-container--md {
+    max-height: ($unit * 8);
+}
+
+.lk-card__img-container--lg {
+    max-height: ($unit * 10);
+}
+
+.lk-card__img-container--xl {
+    max-height: ($unit * 12);
+}
+
+.lk-card__img-container--top {
+    border-radius: $border-radius $border-radius 0 0;
+}
+
+.lk-card__img-container--bottom {
+    border-radius: 0 0 $border-radius $border-radius;
+}
+
+.lk-card__img-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.lk-card__img {
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+}

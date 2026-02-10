@@ -1,0 +1,112 @@
+.lk-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.lk-loading--bg {
+    width: 100%;
+    height: 100%;
+    background: $trans-white-light;
+}
+
+.lk-loading__dot,
+.lk-loading__dot:before,
+.lk-loading__dot:after {
+    width: ($unit * 0.5);
+    height: ($unit * 0.5);
+    border-radius: ($unit * 0.25);
+    transition: all 0.25s ease-in-out;
+}
+
+.lk-loading__dot--white,
+.lk-loading__dot--white:before,
+.lk-loading__dot--white:after {
+    animation: white-pulse 3s infinite !important;
+}
+
+@keyframes white-pulse {
+    0% {
+        background: rgba(white, 0.15);
+    }
+    70% {
+        background: rgba(white, 1);
+    }
+    100% {
+        background: rgba(white, 0.15);
+    }
+}
+
+.lk-loading__dot {
+    position: relative;
+    top: -50%;
+    left: -50%;
+    -webkit-animation-delay: 0.25s !important;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+    }
+
+    &:before {
+        left: -13px;
+        -webkit-animation-delay: 0s !important;
+    }
+
+    &:after {
+        left: 13px;
+        -webkit-animation-delay: 0.5s !important;
+    }
+}
+
+.lk-loading__dot--lg,
+.lk-loading__dot--lg:before,
+.lk-loading__dot--lg:after {
+    width: $unit;
+    height: $unit;
+    border-radius: ($unit * 0.5);
+}
+
+.lk-loading__dot--lg:before {
+    left: -26px;
+}
+
+.lk-loading__dot--lg:after {
+    left: 26px;
+}
+
+.lk-loading__dot--sm,
+.lk-loading__dot--sm:before,
+.lk-loading__dot--sm:after {
+    width: ($unit * 0.25);
+    height: ($unit * 0.25);
+    border-radius: ($unit * 0.125);
+}
+
+.lk-loading__dot--sm:before {
+    left: -8px;
+}
+
+.lk-loading__dot--sm:after {
+    left: 8px;
+}
+
+.lk-loading__dot,
+.lk-loading__dot:before,
+.lk-loading__dot:after {
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background: rgba($primaryColor, 0.15);
+    }
+    70% {
+        background: rgba($primaryColor, 1);
+    }
+    100% {
+        background: rgba($primaryColor, 0.15);
+    }
+}

@@ -1,0 +1,76 @@
+.lk-circular-thumbnail,
+.lk-ranker-ensign__thumbnail {
+    width: ($unit * 4.5);
+    height: ($unit * 4.5);
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 1px solid white;
+    box-shadow: 0 0 0 1px $primaryColor;
+    @include no-select();
+    @include transition-ease-out(all, 250ms);
+}
+
+.lk-circular-thumbnail--dark {
+    border: 1px solid $lk-dark-4;
+}
+
+.lk-circular-thumbnail--xs,
+.lk-ranker-ensign__thumbnail--xs {
+    width: ($unit * 2);
+    height: ($unit * 2);
+    border: 1px solid white;
+}
+
+.lk-circular-thumbnail--sm,
+.lk-ranker-ensign__thumbnail--sm {
+    width: ($unit * 3);
+    height: ($unit * 3);
+}
+
+.lk-circular-thumbnail--lg,
+.lk-ranker-ensign__thumbnail--lg {
+    width: ($unit * 6);
+    height: ($unit * 6);
+}
+
+.lk-circular-thumbnail--xl,
+.lk-ranker-ensign__thumbnail--xl {
+    width: ($unit * 8);
+    height: ($unit * 8);
+}
+
+.lk-circular-thumbnail--secondary,
+.lk-ranker-ensign__thumbnail--secondary {
+    box-shadow: 0 0 0 1px $secondaryColor;
+}
+
+.lk-circular-thumbnail--tertiary,
+.lk-ranker-ensign__thumbnail--tertiary {
+    box-shadow: 0 0 0 1px $tertiaryColor;
+}
+
+.lk-circular-thumbnail--success,
+.lk-ranker-ensign__thumbnail--success {
+    box-shadow: 0 0 0 1px $successColor;
+}
+
+.lk-circular-thumbnail--warning,
+.lk-ranker-ensign__thumbnail--warning {
+    box-shadow: 0 0 0 1px $warningColor;
+}
+
+.lk-circular-thumbnail--info,
+.lk-ranker-ensign__thumbnail--info {
+    box-shadow: 0 0 0 1px $infoColor;
+}
+
+.lk-circular-thumbnail--danger,
+.lk-ranker-ensign__thumbnail--danger {
+    box-shadow: 0 0 0 1px $dangerColor;
+}
+
+.lk-circular-thumbnail--white {
+    border: 1px solid $lk-dark-4;
+    box-shadow: 0 0 0 1px white;
+}

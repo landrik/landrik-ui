@@ -1,4 +1,5 @@
-import { addons } from "@storybook/addons";
-import { light } from "./themes";
+import { addons } from '@storybook/manager-api';
 
-addons.setConfig({ theme: light });
+import landrikTheme from './lk-theme';
+
+addons.setConfig({ theme: landrikTheme })

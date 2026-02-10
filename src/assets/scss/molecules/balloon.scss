@@ -1,0 +1,351 @@
+$balloon-arrow-size: 13px;
+$balloon-bg-color: white;
+$balloon-bd-color: $lk-light-2;
+$balloon-tx-color: $lk-dark-4;
+$balloon-bg-dk-color: $lk-dark-4;
+$balloon-bd-dk-color: $lk-gray;
+$balloon-tx-dk-color: white;
+
+.lk-balloon {
+    position: absolute;
+    z-index: $z-index-9;
+    max-width: 250px;
+    border-radius: $border-radius;
+    background-color: $balloon-bg-color;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $balloon-bd-color;
+    color: $balloon-tx-color;
+    min-height: 90px;
+    box-shadow: 0 0 $unit rgba(black, 0.1);
+}
+
+.lk-balloon--right {
+    @include createNubbin('left', $balloon-arrow-size, $balloon-bg-color, $balloon-bd-color);
+}
+
+.lk-balloon--left {
+    @include createNubbin('right', $balloon-arrow-size, $balloon-bg-color, $balloon-bd-color);
+}
+
+.lk-balloon--top {
+    @include createNubbin('down', $balloon-arrow-size, $balloon-bg-color, $balloon-bd-color);
+}
+
+.lk-balloon--bottom {
+    @include createNubbin('up', $balloon-arrow-size, $balloon-bg-color, $balloon-bd-color);
+}
+
+.lk-balloon--contextual {
+    color: white;
+}
+
+.lk-balloon--primary {
+    color: white;
+    background-color: $balloonPrimaryBackgroundColor;
+    border-color: $balloonPrimaryBorderColor;
+
+    &.lk-balloon--right {
+        @include createNubbin(
+            'left',
+            $balloon-arrow-size,
+            $balloonPrimaryBackgroundColor,
+            $balloonPrimaryBorderColor
+        );
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin(
+            'right',
+            $balloon-arrow-size,
+            $balloonPrimaryBackgroundColor,
+            $balloonPrimaryBorderColor
+        );
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin(
+            'down',
+            $balloon-arrow-size,
+            $balloonPrimaryBackgroundColor,
+            $balloonPrimaryBorderColor
+        );
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin(
+            'up',
+            $balloon-arrow-size,
+            $balloonPrimaryBackgroundColor,
+            $balloonPrimaryBorderColor
+        );
+    }
+    .lk-balloon__group {
+        border-color: $balloonPrimaryBorderColor;
+    }
+}
+
+.lk-balloon--secondary {
+    color: white;
+    background-color: $balloonSecondaryBackgroundColor;
+    border-color: $balloonSecondaryBorderColor;
+
+    &.lk-balloon--right {
+        @include createNubbin(
+            'left',
+            $balloon-arrow-size,
+            $balloonSecondaryBackgroundColor,
+            $balloonSecondaryBorderColor
+        );
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin(
+            'right',
+            $balloon-arrow-size,
+            $balloonSecondaryBackgroundColor,
+            $balloonSecondaryBorderColor
+        );
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin(
+            'down',
+            $balloon-arrow-size,
+            $balloonSecondaryBackgroundColor,
+            $balloonSecondaryBorderColor
+        );
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin(
+            'up',
+            $balloon-arrow-size,
+            $balloonSecondaryBackgroundColor,
+            $balloonSecondaryBorderColor
+        );
+    }
+    .lk-balloon__group {
+        border-color: $balloonSecondaryBorderColor;
+    }
+}
+
+.lk-balloon--tertiary {
+    color: white;
+    background-color: $balloonTertiaryBackgroundColor;
+    border-color: $balloonTertiaryBorderColor;
+
+    &.lk-balloon--right {
+        @include createNubbin(
+            'left',
+            $balloon-arrow-size,
+            $balloonTertiaryBackgroundColor,
+            $balloonTertiaryBorderColor
+        );
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin(
+            'right',
+            $balloon-arrow-size,
+            $balloonTertiaryBackgroundColor,
+            $balloonTertiaryBorderColor
+        );
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin(
+            'down',
+            $balloon-arrow-size,
+            $balloonTertiaryBackgroundColor,
+            $balloonTertiaryBorderColor
+        );
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin(
+            'up',
+            $balloon-arrow-size,
+            $balloonTertiaryBackgroundColor,
+            $balloonTertiaryBorderColor
+        );
+    }
+    .lk-balloon__group {
+        border-color: $balloonTertiaryBorderColor;
+    }
+}
+
+.lk-balloon--success {
+    color: white;
+    background-color: $successColor;
+    border-color: $successColor;
+    &.lk-balloon--right {
+        @include createNubbin('left', $balloon-arrow-size, $successColor, $successColor);
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin('right', $balloon-arrow-size, $successColor, $successColor);
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin('down', $balloon-arrow-size, $successColor, $successColor);
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin('up', $balloon-arrow-size, $successColor, $successColor);
+    }
+    .lk-balloon__group {
+        border-color: $successColor;
+    }
+}
+
+.lk-balloon--warning {
+    color: white;
+    background-color: $warningColor;
+    border-color: $warningColor;
+    &.lk-balloon--right {
+        @include createNubbin('left', $balloon-arrow-size, $warningColor, $warningColor);
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin('right', $balloon-arrow-size, $warningColor, $warningColor);
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin('down', $balloon-arrow-size, $warningColor, $warningColor);
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin('up', $balloon-arrow-size, $warningColor, $warningColor);
+    }
+    .lk-balloon__group {
+        border-color: $warningColor;
+    }
+}
+
+.lk-balloon--danger {
+    color: white;
+    background-color: $dangerColor;
+    border-color: $dangerColor;
+    &.lk-balloon--right {
+        @include createNubbin('left', $balloon-arrow-size, $dangerColor, $dangerColor);
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin('right', $balloon-arrow-size, $dangerColor, $dangerColor);
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin('down', $balloon-arrow-size, $dangerColor, $dangerColor);
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin('up', $balloon-arrow-size, $dangerColor, $dangerColor);
+    }
+    .lk-balloon__group {
+        border-color: $dangerColor;
+    }
+}
+
+.lk-balloon--dark {
+    background-color: $balloon-bg-dk-color;
+    border: 1px solid $balloon-bd-dk-color;
+    color: $balloon-tx-dk-color;
+    box-shadow: 0 0 $unit * 0.5 rgba(black, 0.65);
+    &.lk-balloon--right {
+        @include createNubbin(
+            'left',
+            $balloon-arrow-size,
+            $balloon-bg-dk-color,
+            $balloon-bd-dk-color
+        );
+    }
+
+    &.lk-balloon--left {
+        @include createNubbin(
+            'right',
+            $balloon-arrow-size,
+            $balloon-bg-dk-color,
+            $balloon-bd-dk-color
+        );
+    }
+
+    &.lk-balloon--top {
+        @include createNubbin(
+            'down',
+            $balloon-arrow-size,
+            $balloon-bg-dk-color,
+            $balloon-bd-dk-color
+        );
+    }
+
+    &.lk-balloon--bottom {
+        @include createNubbin(
+            'up',
+            $balloon-arrow-size,
+            $balloon-bg-dk-color,
+            $balloon-bd-dk-color
+        );
+    }
+    .lk-balloon__group {
+        border-color: $balloon-bd-dk-color;
+    }
+}
+
+.lk-balloon__description {
+    font-family: $pri-font-regular;
+    color: inherit;
+    font-size: $font-size-minus-2;
+}
+.lk-balloon__label {
+    font-family: $pri-font-bold;
+    color: inherit;
+    font-size: $font-size-minus-3;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: ($unit * 0.25);
+    text-transform: uppercase;
+    @include transition-back(all, 250ms);
+}
+
+.lk-balloon__label--dark,
+.lk-balloon__label--primary,
+.lk-balloon__label--secondary,
+.lk-balloon__label--tertiary,
+.lk-balloon__label--success,
+.lk-balloon__label--warning,
+.lk-balloon__label--danger {
+    color: $balloon-tx-dk-color;
+}
+
+.lk-balloon__group {
+    padding: 0 $unit * 0.5;
+    border-color: $balloon-bd-color;
+}
+
+.lk-balloon__group--divide-bottom {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    &.lk-balloon__group--success,
+    &.lk-balloon__group--warning,
+    &.lk-balloon__group--danger {
+        border-bottom: 1px solid rgba(black, 0.1);
+    }
+}
+.lk-balloon__group--divide-top {
+    border-top-width: 1px;
+    border-top-style: solid;
+    &.lk-balloon__group--dark {
+        border-top-width: 1px;
+        border-top-style: solid;
+    }
+    &.lk-balloon__group--primary,
+    &.lk-balloon__group--secondary,
+    &.lk-balloon__group--tertiary,
+    &.lk-balloon__group--success,
+    &.lk-balloon__group--warning,
+    &.lk-balloon__group--danger {
+        border-top: 1px solid rgba(black, 0.1);
+    }
+}

@@ -1,31 +1,38 @@
-// {
-//   "compilerOptions": {
-//     "target": "es2016",
-//     "jsx": "react",
-//     "module": "ESNext",
-//     "moduleResolution": "node",
-//     "declaration": true, 
-//     "emitDeclarationOnly": true,
-//     "outDir": "dist", 
-//     "declarationDir": "types",
-//     "allowSyntheticDefaultImports": true,
-//     "esModuleInterop": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "strict": true, 
-//     "skipLibCheck": true
-//   }
-// }
-
-
 {
-  "include": [
-    "src/*"
-  ],
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "types",
-    "allowSyntheticDefaultImports": true
-  }
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "*",
+        "./types/*"
+      ]
+    }
+  },
+  "include": [
+    "src/types/styled-components.d.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.tsx",
+    "**/*.test.ts",
+    "**/*.stories.tsx"
+  ]
 }

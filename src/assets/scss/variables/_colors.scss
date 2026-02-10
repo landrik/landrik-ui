@@ -1,0 +1,130 @@
+// -------------------------------------------------- //
+// Color variables
+// -------------------------------------------------- //
+
+//this should be sunsetted at some point - it's redundant to the theme color variables///
+
+// Brand colors
+$lk-gold: $goldColor;
+$lk-gold-light-1: mix(white, $lk-gold, 5%);
+$lk-gold-light-2: mix(white, $lk-gold, 10%);
+$lk-gold-light-3: mix(white, $lk-gold, 15%);
+$lk-gold-light-4: mix(white, $lk-gold, 30%);
+$lk-gold-dark-1: mix(black, $lk-gold, 5%);
+$lk-gold-dark-2: mix(black, $lk-gold, 10%);
+$lk-gold-dark-3: mix(black, $lk-gold, 15%);
+$lk-gold-dark-4: mix(black, $lk-gold, 30%);
+
+$lk-blue: $blueColor;
+$lk-blue-light-1: mix($lk-blue, white, 90%);
+$lk-blue-light-2: mix($lk-blue, white, 80%);
+$lk-blue-light-3: mix($lk-blue, white, 70%);
+$lk-blue-light-4: mix($lk-blue, white, 60%);
+$lk-blue-dark-1: mix($lk-blue, black, 90%);
+$lk-blue-dark-2: mix($lk-blue, black, 80%);
+$lk-blue-dark-3: mix($lk-blue, black, 70%);
+$lk-blue-dark-4: mix($lk-blue, black, 60%);
+
+$lk-gray: $grayColor;
+$lk-dark-1: $grayDark1Color;
+$lk-dark-2: $grayDark2Color;
+$lk-dark-3: $grayDark3Color;
+$lk-dark-4: $grayDark4Color;
+$lk-dark-5: $grayDark5Color;
+
+$lk-light-1: $grayLight1Color;
+$lk-light-2: $grayLight2Color;
+$lk-light-3: $grayLight3Color;
+$lk-light-4: $grayLight4Color;
+$lk-light-5: $grayLight5Color;
+
+$lk-green: $greenColor;
+$lk-green-light-1: mix($lk-green, white, 90%);
+$lk-green-light-2: mix($lk-green, white, 80%);
+$lk-green-light-3: mix($lk-green, white, 70%);
+$lk-green-light-4: mix($lk-green, white, 60%);
+$lk-green-dark-1: mix($lk-green, black, 90%);
+$lk-green-dark-2: mix($lk-green, black, 80%);
+$lk-green-dark-3: mix($lk-green, black, 70%);
+$lk-green-dark-4: mix($lk-green, black, 60%);
+
+$lk-red: $redColor;
+$lk-red-light-1: mix($lk-red, white, 90%);
+$lk-red-light-2: mix($lk-red, white, 80%);
+$lk-red-light-3: mix($lk-red, white, 70%);
+$lk-red-light-4: mix($lk-red, white, 60%);
+$lk-red-dark-1: mix($lk-red, black, 90%);
+$lk-red-dark-2: mix($lk-red, black, 80%);
+$lk-red-dark-3: mix($lk-red, black, 70%);
+$lk-red-dark-4: mix($lk-red, black, 60%);
+
+$lk-purple: $purpleColor;
+$lk-purple-light-1: mix($lk-purple, white, 90%);
+$lk-purple-light-2: mix($lk-purple, white, 80%);
+$lk-purple-light-3: mix($lk-purple, white, 70%);
+$lk-purple-light-4: mix($lk-purple, white, 60%);
+$lk-purple-dark-1: mix($lk-purple, black, 90%);
+$lk-purple-dark-2: mix($lk-purple, black, 80%);
+$lk-purple-dark-3: mix($lk-purple, black, 70%);
+$lk-purple-dark-4: mix($lk-purple, black, 60%);
+
+$lk-dkgreen: $darkGreenColor;
+$lk-dkgreen-light-1: mix($lk-dkgreen, white, 90%);
+$lk-dkgreen-light-2: mix($lk-dkgreen, white, 80%);
+$lk-dkgreen-light-3: mix($lk-dkgreen, white, 70%);
+$lk-dkgreen-light-4: mix($lk-dkgreen, white, 60%);
+$lk-dkgreen-dark-1: mix($lk-dkgreen, black, 90%);
+$lk-dkgreen-dark-2: mix($lk-dkgreen, black, 80%);
+$lk-dkgreen-dark-3: mix($lk-dkgreen, black, 70%);
+$lk-dkgreen-dark-4: mix($lk-dkgreen, black, 60%);
+
+$lk-orange: $orangeColor;
+$lk-orange-light-1: mix($lk-orange, white, 90%);
+$lk-orange-light-2: mix($lk-orange, white, 80%);
+$lk-orange-light-3: mix($lk-orange, white, 70%);
+$lk-orange-light-4: mix($lk-orange, white, 60%);
+$lk-orange-dark-1: mix($lk-orange, black, 90%);
+$lk-orange-dark-2: mix($lk-orange, black, 80%);
+$lk-orange-dark-3: mix($lk-orange, black, 70%);
+$lk-orange-dark-4: mix($lk-orange, black, 60%);
+
+$lk-magenta: $magentaColor;
+$lk-magenta-light-1: mix($lk-magenta, white, 90%);
+$lk-magenta-light-2: mix($lk-magenta, white, 80%);
+$lk-magenta-light-3: mix($lk-magenta, white, 70%);
+$lk-magenta-light-4: mix($lk-magenta, white, 60%);
+$lk-magenta-dark-1: mix($lk-magenta, black, 90%);
+$lk-magenta-dark-2: mix($lk-magenta, black, 80%);
+$lk-magenta-dark-3: mix($lk-magenta, black, 70%);
+$lk-magenta-dark-4: mix($lk-magenta, black, 60%);
+
+// Transparent colors
+$trans-black-dark: rgba(0, 0, 0, 0.87);
+$trans-black-medium: rgba(0, 0, 0, 0.54);
+$trans-black-light: rgba(0, 0, 0, 0.38);
+$trans-black-x-light: rgba(0, 0, 0, 0.05);
+
+$trans-white-dark: rgba(255, 255, 255, 0.87);
+$trans-white-medium: rgba(255, 255, 255, 0.54);
+$trans-white-light: rgba(255, 255, 255, 0.2);
+$trans-white-x-light: rgba(255, 255, 255, 0.1);
+
+// Gradients
+$white-gray-diag: linear-gradient(45deg, rgba(241, 241, 241, 1) 0%, rgba(251, 251, 251, 1) 100%);
+$white-gray-diag-invert: linear-gradient(
+    45deg,
+    rgba(251, 251, 251, 1) 0%,
+    rgba(241, 241, 241, 1) 100%
+);
+$white-gray-vert: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(226, 226, 226, 1) 100%
+);
+$lk-blue-diag: linear-gradient(45deg, rgba($lk-blue, 1) 0%, rgba($lk-blue-dark-1, 1) 100%);
+$lk-blue-diag-invert: linear-gradient(45deg, rgba($lk-blue-dark-1, 1) 0%, rgba($lk-blue, 1) 100%);
+
+@function strip-hash($color) {
+    $c: inspect($color);
+    @return str-slice($c, 2);
+}

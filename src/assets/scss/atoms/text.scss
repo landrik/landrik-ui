@@ -1,0 +1,212 @@
+// Base text styles
+body {
+    font-family: $pri-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+        sans-serif;
+    font-weight: $font-weight-normal;
+    font-size: $font-size;
+    line-height: 1.8;
+    color: $grayDark3Color;
+}
+
+// Reset font-size and margins on all text elements, these will be adjusted with classes
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+small {
+    margin: 0;
+    font-size: $font-size;
+    font-weight: $font-weight-light;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+input,
+textarea,
+select {
+    font-family: $pri-font-regular;
+    font-weight: $font-weight-light;
+}
+
+// Text styles
+.lk-text--uppercase {
+    text-transform: uppercase;
+}
+
+.lk-text--lowercase {
+    text-transform: lowercase;
+}
+
+// Header text
+.lk-text--header-xxl {
+    font-size: ($unit * 5);
+    line-height: 0.7;
+}
+
+.lk-text--header-xl {
+    font-size: ($unit * 3.5);
+    line-height: 1.1;
+}
+
+.lk-text--header-lg {
+    font-size: ($unit * 2.5);
+    line-height: 1.2;
+}
+
+.lk-text--header-md {
+    font-size: ($unit * 1.8);
+    line-height: 1.3;
+}
+
+.lk-text--header-sm {
+    font-size: ($unit * 1.5);
+    line-height: 1.4;
+}
+.lk-text--header-xs {
+    font-size: ($unit * 1.3);
+    line-height: 1.4;
+}
+
+// Body text
+.lk-text--body-md {
+    font-size: $font-size;
+}
+
+.lk-text--body-sm {
+    font-size: $font-size-minus-2;
+}
+
+.lk-text--body-xs {
+    font-size: $font-size-minus-3;
+}
+
+// Lists
+.lk-text__list-item--disc {
+    &:before {
+        content: '';
+        display: inline-block;
+        margin-right: $unit;
+        height: $unit * 0.25;
+        width: $unit * 0.25;
+        border-radius: 50%;
+        background-color: transparent;
+        border: 1px solid $primaryColor;
+        vertical-align: middle;
+    }
+}
+
+.lk-text__list-item--number {
+    counter-increment: step-counter;
+    margin-bottom: $unit * 0.5;
+    &:before {
+        content: counter(step-counter);
+        margin-right: $unit;
+        font-size: 80%;
+        height: $unit * 1.5;
+        width: $unit * 1.5;
+        border-radius: 50%;
+        border: 1px solid $primaryColor;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 1px;
+        color: $primaryColor;
+    }
+}
+
+// Block quotes
+.lk-text--blockquote {
+    padding-left: ($unit * 2);
+    border-left: 6px solid $trans-black-x-light;
+}
+
+.lk-text--blockquote--footer {
+    display: block;
+    padding-top: ($unit * 0.5);
+    font-style: normal;
+
+    &:before {
+        content: '- ';
+    }
+}
+
+.lk-text--code,
+.lk-text--keyboard,
+.lk-keyboard-shortcuts__trigger {
+    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    border-radius: $border-radius;
+    font-size: 80%;
+    padding: 0.2rem 0.4rem;
+}
+
+.lk-text--code {
+    color: $dangerDark2Color;
+    background-color: #f7f7f9;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lk-text--keyboard,
+.lk-keyboard-shortcuts__trigger {
+    color: #fff;
+    background-color: $lk-dark-2;
+}
+
+.lk-text--regular {
+    font-family: $pri-font-regular;
+}
+
+.lk-text--bold {
+    font-family: $pri-font-semibold;
+    font-weight: $font-weight-bold;
+}
+
+.lk-text--hero {
+    font-family: $pri-font-bold;
+    font-weight: $font-weight-bolder;
+}
+
+.lk-text--italic {
+    font-style: italic;
+}
+
+.lk-text--success {
+    color: $successColor !important;
+}
+
+.lk-text--warning {
+    color: $warningColor !important;
+}
+
+.lk-text--danger {
+    color: $dangerColor !important;
+}
+
+.lk-text--info {
+    color: $infoColor !important;
+}
+
+.lk-text--primary {
+    color: $primaryColor !important;
+}
+
+.lk-text--secondary {
+    color: $secondaryColor !important;
+}
+
+.lk-text--highlight {
+    background-color: rgba($lk-gold, 0.4);
+}
+
+*::selection {
+    background-color: $primaryColor;
+    color: white;
+}

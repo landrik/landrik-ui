@@ -1,0 +1,104 @@
+.lk-alert {
+    position: fixed;
+    display: block;
+    background-color: white;
+    z-index: 900;
+    border-radius: $border-radius;
+    overflow: hidden;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    padding: 0;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 0px 15px rgba(black, 0.15);
+    @include transition-ease-in(all, 100ms);
+}
+
+// Add to <body> when alert is open
+.-has-alert {
+    height: 100%;
+    overflow: hidden;
+}
+
+.lk-alert__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $trans-black-medium;
+    z-index: $z-index-8;
+    opacity: 0;
+    pointer-events: none;
+    @include transition-ease-in(all, 100ms);
+}
+
+.lk-alert--shown {
+    opacity: 1;
+    pointer-events: auto;
+    @include transition-ease-out(all, 100ms);
+    .lk-alert {
+        // transform: scale(1); causing alert position issue
+        @include transition-ease-out(all, 100ms);
+    }
+}
+
+.lk-alert__header,
+.lk-alert__body,
+.lk-alert__footer {
+    display: block;
+    text-align: center;
+}
+
+.lk-alert__header {
+    text-align: center;
+    color: white;
+    padding: $unit;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+}
+
+.lk-alert__header--danger {
+    background-color: $dangerColor;
+}
+.lk-alert__header--warning {
+    background-color: $warningColor;
+}
+.lk-alert__header--success {
+    background-color: $successColor;
+}
+.lk-alert__header--info {
+    background-color: $infoColor;
+}
+.lk-alert__header--primary {
+    background-color: $primaryColor;
+}
+.lk-alert__header--secondary {
+    background-color: $secondaryColor;
+}
+
+.lk-alert__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: ($unit * 1.3);
+    line-height: 1.4;
+    margin-top: $unit;
+}
+
+.lk-alert__icon {
+    font-size: ($unit * 2);
+    line-height: 0.7;
+    display: block;
+}
+
+.lk-alert__body {
+    position: relative;
+    padding: $unit;
+}
+
+.lk-alert__footer {
+    padding: 0 $unit $unit $unit;
+}
