@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import type { IconProps, IconSize, IconName } from './Icon.types';
+import type { IconProps } from './Icon.types';
 import { StyledIcon } from './Icon.styled';
 import { colors as tokenColor } from '../../../assets/core/tokens';
-import { icons } from '../../../assets/svgs/icons';
+import { ICON_REGISTRY } from '../../../assets/svgs/icons';
 
 
 
@@ -22,7 +22,7 @@ export const Icon:FC<IconProps> = ({
         $color={color}
         $clickable={!!onClick}
         className={className}
-        data-icon={name}
+        data-icon={ICON_REGISTRY[name]}
         focusable="false"
         role="img"
         onClick={onClick}
@@ -30,7 +30,7 @@ export const Icon:FC<IconProps> = ({
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* <path fillRule="evenodd" d={icons[name]} clipRule="evenodd" /> */}
-        <>{icons[name]}</>
+        <>{ICON_REGISTRY[name]}</>
       </StyledIcon>
 
 

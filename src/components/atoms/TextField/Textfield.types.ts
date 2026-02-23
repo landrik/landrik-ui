@@ -1,6 +1,6 @@
-import { icons } from '../../../assets/svgs/icons';
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 
-export type IconType = keyof typeof icons;
+//export type IconType = keyof typeof icons;
 export type InputShape= 'rounded' | 'square' | 'pill';
 export type InputFieldType = 'text' | 'number' | 'email' | 'password';
 
@@ -21,7 +21,7 @@ export type TextFieldProps = {
   isDisabled?: boolean,
   isRequired?: boolean,
   
-  icon?: IconType;
+  icon?: IconName;
   iconPosition?: 'left' | 'right';
 
   color?: string;

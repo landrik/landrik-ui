@@ -18,6 +18,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   showFirstLast = true,
   showPrevNext = true,
   disabled = false,
+  ...props
 }) => {
   const paginationRange = useMemo(() => {
     const totalPageNumbers = siblingCount + 5; // first, last, current, 2 siblings, 2 ellipsis
@@ -69,7 +70,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={disabled || currentPage === 1}
           aria-label='First page'
         >
-        ««
+        &laquo;
         </PageButton>
       )}
 
@@ -81,7 +82,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={disabled || currentPage === 1}
           aria-label="Previous page"
         >
-          ‹
+          &lsaquo;
         </PageButton>
       )}
 
@@ -114,7 +115,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={disabled || currentPage === totalPages}
           aria-label="Next page"
         >
-          ›
+          &rsaquo;
         </PageButton>
       )}
 
@@ -126,7 +127,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={disabled || currentPage === totalPages}
           aria-label="Last page"
         >
-          »»
+          &raquo;
         </PageButton>
       )}
     </PaginationContainer>

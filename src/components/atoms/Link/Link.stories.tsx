@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Link } from './Link';
 
 const meta = {
-  title: 'Atoms/Link',
+  title: 'Components/Link',
   component: Link,
   parameters: {layout: 'centered'},
   tags: ['autodocs']

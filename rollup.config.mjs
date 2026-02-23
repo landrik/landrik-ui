@@ -54,6 +54,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import image from '@rollup/plugin-image';
+import url from '@rollup/plugin-url';
 import { visualizer } from 'rollup-plugin-visualizer';
 import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
@@ -82,8 +83,14 @@ export default [
         tsconfig: './tsconfig.json',
         exclude: ['**/*.test.tsx', '**/*.test.ts', '**/*.stories.tsx'],
       }),
+      url({
+        include: ['**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot'],
+        limit: Infinity,
+        fileName: '[dirname][name][extname]',
+      }),
       image(),
       visualizer(),
+
     ],
     external: Object.keys(pkg.peerDependencies || {}),
   },

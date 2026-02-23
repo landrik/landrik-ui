@@ -8,11 +8,11 @@ interface StyledIconProps {
 }
 
 const sizeStyles: Record<IconSize, ReturnType<typeof css>> = {
-  xs: css`width: 12px; height: 12px;`,
-  sm: css`width: 16px; height: 16px;`,
-  md: css`width: 20px; height: 20px;`,
-  lg: css`width: 24px; height: 24px;`,
-  xl: css`width: 32px; height: 32px;`,
+  xs: css`width: 24px; height: 24px;`,
+  sm: css`width: 32px; height: 32px;`,
+  md: css`width: 40px; height: 40px;`,
+  lg: css`width: 48px; height: 48px;`,
+  xl: css`width: 54px; height: 54px;`,
 };
 
 export const StyledIcon = styled.svg<StyledIconProps>`

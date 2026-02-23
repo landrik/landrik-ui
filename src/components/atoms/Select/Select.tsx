@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import { SelectWrapper, SelectButton,Dropdown,Option,ErrorMessage,ChevronIcon } from './Select.styles'
 // import clsx from 'clsx'
 import {Icon} from '../Icons';
-import { icons } from '../../../assets/svgs/icons';
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 // import useOutsideClick from '../../utils/useOutsideClick'
 
 // export type IconType = keyof typeof icons;

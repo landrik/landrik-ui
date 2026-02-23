@@ -20,7 +20,7 @@ const sizeStyles: Record<PaginationSize, ReturnType<typeof css>> = {
   lg: css`min-width: 48px; height: 48px; padding: 0 ${p => p.theme.spacing[4]}px; font-size: ${p => p.theme.typography.fontSize.lg};`,
 };
 
-const variantStyles: Record<PaginationVariant, ReturnType<typeof css>> = { 
+const variantStyles: Record<PaginationVariant, any> = { 
   default: css<PageButtonProps>`
     background-color: ${p => p.$active ? p.theme.colors.primary[600] : p.theme.colors.neutral[0]};
     color: ${p => p.$active ? p.theme.colors.neutral[0] : p.theme.colors.neutral[700]};
@@ -57,6 +57,11 @@ const variantStyles: Record<PaginationVariant, ReturnType<typeof css>> = {
   `,
 };
 
+
+
+
+
+
 export const PageButton = styled.button<PageButtonProps>`
   display: inline-flex;
   align-items: center;
@@ -69,17 +74,17 @@ export const PageButton = styled.button<PageButtonProps>`
   user-select: none;
 
   &:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 
   &:focus-visible {
-  outline: 2px solid ${p => p.theme.colors.primary[500]};
-  outline-offset: 2px;
-}
+    outline: 2px solid ${p => p.theme.colors.primary[500]};
+    outline-offset: 2px;
+  }
 
-${p => sizeStyles[p.$size]}
-${p => variantStyles[p.$variant]}
+  ${p => sizeStyles[p.$size]}
+  ${p => variantStyles[p.$variant]}
 `;
 
 export const Ellipsis = styled.span<{ $size: PaginationSize }>`

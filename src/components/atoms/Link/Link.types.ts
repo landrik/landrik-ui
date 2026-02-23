@@ -1,7 +1,7 @@
 import { AnchorHTMLAttributes, ReactNode } from 'react';
-import { icons } from '../../../assets/svgs/icons';
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 
-export type IconType = keyof typeof icons;
+//export type IconType = keyof typeof icons;
 
 export type LinkVariant = 'primary' | 'secondary' | 'subtle' | 'danger';
 export type LinkSize = 'sm' | 'md' | 'lg';
@@ -15,5 +15,5 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   external?: boolean;
   leftIcon?: ReactNode;
   iconPosition?: IconPosition;
-  icon?: IconType
+  icon?: IconName
 }

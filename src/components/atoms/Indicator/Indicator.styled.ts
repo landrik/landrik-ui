@@ -3,7 +3,7 @@ import { IndicatorVariant, IndicatorSize, IndicatorPosition } from './Indicator.
 
 export const IndicatorWrapper = styled.div`position: relative; display: inline-flex;`;
 
-interface IndicatorBadgeProps {
+export interface IndicatorBadgeProps {
   $variant: IndicatorVariant;
   $size: IndicatorSize;
   $position: IndicatorPosition;
@@ -19,8 +19,8 @@ const variantStyles: Record<IndicatorVariant, ReturnType<typeof css>> = {
   info: css`background-color: ${p => p.theme.colors.semantic.info}; color: ${p => p.theme.colors.neutral[0]};`,
 };
 
-const sizeStyles: Record<IndicatorSize, ReturnType<typeof css>> = {
-  sm: css<IndicatorBadgeProps>`
+const sizeStyles: Record<IndicatorSize, any> = {
+  sm: css<{$dot: boolean}>`
       min-width: ${p => p.$dot ? '8px' : '16px'}; 
       height: ${p => p.$dot ? '8px' : '16px'}; 
       padding: ${p => p.$dot ? '0' :`0 ${p.theme.spacing[1]}px`}; 

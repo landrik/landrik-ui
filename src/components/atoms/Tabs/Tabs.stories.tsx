@@ -5,7 +5,7 @@
 // import TabList, { TabListProps } from './Tablist';
 
 // export default {
-//   title: 'atoms/Tabs',
+//   title: 'Components/Tabs',
 //   component: TabList,
 //   subcomponents: { TabItem, TabList }
 // } as Meta;
@@ -45,7 +45,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Tabs } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'atoms/Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
   parameters: {
     layout: 'padded',

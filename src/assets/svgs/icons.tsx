@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icon paths
-export const icons = {
+export const ICON_REGISTRY = {
   user: (
     <>
       <path d="M14 7A7 7 0 1 1 0 7a7 7 0 0 1 14 0ZM2.67 11.15c.7-1 2.6-1.81 3.2-1.9.22-.04.23-.66.23-.66s-.67-.66-.81-1.55c-.4 0-.63-.94-.24-1.27l-.02-.13c-.06-.6-.28-2.6 1.97-2.6s2.03 2 1.97 2.6l-.02.13c.4.33.15 1.27-.24 1.27-.14.89-.8 1.55-.8 1.55s0 .62.22.66c.6.09 2.5.9 3.2 1.9a6 6 0 1 0-8.66 0Z" />
@@ -1475,3 +1475,5 @@ export const icons = {
     </>
   ),
 } as const;
+
+export type IconName = keyof typeof ICON_REGISTRY;

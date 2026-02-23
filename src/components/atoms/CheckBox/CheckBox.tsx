@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import React, { FC } from 'react'
 import {Icon} from '../Icons';
-import { icons } from '../../../assets/svgs/icons';
-export type IconType = keyof typeof icons;
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+//export type IconType = keyof typeof icons;
 
 import {CheckboxWrapper, HiddenCheckbox, StyledCheckbox, CheckIcon, CheckboxLabel } from './CheckBox.styles'
 

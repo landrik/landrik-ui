@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react'
 import {InputShape, ErrorMessage, IconWrapper, InputContainer, InputLabel, InputWrapper, StatusIcon, StyledInput, ToggleButton} from './TextField.styled'
 import {Icon} from '../Icons';
-import { icons } from '../../../assets/svgs/icons';
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 
-export type IconType = keyof typeof icons;
+//export type IconType = keyof typeof icons;
 
 export type TextFieldProps = {
   type?: 'text' | 'number' | 'email' | 'password',
@@ -22,7 +22,7 @@ export type TextFieldProps = {
   isDisabled?: boolean,
   isRequired?: boolean,
   
-  icon?: IconType;
+  icon?: IconName;
   iconPosition?: 'left' | 'right';
 
   color?: string;

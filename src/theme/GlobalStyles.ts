@@ -6,23 +6,23 @@
 
 import { createGlobalStyle } from 'styled-components';
 
-import '../assets/fonts/Averta/Averta-Regular.ttf';
-import '../assets/fonts/Averta/Averta-Bold.ttf';
+import AvertaRegular from '../assets/fonts/Averta/Averta-Regular.ttf';
+import AvertaBold from '../assets/fonts/Averta/Averta-Bold.ttf';
   
 
 export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: "Averta";
-    src: local('../assets/fonts/Averta/Averta-Regular.ttf'),
-      url('../assets/fonts/Averta/Averta-Regular.ttf') format("truetype");
+    src: local(${AvertaRegular}),
+      url(${AvertaRegular}) format("truetype");
     font-weight: normal;
   }
   
   @font-face {
     font-family: "Averta";
-    src: local('../assets/fonts/Averta/Averta-Bold.ttf'),
-      url('../assets/fonts/Averta/Averta-Bold.ttf') format("truetype");
+    src: local(${AvertaBold}),
+      url(${AvertaBold}) format("truetype");
     font-weight: Bold;
   }
 

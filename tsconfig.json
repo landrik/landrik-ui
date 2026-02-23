@@ -16,6 +16,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
+    "typeRoots" : ["node_modules/@types", "src/types"],
     "baseUrl": ".",
     "paths": {
       "*": [
@@ -26,6 +27,7 @@
   },
   "include": [
     "src/types/styled-components.d.ts",
+    "src/types/fonts.d.ts",
     "src/**/*"
   ],
   "exclude": [

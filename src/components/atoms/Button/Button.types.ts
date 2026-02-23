@@ -5,7 +5,8 @@
 # ────────────────────────────────────────────────────────────*/
 
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { IconType } from './Button';
+//import { IconType } from './Button';
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -23,7 +24,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   htmlType?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   loading?: boolean;
-  icon?: IconType;
+  icon?: IconName;
   iconOnly?: boolean;
   iconPosition?: 'left' | 'right',
   backgroundColor?: string;

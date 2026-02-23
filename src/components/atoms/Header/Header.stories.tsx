@@ -3,7 +3,7 @@ import {Header} from "./Header";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Header> = {
-  title: 'Atoms/Header',
+  title: 'Components/Header',
   component: Header,
   parameters: {layout: 'centered'},
   tags: ['autodocs'],

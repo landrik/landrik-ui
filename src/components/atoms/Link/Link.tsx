@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, AnchorHTMLAttributes } from 'react'
 import {Icon} from '../Icons';
-//import { icons } from '../../../assets/svgs/icons';
+//import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 
  /*# ────────────────────────────────────────────────────────────
 

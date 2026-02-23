@@ -4,9 +4,9 @@ import { ReactNode } from 'react';
 
 
 import {Icon} from '../Icons';
-import { icons } from '../../../assets/svgs/icons';
+import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
 
-export type IconType = keyof typeof icons;
+//export type IconType = keyof typeof icons;
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -20,7 +20,7 @@ export interface ButtonProps {
   htmlType?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   isLoading?: boolean;
-  icon?: IconType;
+  icon?: IconName;
   iconOnly?: boolean;
   iconPosition?: 'left' | 'right',
   backgroundColor?: string;

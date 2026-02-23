@@ -4,7 +4,7 @@ import logoUrl from './static/lk_blue-logo.svg';
 export default create({
   base: 'light',
   brandTitle: 'Landrik Design System',
-  brandUrl: 'https://design.landrik.com',
+  brandUrl: 'http://design.landrik.com',
   brandImage: logoUrl,
   brandTarget: '_self',
 
