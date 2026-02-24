@@ -30,4 +30,32 @@ export const withIcon: Story = {
   }
 }
 
+export const asButton: Story = {
+  args: {
+    isButton: true,
+    children: "Website Homepage",
+    onClick:()=> alert('Clicked Button'),
+    
+  }
+}
+
+export const asDisabledLink: Story = {
+  args: {
+    disabled: true,
+    children: "Website Homepage",
+    href:'http://www.globaldata.com',
+    icon: 'arrowrightalt'
+    
+  }
+}
+
+export const asButtonWithIcon: Story = {
+  args: {
+    icon: 'arrowrightalt',
+    isButton: true,
+    children: "Website Homepage",
+    onClick:()=> alert('Clicked Button'),
+  }
+}
+
 

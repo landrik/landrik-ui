@@ -15,9 +15,16 @@ type Story = StoryObj<typeof meta>;
 
 export const AllPlacements: Story = {
   render: () => (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ 
+      display: 'flex', 
+      gap: '16px', 
+      alignItems: 'center',
+      padding: '2rem' 
+      }}>
+
       <Tooltip content="Tooltip on top" placement="top">
       <button>Hover me (top)</button>
+      
       </Tooltip>
 
       <Tooltip content="Tooltip on right" placement="right">
@@ -38,7 +45,12 @@ export const AllPlacements: Story = {
 
 export const WithIcon: Story = {
   render: () => (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ 
+      display: 'flex', 
+      gap: '16px', 
+      alignItems: 'center',
+      padding: '2rem' 
+     }}>
       <p>
         This is some text with a helpful tooltip{' '}
         <Tooltip content="This provides additional information">

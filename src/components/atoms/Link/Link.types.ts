@@ -1,5 +1,7 @@
-import { AnchorHTMLAttributes, ReactNode } from 'react';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+
+import { ButtonProps } from "../Button";
 
 //export type IconType = keyof typeof icons;
 
@@ -7,13 +9,27 @@ export type LinkVariant = 'primary' | 'secondary' | 'subtle' | 'danger';
 export type LinkSize = 'sm' | 'md' | 'lg';
 export type IconPosition = 'left' | 'right';
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+interface BaseProps {
   children: ReactNode;
   variant?: LinkVariant;
   size?: LinkSize;
   underline?: boolean;
-  external?: boolean;
+  disabled?: boolean;
+  isExternal?: boolean;
   leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   iconPosition?: IconPosition;
-  icon?: IconName
+  icon?: IconName;
+  isButton?: boolean
 }
+
+
+type AnchorProps = BaseProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> & {
+  isButton?: false
+}
+
+type ButtonModeProps = BaseProps & Omit<ButtonProps, 'children'> & {
+  isButton: true
+}
+
+export type LinkProps = AnchorProps | ButtonModeProps;

@@ -1,6 +1,13 @@
 import styled, { ThemeProvider, css } from "styled-components";
 import { LinkVariant, LinkSize } from "./Link.types";
 
+interface StyledProps {
+  $variant: LinkVariant;
+  $size: LinkSize;
+  $underline: boolean;
+  $disabled: boolean;
+}
+
 
 const variantStyles: Record<LinkVariant, ReturnType<typeof css>> = {
   primary: css`
@@ -41,13 +48,10 @@ const sizeStyles: Record<LinkSize, ReturnType<typeof css>> = {
   lg: css`font-size: ${p => p.theme.typography.fontSize.lg}; gap: ${p => p.theme.spacing[2]}px;`,
 };
 
-export const StyledLink = styled.a<{
-  $variant: LinkVariant;
-  $size: LinkSize;
-  $underline: boolean;
-}>`
-  display: inline-flex;
+export const StyledLink = styled.a<StyledProps>`
+  display: flex;
   align-items: center;
+  vertical-align: middle;
   font-family: ${p => p.theme.typography.fontFamily.sans};
   font-weight: ${p => p.theme.typography.fontWeight.medium};
   text-decoration: ${p => p.$underline ? 'underline' : 'none'};
@@ -62,6 +66,8 @@ export const StyledLink = styled.a<{
   &:hover {
     text-decoration: ${p => p.$underline ? 'underline' : 'none'};
   }  
+
+  ${({ $disabled })=> $disabled && css`opacity: 0.5; pointer-events: none; cursor: not-allowed`}
 
   ${p => variantStyles[p.$variant]}
   ${p => sizeStyles[p.$size]}

@@ -5,6 +5,7 @@ import { Indicator } from './Indicator';
 const meta: Meta<typeof Indicator> = {
 title: 'Components/Indicator',
 component: Indicator,
+parameters: {layout: 'centered'},
 tags: ['autodocs'],
 };
 

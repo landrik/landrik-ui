@@ -41,7 +41,7 @@ export const CheckBox: React.FC<CheckboxProps> = ({
         $size={size}
       >
         <CheckIcon $visible={indeterminate || checked} $size={size}>
-          {indeterminate ? <Icon name={'subtract'} /> : <Icon name={'check'} />}
+          {indeterminate ? <Icon name={'subtract'} size={size} /> : <Icon name={'check'} size={size} />}
         </CheckIcon>
       </StyledCheckbox>
       {label && <CheckboxLabel $size={size}>{label}</CheckboxLabel>}

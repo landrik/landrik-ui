@@ -6,8 +6,8 @@
 
 import { createGlobalStyle } from 'styled-components';
 
-import AvertaRegular from '../assets/fonts/Averta/Averta-Regular.ttf';
-import AvertaBold from '../assets/fonts/Averta/Averta-Bold.ttf';
+import AvertaRegular from '../assets/fonts/Averta/AvertaRegular.ttf';
+import AvertaBold from '../assets/fonts/Averta/AvertaBold.ttf';
   
 
 export const GlobalStyles = createGlobalStyle`
