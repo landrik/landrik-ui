@@ -1,0 +1,1 @@
+{"version":3,"file":"Tabs.styles.d.ts","sourceRoot":"","sources":["../../../../src/components/atoms/Tabs/Tabs.styles.ts"],"names":[],"mappings":"AAMA,eAAO,MAAM,aAAa,kRAA2B,CAAC;AAEtD,eAAO,MAAM,OAAO;cAA0B,MAAM,GAAG,UAAU,GAAG,OAAO;YAO1E,CAAC;AAEF,eAAO,MAAM,GAAG;aACL,OAAO;YACR,MAAM;cACJ,MAAM,GAAG,UAAU,GAAG,OAAO;YA+CxC,CAAC;AAEF,eAAO,MAAM,QAAQ,kRAA+B,CAAC"}
