@@ -8,8 +8,11 @@
 // ========================================
 
 // Export theme system
-export { theme, defaultTheme, ThemeProvider, GlobalStyles } from './theme';
-export type { Theme, ThemeConfig, ColorShades, NeutralColors, SemanticColors, Spacing, Typography, Shadows, Transitions, Breakpoints, ZIndices } from './theme';
+// export { theme, defaultTheme, ThemeProvider, GlobalStyles } from './theme';
+// export type { Theme, ThemeConfig, ColorShades, NeutralColors, SemanticColors, Spacing, Typography, Shadows, Transitions, Breakpoints, ZIndices } from './theme';
+
+// ─── Tokens & Utilities ───────────────────────────────────────────────────────
+export * from "./theme";
 
 // ========================================
 // COMPONENT EXPORTS

@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 export const CalendarContainer = styled.div`
   width: 320px; 
-  background-color: ${p => p.theme.colors.neutral[0]}; 
-  border: 1px solid ${p => p.theme.colors.neutral[300]}; 
-  border-radius: ${p => p.theme.radii.lg}; 
-  padding: ${p => p.theme.spacing[4]}px; 
-  box-shadow: ${p => p.theme.shadows.lg};
+  background-color: ${({ theme }) => theme.color.neutral.bgSubtle}; 
+  border: 1px solid ${({ theme }) => theme.color.neutral.bgDefault}; 
+  border-radius: ${({ theme }) => theme.radius.lg}; 
+  padding: ${({ theme }) => theme.spacing[4]}px; 
+  box-shadow: ${({ theme }) => theme.shadows.lg};
 `;
 
 export const CalendarHeader = styled.div`
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
-  margin-bottom: ${p => p.theme.spacing[4]}px;
+  margin-bottom: ${({ theme }) => theme.spacing[4]}px;
 `;
 
 export const CalendarHeaderButton = styled.button`
@@ -24,13 +24,13 @@ export const CalendarHeaderButton = styled.button`
   height: 32px;
   border: none;
   background-color: transparent;
-  color: ${p => p.theme.colors.neutral[700]};
-  border-radius: ${p => p.theme.radii.md};
+  color: ${({ theme }) => theme.color.neutral.bgActive};
+  border-radius: ${({ theme }) => theme.radius.md};
   cursor: pointer;
-  transition: all ${p => p.theme.transitions.duration.base};
+  transition: all ${({ theme }) => theme.transitions.duration.base};
 
   &:hover {
-    background-color: ${p => p.theme.colors.neutral[100]};
+    background-color: ${({ theme }) => theme.color.neutral.bgSubtle};
   }
 
   &:disabled {
@@ -40,15 +40,15 @@ export const CalendarHeaderButton = styled.button`
 `;
 
 export const CalendarTitle = styled.div`
-  font-size: ${p => p.theme.typography.fontSize.base}; 
-  font-weight: ${p => p.theme.typography.fontWeight.semibold}; 
-  color: ${p => p.theme.colors.neutral[900]};
+  font-size: ${({ theme }) => theme.typography.size.base}; 
+  font-weight: ${({ theme }) => theme.typography.weight.semibold}; 
+  color: ${({ theme }) => theme.color.neutral.bgActive};
 `;
 
 export const CalendarGrid = styled.div`
   display: grid; 
   grid-template-columns: repeat(7, 1fr); 
-  gap: ${p => p.theme.spacing[1]}px;
+  gap: ${({ theme }) => theme.spacing[4]}px;
 `;
 
 export const CalendarWeekday = styled.div`
@@ -56,9 +56,9 @@ export const CalendarWeekday = styled.div`
   align-items: center; 
   justify-content: center; 
   height: 32px; 
-  font-size: ${p => p.theme.typography.fontSize.xs}; 
-  font-weight: ${p => p.theme.typography.fontWeight.semibold}; 
-  color: ${p => p.theme.colors.neutral[600]}; 
+  font-size: ${({ theme }) => theme.typography.size.xs}; 
+  font-weight: ${({ theme }) => theme.typography.weight.semibold}; 
+  color: ${({ theme }) => theme.color.neutral.bgDefault}; 
   text-transform: uppercase;
 `;
 
@@ -76,33 +76,33 @@ export const CalendarDay = styled.button<CalendarDayProps>`
   height: 36px;
   border: none;
 
-  font-size: ${p => p.theme.typography.fontSize.sm};
-  font-weight: ${p => p.$isSelected ? p.theme.typography.fontWeight.semibold : p.theme.typography.fontWeight.normal};
-  border-radius: ${p => p.theme.radii.md};
+  font-size: ${({ theme }) => theme.typography.size.sm};
+  font-weight: ${p => p.$isSelected ? p.theme.typography.weight.semibold : p.theme.typography.weight.normal};
+  border-radius: ${({ theme }) => theme.radius.md};
   cursor: ${p => p.$isDisabled ? 'not-allowed' : 'pointer'};
-  transition: all ${p => p.theme.transitions.duration.base};
+  transition: all ${({ theme }) => theme.transitions.duration.base};
 
   &:hover:not(:disabled) {
-    background-color: ${p => p.$isSelected ? p.theme.colors.primary[700] : p.theme.colors.neutral[100]};
+    background-color: ${p => p.$isSelected ? p.theme.color.accent.bgActive : p.theme.color.neutral.bgSubtle};
   }
 
   &:focus-visible {
-    outline: 2px solid ${p => p.theme.colors.primary[500]};
+    outline: 2px solid ${({ theme }) => theme.color.accent.bgDefault};
     outline-offset: -2px;
   }
 
 
   background-color: ${p => {
-    if (p.$isSelected) return p.theme.colors.primary[600];
-    if (p.$isToday) return p.theme.colors.primary[50];
+    if (p.$isSelected) return p.theme.color.accent.bgDefault;
+    if (p.$isToday) return p.theme.color.accent.bgSubtle;
     return 'transparent';
   }};
 
   color: ${p => {
-    if (p.$isSelected) return p.theme.colors.neutral[0];
-    if (p.$isDisabled) return p.theme.colors.neutral[400];
-    if (p.$isOtherMonth) return p.theme.colors.neutral[500];
-    return p.theme.colors.neutral[900];
+    if (p.$isSelected) return p.theme.color.neutral.bgSubtle;
+    if (p.$isDisabled) return p.theme.color.neutral.bgSubtle;
+    if (p.$isOtherMonth) return p.theme.color.neutral.bgDefault;
+    return p.theme.color.neutral.bgActive;
   }};
 
 `;

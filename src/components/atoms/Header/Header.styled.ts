@@ -2,23 +2,23 @@ import styled, { css } from "styled-components";
 import { HeaderVariant, HeadingSize, HeadingWeight, HeadingAlign  } from "./Header.types";
 
 const sizeStyles: Record<HeadingSize, ReturnType<typeof css>> = {
-  xs: css`font-size: ${p => p.theme.typography.fontSize.xs};`,
-  sm: css`font-size: ${p => p.theme.typography.fontSize.sm};`,
-  md: css`font-size: ${p => p.theme.typography.fontSize.base};`,
-  lg: css`font-size: ${p => p.theme.typography.fontSize.lg};`,
-  xl: css`font-size: ${p => p.theme.typography.fontSize.xl};`,
-  '2xl': css`font-size: ${p => p.theme.typography.fontSize['2xl']};`,
-  '3xl': css`font-size: ${p => p.theme.typography.fontSize['3xl']};`,
-  '4xl': css`font-size: ${p => p.theme.typography.fontSize['4xl']};`,
-  '5xl': css`font-size: ${p => p.theme.typography.fontSize['5xl']};`,
-  '6xl': css`font-size: ${p => p.theme.typography.fontSize['6xl']};`,
+  xs: css`font-size: ${({ theme }) => theme.typography.size.xs};`,
+  sm: css`font-size: ${({ theme }) => theme.typography.size.sm};`,
+  md: css`font-size: ${({ theme }) => theme.typography.size.base};`,
+  lg: css`font-size: ${({ theme }) => theme.typography.size.lg};`,
+  xl: css`font-size: ${({ theme }) => theme.typography.size.xl};`,
+  '2xl': css`font-size: ${({ theme }) => theme.typography.size['2xl']};`,
+  '3xl': css`font-size: ${({ theme }) => theme.typography.size['3xl']};`,
+  '4xl': css`font-size: ${({ theme }) => theme.typography.size['4xl']};`,
+  '5xl': css`font-size: ${({ theme }) => theme.typography.size['5xl']};`,
+  '6xl': css`font-size: ${({ theme }) => theme.typography.size['6xl']};`,
 };
 
 const weightStyles: Record<HeadingWeight, ReturnType<typeof css>> = {
-  normal: css`font-weight: ${p => p.theme.typography.fontWeight.normal};`,
-  medium: css`font-weight: ${p => p.theme.typography.fontWeight.medium};`,
-  semibold: css`font-weight: ${p => p.theme.typography.fontWeight.semibold};`,
-  bold: css`font-weight: ${p => p.theme.typography.fontWeight.bold};`,
+  normal: css`font-weight: ${({ theme }) => theme.typography.weight.normal};`,
+  medium: css`font-weight: ${({ theme }) => theme.typography.weight.medium};`,
+  semibold: css`font-weight: ${({ theme }) => theme.typography.weight.semibold};`,
+  bold: css`font-weight: ${({ theme }) => theme.typography.weight.bold};`,
 };
 
 const alignStyles : Record<HeadingAlign, ReturnType<typeof css>> = {
@@ -37,14 +37,14 @@ interface StyledHeaderProps {
 
 export const StyledHeader = styled.h1<StyledHeaderProps>`
   margin: 0;
-  font-family: ${p => p.theme.typography.fontFamily.sans};
-  line-height: ${p => p.theme.typography.lineHeight.tight};
-  letter-spacing: ${p => p.theme.typography.letterSpacing.tight};
+  font-family: ${({ theme }) => theme.typography.family.sans};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  letter-spacing: ${({ theme }) => theme.typography.letterSpacing.tight};
   color: ${p =>
-    p.$variant === 'primary' ? p.theme.colors.primary[700] :
-    p.$variant === 'secondary' ? p.theme.colors.primary[300] :
-    p.$variant === 'muted' ? p.theme.colors.neutral[600] :
-    p.theme.colors.neutral[900]
+    p.$variant === 'primary' ? p.theme.color.accent[700] :
+    p.$variant === 'secondary' ? p.theme.color.accent[300] :
+    p.$variant === 'muted' ? p.theme.color.neutral[600] :
+    p.theme.color.neutral[900]
   };
   ${p => alignStyles[p.$align]};
   ${p => sizeStyles[p.$size]};

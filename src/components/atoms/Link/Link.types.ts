@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
-import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+import { icons, IconName  } from '../../../assets/svgs';
 
 import { ButtonProps } from "../Button";
 
@@ -10,7 +10,7 @@ export type LinkSize = 'sm' | 'md' | 'lg';
 export type IconPosition = 'left' | 'right';
 
 interface BaseProps {
-  children: ReactNode;
+  children?: ReactNode;
   variant?: LinkVariant;
   size?: LinkSize;
   underline?: boolean;

@@ -19,16 +19,20 @@
     "typeRoots" : ["node_modules/@types", "src/types"],
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "*",
-        "./types/*"
-      ]
+      "@/*": ["src/*"],
+      "*": ["*", "./types/*"]
     }
+  },
+  "ts-node": {
+    "esm": true,
   },
   "include": [
     "src/types/styled-components.d.ts",
     "src/types/fonts.d.ts",
-    "src/**/*"
+    "src/types/svg.d.ts",
+    "src/**/*", 
+    "src/**/*.ts",
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules",

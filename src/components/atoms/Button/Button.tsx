@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 
 import {Icon} from '../Icons';
-import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+import { icons, IconName  } from '../../../assets/svgs';
 
 //export type IconType = keyof typeof icons;
 

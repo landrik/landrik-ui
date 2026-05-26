@@ -1,3 +1,4 @@
+import { SpacingIndex } from '@/theme';
 import { HTMLAttributes, ReactNode } from 'react';
 
 export type StackDirection = 'row' | 'column';
@@ -8,7 +9,7 @@ export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   direction?: StackDirection;
   spacing?: number;
-  gap?: number;
+  gap?: SpacingIndex;
   align?: StackAlign;
   justify?: StackJustify;
   wrap?: boolean;

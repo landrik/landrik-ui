@@ -1,4 +1,4 @@
-import styled, { ThemeProvider, css } from "styled-components"
+import styled, { css } from "styled-components"
 import { IconSize } from './Icon.types';
 
 interface StyledIconProps {
@@ -15,11 +15,17 @@ const sizeStyles: Record<IconSize, ReturnType<typeof css>> = {
   xl: css`width: 40px; height: 40px;`,
 };
 
-export const StyledIcon = styled.svg<StyledIconProps>`
-  display: inline-block;
-  vertical-align: middle;
-  fill: ${p => p.$color || 'currentColor'};
+export const StyledIcon = styled.span<StyledIconProps>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   cursor: ${p => p.$clickable ? 'pointer' : 'default'};
   ${p => sizeStyles[p.$size]}
+  svg{
+    width: 100%;
+    height: 100%;
+    fill: ${p => p.$color};
+  }
 
 `;

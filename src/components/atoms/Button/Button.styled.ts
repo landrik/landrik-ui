@@ -1,77 +1,82 @@
 import styled, { css, keyframes } from "styled-components";
+
 import { ButtonShape, ButtonSize, ButtonVariant } from "./Button.types";
+import { lighten } from "polished";
+
 
 const spin = keyframes`to { transform: rotate(360deg); }`;
 const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
   sm: css`
-    padding: ${(p) => p.theme.spacing[2]}px ${(p) => p.theme.spacing[3]}px;
-    font-size: ${(p) => p.theme.typography.fontSize.sm};
-    border-radius: ${(p) => p.theme.radii.md};
+    padding: ${({ theme }) => theme.spacing[12]}px ${({ theme }) => theme.spacing[3]}px;
+    font-size: ${({ theme }) => theme.typography.size.sm};
+    border-radius: ${({ theme }) => theme.radius.md};
   `,
   md: css`
-    padding: ${(p) => p.theme.spacing[3]}px ${(p) => p.theme.spacing[4]}px;
-    font-size: ${(p) => p.theme.typography.fontSize.base};
-    border-radius: ${(p) => p.theme.radii.lg};
+    padding: ${({ theme }) => theme.spacing[3]}px ${({ theme }) => theme.spacing[4]}px;
+    font-size: ${({ theme }) => theme.typography.size.base};
+    border-radius: ${({ theme }) => theme.radius.lg};
   `,
   lg: css`
-    padding: ${(p) => p.theme.spacing[4]}px ${(p) => p.theme.spacing[6]}px;
-    font-size: ${(p) => p.theme.typography.fontSize.lg};
-    border-radius: ${(p) => p.theme.radii.lg};
+    padding: ${({ theme }) => theme.spacing[4]}px ${({ theme }) => theme.spacing[6]}px;
+    font-size: ${({theme}) => theme.typography.size.lg};
+    border-radius: ${({theme}) => theme.radius.lg};
   `,
 };
+
 const variantStyles: Record<ButtonVariant, ReturnType<typeof css>> = {
   primary: css`
-    background-color: ${(p) => p.theme.colors.primary[600]};
-    color: ${(p) => p.theme.colors.neutral[0]};
+    background: ${({ theme }) => theme.color.accent.bgDefault};
+    color: ${({ theme }) => theme.color.accent.onFill};
+
 
     &:hover:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.primary[700]};
+      background-color: ${({theme}) => theme.color.accent.bgDefault};
     }
 
     &:active:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.primary[800]};
+      background-color: ${({theme}) => theme.color.accent.bgActive};
     }
   `,
   secondary: css`
-    background-color: ${(p) => p.theme.colors.neutral[200]};
-    color: ${(p) => p.theme.colors.neutral[900]};
+    background-color: ${({theme}) => theme.color.neutral.bgSubtle};
+    color: ${({theme}) => theme.color.neutral.bgDefault};
 
     &:hover:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.neutral[300]};
+      background-color: ${({theme}) => theme.color.neutral.bgHover};
     }
 
     &:active:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.neutral[400]};
+      background-color: ${({theme}) => theme.color.neutral.bgActive};
     }
   `,
   outline: css`
     background-color: transparent;
-    color: ${(p) => p.theme.colors.neutral[700]};
-    border: 2px solid ${(p) => p.theme.colors.neutral[300]};
+    color: ${({theme}) => theme.color.neutral.bgDefault};
+    border: 2px solid ${({theme}) => theme.color.neutral.bgDefault};
 
     &:hover:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.neutral[50]};
-      border-color: ${(p) => p.theme.colors.neutral[400]};
+      background-color: ${({theme}) => theme.color.neutral.bgSubtle};
+      border-color: ${({theme}) => theme.color.neutral.bgDefault};
     }
   `,
   ghost: css`
     background-color: transparent;
-    color: ${(p) => p.theme.colors.neutral[700]};
+    color: ${({theme}) => theme.color.neutral.bgDefault};
 
     &:hover:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.neutral[100]};
+      background-color: ${({theme}) => theme.color.neutral.bgSubtle};
     }
   `,
   danger: css`
-    background-color: ${(p) => p.theme.colors.semantic.error};
-    color: ${(p) => p.theme.colors.neutral[0]};
+    background-color: ${({theme}) => theme.color.danger.bgDefault};
+    color: ${({theme}) => theme.color.neutral.bgSubtle};
 
     &:hover:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.semantic.error};
+      background-color: ${({theme}) => lighten(0.2, theme.color.danger.bgDefault)};
     }
 
     &:active:not(:disabled) {
-      background-color: ${(p) => p.theme.colors.semantic.error};
+      background-color: ${({theme}) => theme.color.danger.bgDefault};
     }
   `,
 };
@@ -103,14 +108,13 @@ export const StyledButton = styled.button<{
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: ${(props) => props.theme.typography.fontFamily.sans};
-  font-weight: ${(props) => props.theme.typography.fontWeight.medium};
+  font-family: ${({ theme }) => theme.typography.family.sans};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
-
-  width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
 
   &:disabled {
     opacity: 0.5;
@@ -118,7 +122,7 @@ export const StyledButton = styled.button<{
   }
     
   &:focus-visible {
-    outline: 2px solid ${p => p.theme.colors.primary[500]};
+    outline: 2px solid ${({ theme }) => theme.color.accent.bgDefault};
     outline-offset: 2px;
   }
 

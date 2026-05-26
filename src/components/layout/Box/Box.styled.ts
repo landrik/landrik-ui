@@ -7,7 +7,7 @@ import { BoxProps } from "./Box.types";
 //   ${p => p.maxWidth && `max-width: ${p.maxWidth};`} 
 //   ${p => p.height && `height: ${p.height};`} 
 //   ${p => p.backgroundColor && `background-color: ${p.backgroundColor};`} 
-//   ${p => p.borderRadius && `border-radius: ${typeof p.borderRadius === 'number' ? p.theme.radii[p.borderRadius] : p.borderRadius};`} 
+//   ${p => p.borderRadius && `border-radius: ${typeof p.borderRadius === 'number' ? p.theme.radius[p.borderRadius] : p.borderRadius};`} 
 
 //   ${p => p.padding && `padding: ${typeof p.padding === 'number' ? `${p.theme.spacing[p.padding]}px` : p.padding};`} 
 
@@ -48,6 +48,6 @@ export const StyledBox = styled.div<StyledBoxProps>`
   ${p => p.$mx !== undefined && `margin-left: ${p.theme.spacing[p.$mx]}px; margin-right: ${p.theme.spacing[p.$mx]}px;`} 
   ${p => p.$my !== undefined && `margin-top: ${p.theme.spacing[p.$my]}px; margin-bottom: ${p.theme.spacing[p.$my]}px;`} 
 
-  ${p => p.$bg && `background-color: ${p.$bg};`} ${p => p.$radius && `border-radius: ${p.theme.radii[p.$radius as keyof typeof p.theme.radii]};`} 
+  ${p => p.$bg && `background-color: ${p.$bg};`} ${p => p.$radius && `border-radius: ${p.theme.radius[p.$radius as keyof typeof p.theme.radius]};`} 
 
 `;

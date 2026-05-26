@@ -3,13 +3,12 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Link } from './Link';
 
-const meta = {
+const meta:Meta<typeof Link> = {
   title: 'Components/Link',
   component: Link,
   parameters: {layout: 'centered'},
   tags: ['autodocs']
-
-} satisfies Meta<typeof Link>;
+};
 
 export default meta
 type Story = StoryObj<typeof meta>;
@@ -25,7 +24,7 @@ export const withIcon: Story = {
   args: {
    children: "Website Homepage",
    href:'http://www.globaldata.com',
-   icon: 'arrowrightalt'
+   icon: 'arrow-right'
    
   }
 }
@@ -44,14 +43,15 @@ export const asDisabledLink: Story = {
     disabled: true,
     children: "Website Homepage",
     href:'http://www.globaldata.com',
-    icon: 'arrowrightalt'
+    icon: 'arrow-right'
     
   }
 }
 
 export const asButtonWithIcon: Story = {
   args: {
-    icon: 'arrowrightalt',
+    icon: 'arrow-right',
+    iconPosition: 'right',
     isButton: true,
     children: "Website Homepage",
     onClick:()=> alert('Clicked Button'),

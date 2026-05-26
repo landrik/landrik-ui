@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Icon } from './Icon';
-import { ICON_REGISTRY, IconName } from '../../../assets/svgs/icons';
+
+import { icons, IconName } from '../../../assets/svgs';
 
 const meta:Meta<typeof Icon> = {
   title: 'Components/Icon',
@@ -60,17 +61,17 @@ export const Colors: Story = {
 }
 
 export const Interactive: Story = {
-  args: {name: "watch"}
+  args: {name: "heart"}
 }
 
 export const SearchIcon: Story = {
-  args: {name: "watch"}
+  args: {name: "heart"}
 }
 
 export const ListIcon: Story = {
   //args: {name: "watch"}
   render: () => {
-    const iconList = Object.keys(ICON_REGISTRY) as IconName[];
+    const iconList = Object.keys(icons) as IconName[];
     const [filterOptions] = useState<OptionProps[]>(iconList.map((icon:any) => ({ value: icon, label: icon })))
 
     return (
@@ -86,15 +87,16 @@ export const ListIcon: Story = {
         </div>
 
         <div style={{ display: 'flex', gap: 20 }}>
-          <div style={{display: 'flex', gap: 4, width: '1024px', flexDirection: 'column'}}>
+          <div style={{display: 'flex', gap: 4, width: '860px', flexDirection: 'column'}}>
             <ul style={{
               display: 'grid',
               gap: '1rem',
               margin: '0px',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
               listStyle: '0',
               padding: '0px',
-              listStylePosition: 'unset'
+              listStylePosition: 'unset',
+              textAlign:'center'
             }}>
 
             { 

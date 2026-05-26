@@ -41,6 +41,8 @@ export type { LinkProps, LinkSize, LinkVariant } from './atoms/Link';
 export { Icon } from './atoms/Icons';
 export type { IconProps } from './atoms/Icons';
 
+export type { IconName } from '../assets/svgs';
+
 export { Text } from './atoms/Text';
 export type { TextAlign, TextProps, TextSize, TextVariant, TextWeight } from './atoms/Text';
 

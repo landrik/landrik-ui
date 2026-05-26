@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import { RatingSize, RatingProps } from "./Rating.types";
 
 
-export const RatingContainer = styled.div`display: inline-flex; align-items: center; gap: ${p => p.theme.spacing[2]}px;`;
-export const StarsContainer = styled.div`display: inline-flex; gap: ${p => p.theme.spacing[1]}px;`;
+export const RatingContainer = styled.div`display: inline-flex; align-items: center; gap: ${({ theme }) => theme.spacing[12]}px;`;
+export const StarsContainer = styled.div`display: inline-flex; gap: ${({ theme }) => theme.spacing[4]}px;`;
 
 interface StarButtonProps {
   $size: RatingSize;
@@ -21,16 +21,16 @@ export const StarButton = styled.button<StarButtonProps>`
   border: none;
   background: transparent;
   cursor: ${p => p.$readOnly ? 'default' : 'pointer'};
-  transition: transform ${p => p.theme.transitions.fast};
+  transition: transform ${({ theme }) => theme.transitions.preset.fast};
 
   &:hover:not(:disabled) {
     transform: ${p => p.$readOnly ? 'none' : 'scale(1.1)'};
   }
 
   &:focus-visible {
-    outline: 2px solid ${p => p.theme.colors.primary[500]};
+    outline: 2px solid ${({ theme }) => theme.color.accent[500]};
     outline-offset: 2px;
-    border-radius: ${p => p.theme.radii.sm};
+    border-radius: ${({ theme }) => theme.radius.sm};
   }
 
   ${p => sizeStyles[p.$size]}
@@ -47,7 +47,7 @@ export const StarIcon = styled.svg<StarIconProps>`
   height: 100%;
 
   .star-bg {
-    fill: ${p => p.theme.colors.neutral[300]};
+    fill: ${({ theme }) => theme.color.neutral[300]};
   }
 
   .star-fill {
@@ -57,7 +57,7 @@ export const StarIcon = styled.svg<StarIconProps>`
 `;
 
 export const RatingValue = styled.span`
-  font-size: ${p => p.theme.typography.fontSize.sm}; 
-  font-weight: ${p => p.theme.typography.fontWeight.medium}; 
-  color: ${p => p.theme.colors.neutral[700]};
+  font-size: ${({ theme }) => theme.typography.size.sm}; 
+  font-weight: ${({ theme }) => theme.typography.weight.medium}; 
+  color: ${({ theme }) => theme.color.neutral[700]};
 `;

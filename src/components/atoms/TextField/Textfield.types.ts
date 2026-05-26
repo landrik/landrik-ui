@@ -1,4 +1,4 @@
-import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+import { icons, IconName  } from '../../../assets/svgs';
 
 //export type IconType = keyof typeof icons;
 export type InputShape= 'rounded' | 'square' | 'pill';

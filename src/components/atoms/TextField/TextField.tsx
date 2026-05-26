@@ -1,13 +1,15 @@
 import React, { FC, useState } from 'react'
 import {InputShape, ErrorMessage, IconWrapper, InputContainer, InputLabel, InputWrapper, StatusIcon, StyledInput, ToggleButton} from './TextField.styled'
 import {Icon} from '../Icons';
-import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+import { icons, IconName  } from '../../../assets/svgs';
 
 //export type IconType = keyof typeof icons;
 
 export type TextFieldProps = {
   type?: 'text' | 'number' | 'email' | 'password',
+
   shape?: InputShape,
+  
   size?: string,
   labelText: string,
   placeholder: string,
@@ -16,7 +18,6 @@ export type TextFieldProps = {
   helperText?: string,
   errorText?: string,
   error?: boolean;
-  
   
   warnText?: string,
   isDisabled?: boolean,
@@ -78,13 +79,13 @@ export const TextField:FC<TextFieldProps> = ({ type, shape='rounded', labelText,
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? <Icon name={'eyeclose'} /> : <Icon name={'eye'} />}
+                {showPassword ? <Icon name={'eye-closed'} /> : <Icon name={'eye-open'} />}
               </ToggleButton>
             )}
 
             {error && (
               <StatusIcon $error={error}>
-                <Icon name={'alert'} />
+                <Icon name={'exclamation-triangle'} />
               </StatusIcon>
             )}
 

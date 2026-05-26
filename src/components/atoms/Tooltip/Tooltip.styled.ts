@@ -25,7 +25,7 @@ top: css`
     left: 50%;
     transform: translateX(-50%);
     border: 4px solid transparent;
-    border-top-color: ${p => p.theme.colors.neutral[900]};
+    border-top-color: ${({ theme }) => theme.color.neutral[900]};
   }
 `, 
 
@@ -42,7 +42,7 @@ bottom: css`
     left: 50%;
     transform: translateX(-50%);
     border: 4px solid transparent;
-    border-bottom-color: ${p => p.theme.colors.neutral[900]};
+    border-bottom-color: ${({ theme }) => theme.color.neutral[900]};
   }
 
 
@@ -61,7 +61,7 @@ left: css`
     top: 50%;
     transform: translateY(-50%);
     border: 4px solid transparent;
-    border-left-color: ${p => p.theme.colors.neutral[900]};
+    border-left-color: ${({ theme }) => theme.color.neutral[900]};
   }
 `, 
 
@@ -78,26 +78,26 @@ right: css`
     top: 50%;
     transform: translateY(-50%);
     border: 4px solid transparent;
-    border-right-color: ${p => p.theme.colors.neutral[900]};
+    border-right-color: ${({ theme }) => theme.color.neutral[900]};
   }
 `,
 };
 
 export const TooltipContent = styled.div<TooltipContentProps>`
   position: absolute;
-  z-index: ${p => p.theme.zIndices.tooltip};
-  padding: ${p => p.theme.spacing[2]}px ${p => p.theme.spacing[3]}px;
-  background-color: ${p => p.theme.colors.neutral[900]};
-  color: ${p => p.theme.colors.neutral[0]};
-  font-size: ${p => p.theme.typography.fontSize.sm};
-  border-radius: ${p => p.theme.radii.md};
+  z-index: ${({ theme }) => theme.zIndices.tooltip};
+  padding: ${({ theme }) => theme.spacing[12]}px ${({ theme }) => theme.spacing[3]}px;
+  background-color: ${({ theme }) => theme.color.neutral[900]};
+  color: ${({ theme }) => theme.color.neutral[0]};
+  font-size: ${({ theme }) => theme.typography.size.sm};
+  border-radius: ${({ theme }) => theme.radius.md};
   white-space: nowrap;
   pointer-events: none;
   opacity: ${p => p.$visible ? 1 : 0};
   visibility: ${p => p.$visible ? 'visible' : 'hidden'};
-  transition: opacity ${p => p.theme.transitions.fast},
-  visibility ${p => p.theme.transitions.fast};
-  animation: ${p => p.$visible ? fadeIn : 'none'} ${p => p.theme.transitions.fast};
+  transition: opacity ${({ theme }) => theme.transitions.preset.fast},
+  visibility ${({ theme }) => theme.transitions.preset.fast};
+  animation: ${p => p.$visible ? fadeIn : 'none'} ${({ theme }) => theme.transitions.preset.fast};
 
   ${p => placementStyles[p.$placement]}
 

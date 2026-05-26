@@ -11,57 +11,57 @@ interface StyledProps {
 
 const variantStyles: Record<LinkVariant, ReturnType<typeof css>> = {
   primary: css`
-    color: ${p => p.theme.colors.primary[600]};
+    color: ${({ theme }) => theme.color.accent[600]};
     &:hover {
-      color: ${p => p.theme.colors.primary[700]};
+      color: ${({ theme }) => theme.color.accent[700]};
     }
     &:active {
-      color: ${p => p.theme.colors.primary[800]};
+      color: ${({ theme }) => theme.color.accent[800]};
     }
   `, 
 
   secondary: css`
-    color: ${p => p.theme.colors.primary[100]};
+    color: ${({ theme }) => theme.color.accent[100]};
     &:hover {
-      color: ${p => p.theme.colors.primary[300]};
+      color: ${({ theme }) => theme.color.accent[300]};
     }
   `, 
 
   subtle: css`
-    color: ${p => p.theme.colors.neutral[700]};
+    color: ${({ theme }) => theme.color.neutral[700]};
     &:hover {
-      color: ${p => p.theme.colors.neutral[900]};
+      color: ${({ theme }) => theme.color.neutral[900]};
     }
   `, 
 
   danger: css`
-    color: ${p => p.theme.colors.semantic.error};
+    color: ${({ theme }) => theme.color.danger[600]};
     &:hover {
-      color: ${p => p.theme.colors.semantic.error};
+      color: ${({ theme }) => theme.color.danger[600]};
     }
   `,
 };
 
 const sizeStyles: Record<LinkSize, ReturnType<typeof css>> = {
-  sm: css`font-size: ${p => p.theme.typography.fontSize.sm}; gap: ${p => p.theme.spacing[1]}px;`,
-  md: css`font-size: ${p => p.theme.typography.fontSize.base}; gap: ${p => p.theme.spacing[2]}px;`,
-  lg: css`font-size: ${p => p.theme.typography.fontSize.lg}; gap: ${p => p.theme.spacing[2]}px;`,
+  sm: css`font-size: ${({ theme }) => theme.typography.size.sm}; gap: ${({ theme }) => theme.spacing[4]}px;`,
+  md: css`font-size: ${({ theme }) => theme.typography.size.base}; gap: ${({ theme }) => theme.spacing[12]}px;`,
+  lg: css`font-size: ${({ theme }) => theme.typography.size.lg}; gap: ${({ theme }) => theme.spacing[12]}px;`,
 };
 
 export const StyledLink = styled.a<StyledProps>`
   display: flex;
   align-items: center;
   vertical-align: middle;
-  font-family: ${p => p.theme.typography.fontFamily.sans};
-  font-weight: ${p => p.theme.typography.fontWeight.medium};
+  font-family: ${({ theme }) => theme.typography.family.sans};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
   text-decoration: ${p => p.$underline ? 'underline' : 'none'};
-  transition: all ${p => p.theme.transitions.duration.base} ${p => p.theme.transitions.timing.easeInOut};
+  transition: all ${({ theme }) => theme.transitions.duration.base} ${({ theme }) => theme.transitions.preset.base};
   cursor: pointer;
 
   &:focus-visible {
-    outline: 2px solid ${p => p.theme.colors.primary[500]};
+    outline: 2px solid ${({ theme }) => theme.color.accent[500]};
     outline-offset: 2px;
-    border-radius: ${p => p.theme.radii.sm};
+    border-radius: ${({ theme }) => theme.radius.sm};
   }
   &:hover {
     text-decoration: ${p => p.$underline ? 'underline' : 'none'};

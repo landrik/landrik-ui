@@ -7,7 +7,7 @@ import { StackProps } from './Stack.types';
 export const Stack:FC<StackProps> = ({
   children,
   direction = 'column',
-  gap = 4,
+  gap = '4',
   align = 'stretch',
   justify = 'start',
   wrap = false,

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 
-// export const CarouselContainer = styled.div`position: relative; width: 100%; overflow: hidden; border-radius: ${p => p.theme.radii.xl}; background-color: ${p => p.theme.colors.neutral[900]};`;
+// export const CarouselContainer = styled.div`position: relative; width: 100%; overflow: hidden; border-radius: ${({ theme }) => theme.radius.xl}; background-color: ${({ theme }) => theme.color.neutral[900]};`;
 
 // interface CarouselViewportProps {
 //   $aspectRatio: string;
@@ -19,7 +19,7 @@ import styled, { css } from "styled-components";
 
 // export const CarouselImage = styled.img`width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none;`;
 
-// export const CarouselCaption = styled.div`position: absolute; bottom: 0; left: 0; right: 0; padding: ${p => p.theme.spacing[4]}px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: ${p => p.theme.colors.neutral[0]}; font-size: ${p => p.theme.typography.fontSize.sm};`;
+// export const CarouselCaption = styled.div`position: absolute; bottom: 0; left: 0; right: 0; padding: ${({ theme }) => theme.spacing[4]}px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: ${({ theme }) => theme.color.neutral[0]}; font-size: ${({ theme }) => theme.typography.size.sm};`;
 
 // interface CarouselButtonProps {
 //   $position: 'left' | 'right';
@@ -37,14 +37,14 @@ import styled, { css } from "styled-components";
 //   justify-content: center;
 //   background-color: rgba(255, 255, 255, 0.9);
 //   border: none;
-//   border-radius: ${p => p.theme.radii.full};
+//   border-radius: ${({ theme }) => theme.radius.full};
 //   cursor: pointer;
 //   z-index: 2;
-//   transition: all ${p => p.theme.transitions.duration.base};
-//   box-shadow: ${p => p.theme.shadows.lg};
+//   transition: all ${({ theme }) => theme.transitions.duration.base};
+//   box-shadow: ${({ theme }) => theme.shadows.lg};
 
 //   &:hover:not(:disabled) {
-//     background-color: ${p => p.theme.colors.neutral[0]};
+//     background-color: ${({ theme }) => theme.color.neutral[0]};
 //     transform: translateY(-50%) scale(1.1);
 //   }
 
@@ -54,11 +54,11 @@ import styled, { css } from "styled-components";
 //   }
 
 //   svg {
-//     color: ${p => p.theme.colors.neutral[900]};
+//     color: ${({ theme }) => theme.color.neutral[900]};
 //   }
 // `;
 
-// export const CarouselDots = styled.div`position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: ${p => p.theme.spacing[2]}px; z-index: 2;`;
+// export const CarouselDots = styled.div`position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: ${({ theme }) => theme.spacing[12]}px; z-index: 2;`;
 
 // interface CarouselDotProps {
 //   $active: boolean;
@@ -69,35 +69,35 @@ import styled, { css } from "styled-components";
 //   height: 8px;
 //   padding: 0;
 //   border: none;
-//   border-radius: ${p => p.theme.radii.full};
-//   background-color: ${p => p.$active ? p.theme.colors.neutral[0] : 'rgba(255, 255, 255, 0.5)'};
+//   border-radius: ${({ theme }) => theme.radius.full};
+//   background-color: ${p => p.$active ? p.theme.color.neutral[0] : 'rgba(255, 255, 255, 0.5)'};
 //   cursor: pointer;
-//   transition: all ${p => p.theme.transitions.duration.base};
+//   transition: all ${({ theme }) => theme.transitions.duration.base};
 
 //   &:hover {
-//     background-color: ${p => p.theme.colors.neutral[0]};
+//     background-color: ${({ theme }) => theme.color.neutral[0]};
 //   }
 // `;
 
 // export const CarouselThumbnails = styled.div`
 //   display: flex;
-//   gap: ${p => p.theme.spacing[2]}px;
-//   margin-top: ${p => p.theme.spacing[3]}px;
+//   gap: ${({ theme }) => theme.spacing[12]}px;
+//   margin-top: ${({ theme }) => theme.spacing[3]}px;
 //   overflow-x: auto;
-//   padding: ${p => p.theme.spacing[1]}px;
+//   padding: ${({ theme }) => theme.spacing[4]}px;
 
 //   &::-webkit-scrollbar {
 //   height: 4px;
 //   }
 
 //   &::-webkit-scrollbar-track {
-//   background: ${p => p.theme.colors.neutral[200]};
-//   border-radius: ${p => p.theme.radii.full};
+//   background: ${({ theme }) => theme.color.neutral[200]};
+//   border-radius: ${({ theme }) => theme.radius.full};
 //   }
 
 //   &::-webkit-scrollbar-thumb {
-//   background: ${p => p.theme.colors.neutral[400]};
-//   border-radius: ${p => p.theme.radii.full};
+//   background: ${({ theme }) => theme.color.neutral[400]};
+//   border-radius: ${({ theme }) => theme.radius.full};
 // }
 // `;
 
@@ -110,15 +110,15 @@ import styled, { css } from "styled-components";
 //   width: 80px;
 //   height: 60px;
 //   padding: 0;
-//   border: 3px solid ${p => p.$active ? p.theme.colors.primary[600] : 'transparent'};
-//   border-radius: ${p => p.theme.radii.md};
+//   border: 3px solid ${p => p.$active ? p.theme.color.accent[600] : 'transparent'};
+//   border-radius: ${({ theme }) => theme.radius.md};
 //   overflow: hidden;
 //   cursor: pointer;
-//   transition: all ${p => p.theme.transitions.duration.base};
-//   background: ${p => p.theme.colors.neutral[200]};
+//   transition: all ${({ theme }) => theme.transitions.duration.base};
+//   background: ${({ theme }) => theme.color.neutral[200]};
 
 //   &:hover {
-//     border-color: ${p => p.$active ? p.theme.colors.primary[700] : p.theme.colors.neutral[400]};
+//     border-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[400]};
 //   }
 
 //   img {

@@ -1,7 +1,7 @@
 
 //import { colors as tokenColor } from '../../../assets/core/tokens';
-import { SVGAttributes } from 'react';
-import { ICON_REGISTRY, IconName } from '../../../assets/svgs/icons';
+import { HTMLAttributes, SVGAttributes } from 'react';
+import { icons, IconName } from '../../../assets/svgs';
 //import { ICON_REGISTRY, IconName } from './icons/index';
 
 //export type IconName = keyof typeof icons;
@@ -9,10 +9,11 @@ import { ICON_REGISTRY, IconName } from '../../../assets/svgs/icons';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface IconProps extends SVGAttributes<SVGPathElement>{
+export interface IconProps extends HTMLAttributes<HTMLSpanElement>{
   name: IconName;
   size?: IconSize;
   color?: string;
+  title?: string;
   className?: string;
   onClick?: () => void;
 

@@ -4,7 +4,7 @@ import { PaginationSize, PaginationVariant } from './Pagination.types';
 export const PaginationContainer = styled.nav`
   display: flex; 
   align-items: center; 
-  gap: ${p => p.theme.spacing[1]}px;
+  gap: ${({ theme }) => theme.spacing[4]}px;
 `;
 
 interface PageButtonProps {
@@ -15,43 +15,43 @@ interface PageButtonProps {
 }
 
 const sizeStyles: Record<PaginationSize, ReturnType<typeof css>> = {
-  sm: css`min-width: 32px; height: 32px; padding: 0 ${p => p.theme.spacing[2]}px; font-size: ${p => p.theme.typography.fontSize.sm};`,
-  md: css`min-width: 40px; height: 40px; padding: 0 ${p => p.theme.spacing[3]}px; font-size: ${p => p.theme.typography.fontSize.base};`,
-  lg: css`min-width: 48px; height: 48px; padding: 0 ${p => p.theme.spacing[4]}px; font-size: ${p => p.theme.typography.fontSize.lg};`,
+  sm: css`min-width: 32px; height: 32px; padding: 0 ${({ theme }) => theme.spacing[12]}px; font-size: ${({ theme }) => theme.typography.size.sm};`,
+  md: css`min-width: 40px; height: 40px; padding: 0 ${({ theme }) => theme.spacing[3]}px; font-size: ${({ theme }) => theme.typography.size.base};`,
+  lg: css`min-width: 48px; height: 48px; padding: 0 ${({ theme }) => theme.spacing[4]}px; font-size: ${({ theme }) => theme.typography.size.lg};`,
 };
 
 const variantStyles: Record<PaginationVariant, any> = { 
   default: css<PageButtonProps>`
-    background-color: ${p => p.$active ? p.theme.colors.primary[600] : p.theme.colors.neutral[0]};
-    color: ${p => p.$active ? p.theme.colors.neutral[0] : p.theme.colors.neutral[700]};
-    border: 1px solid ${p => p.$active ? p.theme.colors.primary[600] : p.theme.colors.neutral[300]};
+    background-color: ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.neutral[0]};
+    color: ${p => p.$active ? p.theme.color.neutral[0] : p.theme.color.neutral[700]};
+    border: 1px solid ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.neutral[300]};
 
     &:hover:not(:disabled) {
-      background-color: ${p => p.$active ? p.theme.colors.primary[700] : p.theme.colors.neutral[50]};
-      border-color: ${p => p.$active ? p.theme.colors.primary[700] : p.theme.colors.neutral[400]};
+      background-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[50]};
+      border-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[400]};
     }
 
   `, 
   
   outlined: css<PageButtonProps>`
     background-color: transparent;
-    color: ${p => p.$active ? p.theme.colors.primary[600] : p.theme.colors.neutral[700]};
-    border: 2px solid ${p => p.$active ? p.theme.colors.primary[600] : p.theme.colors.neutral[300]};
+    color: ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.neutral[700]};
+    border: 2px solid ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.neutral[300]};
 
     &:hover:not(:disabled) {
-      border-color: ${p => p.$active ? p.theme.colors.primary[700] : p.theme.colors.neutral[400]};
-      background-color: ${p => p.$active ? p.theme.colors.primary[50] : p.theme.colors.neutral[50]};
+      border-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[400]};
+      background-color: ${p => p.$active ? p.theme.color.accent[50] : p.theme.color.neutral[50]};
     }
 
   `, 
   
   minimal: css<PageButtonProps>`
-    background-color: ${p => p.$active ? p.theme.colors.primary[100] : 'transparent' };
-    color: ${p => p.$active ? p.theme.colors.primary[700] : p.theme.colors.neutral[700] };
+    background-color: ${p => p.$active ? p.theme.color.accent[100] : 'transparent' };
+    color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[700] };
     border: none;
 
     &:hover:not(:disabled) {
-      background-color: ${p => p.$active ? p.theme.colors.primary[200] : p.theme.colors.neutral[100]};
+      background-color: ${p => p.$active ? p.theme.color.accent[200] : p.theme.color.neutral[100]};
     }
 
   `,
@@ -66,11 +66,11 @@ export const PageButton = styled.button<PageButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: ${p => p.theme.typography.fontFamily.sans};
-  font-weight: ${p => p.theme.typography.fontWeight.medium};
-  border-radius: ${p => p.theme.radii.md};
+  font-family: ${({ theme }) => theme.typography.family.sans};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  border-radius: ${({ theme }) => theme.radius.md};
   cursor: ${p => p.$disabled ? 'not-allowed' : 'pointer'};
-  transition: all ${p => p.theme.transitions.duration.base};
+  transition: all ${({ theme }) => theme.transitions.duration.base};
   user-select: none;
 
   &:disabled {
@@ -79,7 +79,7 @@ export const PageButton = styled.button<PageButtonProps>`
   }
 
   &:focus-visible {
-    outline: 2px solid ${p => p.theme.colors.primary[500]};
+    outline: 2px solid ${({ theme }) => theme.color.accent[500]};
     outline-offset: 2px;
   }
 
@@ -91,7 +91,7 @@ export const Ellipsis = styled.span<{ $size: PaginationSize }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: ${p => p.theme.colors.neutral[500]};
+  color: ${({ theme }) => theme.color.neutral[500]};
 
   ${p => sizeStyles[p.$size]}
 `;

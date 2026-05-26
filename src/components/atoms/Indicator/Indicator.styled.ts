@@ -12,11 +12,11 @@ export interface IndicatorBadgeProps {
 }
 
 const variantStyles: Record<IndicatorVariant, ReturnType<typeof css>> = {
-  default: css`background-color: ${p => p.theme.colors.neutral[600]}; color: ${p => p.theme.colors.neutral[0]};`,
-  success: css`background-color: ${p => p.theme.colors.semantic.success}; color: ${p => p.theme.colors.neutral[0]};`,
-  warning: css`background-color: ${p => p.theme.colors.semantic.warning}; color: ${p => p.theme.colors.neutral[0]};`,
-  error: css`background-color: ${p => p.theme.colors.semantic.error}; color: ${p => p.theme.colors.neutral[0]};`,
-  info: css`background-color: ${p => p.theme.colors.semantic.info}; color: ${p => p.theme.colors.neutral[0]};`,
+  default: css`background-color: ${({ theme }) => theme.color.neutral.bgDefault}; color: ${({ theme }) => theme.color.neutral.bgSubtle};`,
+  success: css`background-color: ${({ theme }) => theme.color.success.bgDefault}; color: ${({ theme }) => theme.color.neutral.bgSubtle};`,
+  warning: css`background-color: ${({ theme }) => theme.color.warning.bgDefault}; color: ${({ theme }) => theme.color.neutral.bgSubtle};`,
+  error: css`background-color: ${({ theme }) => theme.color.danger.bgDefault}; color: ${({ theme }) => theme.color.neutral.bgSubtle};`,
+  info: css`background-color: ${({ theme }) => theme.color.info.bgDefault}; color: ${({ theme }) => theme.color.neutral.bgSubtle};`,
 };
 
 const sizeStyles: Record<IndicatorSize, any> = {
@@ -24,19 +24,19 @@ const sizeStyles: Record<IndicatorSize, any> = {
       min-width: ${p => p.$dot ? '8px' : '16px'}; 
       height: ${p => p.$dot ? '8px' : '16px'}; 
       padding: ${p => p.$dot ? '0' :`0 ${p.theme.spacing[1]}px`}; 
-      font-size: ${p => p.theme.typography.fontSize.xs}; 
+      font-size: ${({ theme }) => theme.typography.size.xs}; 
   `,
   md: css<IndicatorBadgeProps>`
       min-width: ${p => p.$dot ? '10px' : '20px'}; 
       height: ${p => p.$dot ? '10px' : '20px'}; 
       padding: ${p => p.$dot ? '0' :`0 ${p.theme.spacing[1]}px`}; 
-      font-size: ${p => p.theme.typography.fontSize.xs}; 
+      font-size: ${({ theme }) => theme.typography.size.xs}; 
     `,
   lg: css<IndicatorBadgeProps>`
       min-width: ${p => p.$dot ? '12px' : '24px'}; 
       height: ${p => p.$dot ? '12px' : '24px'}; 
       padding: ${p => p.$dot ? '0' :`0 ${p.theme.spacing[2]}px`}; 
-      font-size: ${p => p.theme.typography.fontSize.sm}; 
+      font-size: ${({ theme }) => theme.typography.size.sm}; 
     `,
 };
 
@@ -52,13 +52,13 @@ export const IndicatorBadge = styled.span<IndicatorBadgeProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: ${p => p.theme.radii.full};
-  font-weight: ${p => p.theme.typography.fontWeight.bold};
+  border-radius: ${({ theme }) => theme.radius.full};
+  font-weight: ${({ theme }) => theme.typography.weight.bold};
   line-height: 1;
-  border: 2px solid ${p => p.theme.colors.neutral[0]};
+  border: 2px solid ${({ theme }) => theme.color.neutral.bgSubtle};
   opacity: ${p => p.$show ? 1 : 0};
   visibility: ${p => p.$show ? 'visible' : 'hidden'};
-  transition: all ${p => p.theme.transitions.duration.base};
+  transition: all ${({ theme }) => theme.transitions.duration.base};
 
   ${p => variantStyles[p.$variant]}
   ${p => sizeStyles[p.$size]}

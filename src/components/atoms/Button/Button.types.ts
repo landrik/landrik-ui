@@ -6,7 +6,7 @@
 
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 //import { IconType } from './Button';
-import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+import { icons, IconName  } from '../../../assets/svgs';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';

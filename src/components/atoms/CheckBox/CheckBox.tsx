@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { FC } from 'react'
 import {Icon} from '../Icons';
-import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+import { icons, IconName  } from '../../../assets/svgs';
 //export type IconType = keyof typeof icons;
 
 import {CheckboxWrapper, HiddenCheckbox, StyledCheckbox, CheckIcon, CheckboxLabel } from './CheckBox.styles'
@@ -41,7 +41,7 @@ export const CheckBox: React.FC<CheckboxProps> = ({
         $size={size}
       >
         <CheckIcon $visible={indeterminate || checked} $size={size}>
-          {indeterminate ? <Icon name={'subtract'} size={size} /> : <Icon name={'check'} size={size} />}
+          {indeterminate ? <Icon name={'minus'} size={size} /> : <Icon name={'check'} size={size} />}
         </CheckIcon>
       </StyledCheckbox>
       {label && <CheckboxLabel $size={size}>{label}</CheckboxLabel>}

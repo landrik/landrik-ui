@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, AnchorHTMLAttributes } from 'react'
 import {Icon} from '../Icons';
 import { Button } from '../Button';
-//import { ICON_REGISTRY, IconName  } from '../../../assets/svgs/icons';
+//import { icons, IconName  } from '../../../assets/svgs';
 
  /*# ────────────────────────────────────────────────────────────
 
@@ -27,9 +27,7 @@ export const Link: React.FC<LinkProps> = (props) => {
     isButton = false,
     ...rest  } = props as any
 
-  const externalProps = isExternal
-  ? { target: '_blank', rel: 'noopener noreferrer' }
-  : {};
+  const externalProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   const content = (
     <>
@@ -45,9 +43,11 @@ export const Link: React.FC<LinkProps> = (props) => {
         variant={variant}
         size={size}
         disabled={disabled}
+        iconPosition={iconPosition}
+        icon={icon}
         {...rest}
       >
-        {content}
+        {children}
       </Button>
     )
   }

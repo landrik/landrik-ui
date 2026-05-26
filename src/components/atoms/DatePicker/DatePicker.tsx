@@ -12,6 +12,7 @@ ClearButton,
 DatePickerDropdown,
 DatePickerError,
 } from './DatePicker.styled';
+import { Icon } from '../Icons';
 
 const CalendarIcon = () => (
 <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
@@ -100,7 +101,7 @@ return (
           <CloseIcon />
         </ClearButton>
       )}
-      <CalendarIcon />
+      <Icon name='calendar' />
     </DatePickerIcons>
   </DatePickerInput>
 

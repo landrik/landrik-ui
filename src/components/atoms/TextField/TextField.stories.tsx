@@ -25,7 +25,7 @@ export const Default: Story = {
     isDisabled: false, 
     error: false, 
     errorText: 'Error message', 
-    icon: 'useralt', 
+    icon: 'person', 
     iconPosition: 'left',
     helperText: 'test helper text',
     size: 'medium',
@@ -42,7 +42,7 @@ export const withIcon: Story = {
     labelText: 'Label text',
     placeholder: 'Placeholder', 
     isRequired: true,
-    icon: 'lock',
+    icon: 'lock-closed',
     iconPosition: 'left',
     type: 'password',
     showPasswordToggle:true
@@ -59,7 +59,7 @@ export const Invalid: Story = {
     isRequired: true,
     error: true,
     errorText: `Input field can't be empty!`,
-    icon: 'alert',
+    icon: 'exclamation-triangle',
     iconPosition: 'right',
   },
 };
