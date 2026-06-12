@@ -1,0 +1,1 @@
+{"version":3,"file":"Tag.d.ts","sourceRoot":"","sources":["../../../../src/components/Tag/Tag.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAyD,MAAM,OAAO,CAAC;AAC9E,OAAO,KAAK,EACV,QAAQ,EACR,aAAa,EAId,MAAM,aAAa,CAAC;AA0CrB,QAAA,MAAM,GAAG,+FAiFR,CAAC;AAMF,QAAA,MAAM,QAAQ,sFAmDb,CAAC;AAMF,OAAO,EAAE,GAAG,EAAE,QAAQ,EAAE,CAAC;AACzB,YAAY,EAAE,QAAQ,EAAE,aAAa,EAAE,CAAC"}
