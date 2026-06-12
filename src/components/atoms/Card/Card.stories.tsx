@@ -36,13 +36,13 @@ import {
 import { Button } from '../Button'
 import { Avatar } from '../Avatar'
 
-import { tokens } from "./Card.styled";
+//import { tokens } from "./Card.styled";
 
 // ─── Story Helpers ────────────────────────────────────────────────────────────
 
 const Row = styled.div`display: flex; align-items: center; gap: 10px;`;
 
-const Grid = styled.div<{ cols?: number }>`display: grid; grid-template-columns: repeat(${({ cols = 3 }) => cols}, 1fr); gap: 20px; padding: 24px; background: #f0ede7; border-radius: 12px; font-family: ${tokens.font.body};`;
+const Grid = styled.div<{ cols?: number }>`display: grid; grid-template-columns: repeat(${({ cols = 3 }) => cols}, 1fr); gap: 20px; padding: 24px; background: #f0ede7; border-radius: 12px;`;
 
 const GlassBackground = styled.div`background: linear-gradient(135deg, #c9622f 0%, #7c3c1e 50%, #1a0f08 100%); padding: 32px; border-radius: 12px;`;
 

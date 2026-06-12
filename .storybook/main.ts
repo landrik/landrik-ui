@@ -19,24 +19,32 @@ const config: StorybookConfig = {
   ],
 
   async viteFinal(config) {
-    config.resolve!.alias = {
-      ...config.resolve?.alias,
-      "@": path.resolve(__dirname, './src')
-    }
-    config.plugins = config.plugins ?? []
-    config.plugins = config.plugins.filter(
-      (p:any) =>!('name' in p && p.name === 'vite:asset')
+    const plugins = (config.plugins ?? []).filter(
+      (p: any) => !('name' in p && p.name === 'vite:asset')
     );
-    config.plugins.push(
+
+    plugins.push(
       svgr({
         svgrOptions: {
           exportType: 'default',
-          jsxRuntime: 'automatic'
+          jsxRuntime: 'automatic',
         },
-        include: '**/*.svg'
+        include: '**/*.svg',
       })
     );
-    return config
+
+    return {
+      ...config,
+      base: '/',
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          '@': path.resolve(__dirname, './src'),
+        },
+      },
+      plugins,
+    };
   },
 
   framework: {
@@ -46,9 +54,9 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  
+
   typescript: {
-    reactDocgen: "react-docgen-typescript",
+    reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) =>
@@ -56,7 +64,8 @@ const config: StorybookConfig = {
     },
   },
 
-  staticDirs: ['../dist'],
+  //staticDirs: ['../dist'],
+  staticDirs: [{ from: '../dist', to: '/lib' }],
 };
 
 export default config;

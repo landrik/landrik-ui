@@ -7,7 +7,7 @@ import { lighten } from "polished";
 const spin = keyframes`to { transform: rotate(360deg); }`;
 const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
   sm: css`
-    padding: ${({ theme }) => theme.spacing[12]}px ${({ theme }) => theme.spacing[3]}px;
+    padding: ${({ theme }) => theme.spacing[1]}px ${({ theme }) => theme.spacing[3]}px;
     font-size: ${({ theme }) => theme.typography.size.sm};
     border-radius: ${({ theme }) => theme.radius.md};
   `,
@@ -17,7 +17,7 @@ const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
     border-radius: ${({ theme }) => theme.radius.lg};
   `,
   lg: css`
-    padding: ${({ theme }) => theme.spacing[4]}px ${({ theme }) => theme.spacing[6]}px;
+    padding: ${({ theme }) => theme.spacing[5]}px ${({ theme }) => theme.spacing[6]}px;
     font-size: ${({theme}) => theme.typography.size.lg};
     border-radius: ${({theme}) => theme.radius.lg};
   `,
