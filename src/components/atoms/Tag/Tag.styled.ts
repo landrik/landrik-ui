@@ -106,7 +106,7 @@ const variantStyles = {
   `,
   soft: css`
     background: var(--tag-bg);
-    color:      var(--tag-text);
+    color:      var(--tag-contrast);
     border:     1px solid transparent;
 
     &:hover:not([aria-disabled="true"]) {
