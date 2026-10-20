@@ -170,7 +170,7 @@ CardDivider.displayName = "CardDivider";
 const CardBadge = forwardRef<HTMLSpanElement, CardBadgeProps>(
   ({ color = "default", children, ...rest }, ref) => (
     // $color is transient — not forwarded to the <span> DOM element
-    <StyledCardBadge ref={ref} $color={color} {...rest}>
+    <StyledCardBadge ref={ref} color={color} {...rest}>
       {children}
     </StyledCardBadge>
   )
