@@ -1,0 +1,4 @@
+import React from 'react';
+import { LinkProps } from './Link.types';
+export declare const Link: React.FC<LinkProps>;
+//# sourceMappingURL=Link.d.ts.map

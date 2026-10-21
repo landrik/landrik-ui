@@ -1,0 +1,54 @@
+import React, { FC } from 'react';
+export interface SVGIconProps extends React.SVGProps<SVGSVGElement> {
+    size?: number;
+    color?: string;
+    strokeWidth?: number;
+}
+export declare const HomeIcon: FC<SVGIconProps>;
+export declare const UserIcon: FC<SVGIconProps>;
+export declare const SettingsIcon: FC<SVGIconProps>;
+export declare const MailIcon: FC<SVGIconProps>;
+export declare const HeartIcon: FC<SVGIconProps>;
+export declare const StarIcon: FC<SVGIconProps>;
+export declare const BellIcon: FC<SVGIconProps>;
+export declare const SearchIcon: FC<SVGIconProps>;
+export declare const PlusIcon: FC<SVGIconProps>;
+export declare const XIcon: FC<SVGIconProps>;
+export declare const CheckIcon: FC<SVGIconProps>;
+export declare const LoaderIcon: FC<SVGIconProps>;
+export declare const ArrowUpIcon: FC<SVGIconProps>;
+export declare const ArrowRightIcon: FC<SVGIconProps>;
+export declare const ThumbsUpIcon: FC<SVGIconProps>;
+export declare const ShoppingCartIcon: FC<SVGIconProps>;
+export declare const MessageCircleIcon: FC<SVGIconProps>;
+export declare const InfoIcon: FC<SVGIconProps>;
+export declare const ShareIcon: FC<SVGIconProps>;
+export declare const BookmarkIcon: FC<SVGIconProps>;
+export declare const DownloadIcon: FC<SVGIconProps>;
+export declare const UploadIcon: FC<SVGIconProps>;
+export declare const ICON_REGISTRY: {
+    readonly Home: React.FC<SVGIconProps>;
+    readonly User: React.FC<SVGIconProps>;
+    readonly Settings: React.FC<SVGIconProps>;
+    readonly Mail: React.FC<SVGIconProps>;
+    readonly Heart: React.FC<SVGIconProps>;
+    readonly Star: React.FC<SVGIconProps>;
+    readonly Bell: React.FC<SVGIconProps>;
+    readonly Search: React.FC<SVGIconProps>;
+    readonly Plus: React.FC<SVGIconProps>;
+    readonly X: React.FC<SVGIconProps>;
+    readonly Check: React.FC<SVGIconProps>;
+    readonly Loader: React.FC<SVGIconProps>;
+    readonly ArrowUp: React.FC<SVGIconProps>;
+    readonly ArrowRight: React.FC<SVGIconProps>;
+    readonly ThumbsUp: React.FC<SVGIconProps>;
+    readonly ShoppingCart: React.FC<SVGIconProps>;
+    readonly MessageCircle: React.FC<SVGIconProps>;
+    readonly Info: React.FC<SVGIconProps>;
+    readonly Share: React.FC<SVGIconProps>;
+    readonly Bookmark: React.FC<SVGIconProps>;
+    readonly Download: React.FC<SVGIconProps>;
+    readonly Upload: React.FC<SVGIconProps>;
+};
+export type IconName = keyof typeof ICON_REGISTRY;
+//# sourceMappingURL=index.d.ts.map

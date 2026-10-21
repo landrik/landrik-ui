@@ -1,0 +1,23 @@
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { IconName } from '../../../assets/svgs';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonShape = 'rounded' | 'square' | 'pill';
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+    shape?: ButtonShape;
+    children: ReactNode;
+    isLoading?: boolean;
+    fullWidth?: boolean;
+    textColor?: 'default' | 'white' | 'primary';
+    htmlType?: 'button' | 'submit' | 'reset';
+    disabled?: boolean;
+    loading?: boolean;
+    icon?: IconName;
+    iconOnly?: boolean;
+    iconPosition?: 'left' | 'right';
+    backgroundColor?: string;
+    onClick?: () => void;
+}
+//# sourceMappingURL=Button.types.d.ts.map
