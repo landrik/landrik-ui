@@ -4,7 +4,6 @@ export type CardSize = "sm" | "md" | "lg";
 export type CardRadius = "none" | "sm" | "md" | "lg" | "xl" | "full";
 export type CardFooterAlign = "left" | "center" | "right" | "space-between";
 export type CardBadgeColor = "default" | "primary" | "success" | "warning" | "danger";
-import type { SpacingIndex } from "@/theme";
 /** @internal — injected automatically by <Card>; do not pass manually */
 export interface CardSizeProp {
     size?: CardSize;
@@ -40,7 +39,7 @@ export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
     /** Horizontal alignment of footer children
      * @default "left"
      */
-    $align?: CardFooterAlign;
+    align?: CardFooterAlign;
     children?: ReactNode;
 }
 export interface CardMediaProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
@@ -51,7 +50,7 @@ export interface CardMediaProps extends Omit<HTMLAttributes<HTMLDivElement>, "ch
     /** Height of the media area in px (number) or any CSS unit (string)
      * @default 200
      */
-    $height?: SpacingIndex;
+    height?: number;
     /** CSS object-fit for the image
      * @default "cover"
      */
