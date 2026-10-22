@@ -15,13 +15,12 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    '@storybook/addon-docs',
   ],
 
   async viteFinal(config) {
     config.resolve!.alias = {
       ...config.resolve?.alias,
-      "@": path.resolve(__dirname, './src')
+      "@": path.resolve(__dirname, '../src')
     }
     config.plugins = config.plugins ?? []
     config.plugins = config.plugins.filter(
@@ -56,7 +55,8 @@ const config: StorybookConfig = {
     },
   },
 
-  staticDirs: ['../dist'],
+  //staticDirs: ['../dist'],
+  staticDirs: ['../public'],
 };
 
 export default config;
