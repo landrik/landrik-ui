@@ -1,4 +1,4 @@
-import{a as V,j as a}from"./jsx-runtime-c9381026.js";import{I as h}from"./Icon-c1396123.js";import{g as o}from"./styled-components.browser.esm-7ac89e16.js";import"./index-8b3efc3f.js";import"./_commonjsHelpers-de833af9.js";const A=o.label`
+import{a as V,j as a}from"./jsx-runtime-c9381026.js";import{I as h}from"./Icon-83af055a.js";import{g as o}from"./styled-components.browser.esm-7ac89e16.js";import"./index-8b3efc3f.js";import"./_commonjsHelpers-de833af9.js";const A=o.label`
   display: inline-flex; 
   align-items: center; 
   gap: 8px; 
