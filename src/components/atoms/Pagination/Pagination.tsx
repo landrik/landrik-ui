@@ -100,7 +100,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             onClick={() => handlePageChange(Number(pageNumber))}
             disabled={disabled}
             aria-label={`Page ${pageNumber}`}
-            aria-current={pageNumber === currentPage ? 'page' : undefined}
+            aria-current={pageNumber === currentPage  ? 'page' : undefined}
           >
             {pageNumber}
           </PageButton>
