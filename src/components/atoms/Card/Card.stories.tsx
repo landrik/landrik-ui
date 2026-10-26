@@ -35,6 +35,7 @@ import {
 
 import { Button } from '../Button'
 import { Avatar } from '../Avatar'
+import { StyledCardHeader } from "./Card.styled";
 
 //import { tokens } from "./Card.styled";
 
@@ -130,11 +131,13 @@ export const AllVariants: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24, background: "#f0ede7", borderRadius: 12 }}>
       {(["elevated", "outlined", "filled"] as const).map((variant) => (
         <Card key={variant} variant={variant} style={{ maxWidth: 400 }}>
-          <CardBody>
-            <CardBadge color="default">{variant}</CardBadge>
+          <CardHeader>
+            <Row><CardBadge color="default">{variant}</CardBadge></Row>
             <CardTitle>
               {variant.charAt(0).toUpperCase() + variant.slice(1)} Card
             </CardTitle>
+          </CardHeader>
+          <CardBody>
             <CardDescription>
               This is the <strong>{variant}</strong> variant. Each variant
               carries a distinct visual weight suited to different contexts.
@@ -144,9 +147,11 @@ export const AllVariants: Story = {
       ))}
       <GlassBackground>
         <Card variant="glass" style={{ maxWidth: 400 }}>
-          <CardBody>
-            <CardBadge color="default">glass</CardBadge>
+          <CardHeader>
+            <Row><CardBadge color="default">glass</CardBadge></Row>
             <CardTitle>Glass Card</CardTitle>
+          </CardHeader>
+          <CardBody>
             <CardDescription>
               The glass variant uses backdrop-filter blur for a frosted effect —
               looks best on rich backgrounds.
@@ -205,7 +210,7 @@ export const WithMedia: Story = {
           height={200}
         />
         <CardHeader>
-          <CardBadge color="warning">Recipe</CardBadge>
+          <Row><CardBadge color="warning">Recipe</CardBadge></Row>
           <CardTitle>Summer Grain Bowl</CardTitle>
         </CardHeader>
         <CardBody>
@@ -262,7 +267,7 @@ export const ProfileCard: Story = {
   render: () => (
     <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
       <Card style={{ width: 300 }}>
-        <CardBody>
+        <CardHeader>
           <Row>
             <Avatar size='md' initials="JA" />
             <div>
@@ -272,6 +277,8 @@ export const ProfileCard: Story = {
               </CardDescription>
             </div>
           </Row>
+        </CardHeader>
+        <CardBody>
           <CardDescription>
             Crafting delightful digital experiences at the intersection of
             strategy and aesthetics. Open to collaborations.
@@ -288,7 +295,7 @@ export const ProfileCard: Story = {
         </CardFooter>
       </Card>
       <Card variant="filled" style={{ width: 300 }}>
-        <CardBody>
+        <CardHeader>
           <Row>
             <Avatar size='md' initials="ML" />
             <div>
@@ -298,6 +305,8 @@ export const ProfileCard: Story = {
               </CardDescription>
             </div>
           </Row>
+        </CardHeader>
+        <CardBody>
           <CardDescription>
             Building scalable systems and elegant APIs. Passionate about
             open source and developer tooling.

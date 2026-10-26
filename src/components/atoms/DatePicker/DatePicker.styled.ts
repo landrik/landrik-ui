@@ -20,6 +20,7 @@ export const DatePickerInput = styled.button<DatePickerInputProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: ${({ theme }) => theme.spacing[5]}px;
   padding: ${({ theme }) => theme.spacing[3]}px;
   background-color: ${p => p.$disabled ? p.theme.color.neutral[50] : p.theme.color.neutral[0]};
   border: 1px solid ${p => p.$hasError ? p.theme.color.danger : p.theme.color.neutral[300]};

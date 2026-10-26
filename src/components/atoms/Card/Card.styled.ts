@@ -138,19 +138,19 @@ const interactiveStyles = {
 
 const sizeStyles: Record<CardSize, ReturnType<typeof css>> = {
   sm: css`
-    padding: 0 ${({ theme }) => theme.spacing[3]}px;
+    padding: ${({ theme }) => theme.spacing[1]}px ${({ theme }) => theme.spacing[3]}px;
     font-size: ${({ theme }) => theme.typography.size.xs};
-    gap: ${({ theme }) => theme.spacing[4]}px;
+    gap: ${({ theme }) => theme.spacing[2]}px;
   `,
   md: css`
-    padding: 0 ${({ theme }) => theme.spacing[5]}px;
+    padding: ${({ theme }) => theme.spacing[2]}px ${({ theme }) => theme.spacing[5]}px;
     font-size: ${({ theme }) => theme.typography.size.sm};
-    gap: ${({ theme }) => theme.spacing[12]}px;
+    gap: ${({ theme }) => theme.spacing[3]}px;
   `,
   lg: css`
-    padding: 0 ${({ theme }) => theme.spacing[8]}px;
+    padding: ${({ theme }) => theme.spacing[4]}px ${({ theme }) => theme.spacing[8]}px;
     font-size: ${({ theme }) => theme.typography.size.base};
-    gap: ${({ theme }) => theme.spacing[3]}px;
+    gap: ${({ theme }) => theme.spacing[4]}px;
   `,
 };
 
