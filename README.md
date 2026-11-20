@@ -18,13 +18,13 @@ npm install @landrik/ui
 ## Quick Start
 
 ```tsx
-import { ThemeProvider, Button, TextField } from '@landrik/ui';
+import { ThemeProvider, Button, TextInput } from '@landrik/ui';
 
 function App() {
   return (
     <ThemeProvider>
       <Button variant="primary">Click me</Button>
-      <TextField label="Email" type="email" />
+      <TextInput label="Email" type="email" />
     </ThemeProvider>
   );
 }
@@ -47,9 +47,9 @@ Add new components by using the `create:component` npm task. It will prompt you 
 Please follow the Standard ReactNamingConventions, and name the component the singular form.
 
 ```
-Good: TextField Button CheckBox
+Good: TextInput Button CheckBox
 
-Bad: TextField text-input text input Buttons
+Bad: TextInput text-input text input Buttons
 
 ```
 

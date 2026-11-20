@@ -28,7 +28,7 @@ export const StarButton = styled.button<StarButtonProps>`
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.color.accent[500]};
+    outline: 2px solid ${({ theme }) => theme.color.border.focus};;
     outline-offset: 2px;
     border-radius: ${({ theme }) => theme.radius.sm};
   }
@@ -59,5 +59,5 @@ export const StarIcon = styled.svg<StarIconProps>`
 export const RatingValue = styled.span`
   font-size: ${({ theme }) => theme.typography.size.sm}; 
   font-weight: ${({ theme }) => theme.typography.weight.medium}; 
-  color: ${({ theme }) => theme.color.neutral[700]};
+  color: ${({ theme }) => theme.color.neutral.text};
 `;

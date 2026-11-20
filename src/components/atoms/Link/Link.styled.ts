@@ -11,7 +11,7 @@ interface StyledProps {
 
 const variantStyles: Record<LinkVariant, ReturnType<typeof css>> = {
   primary: css`
-    color: ${({ theme }) => theme.color.accent[600]};
+    color: ${({ theme }) => theme.color.accent.bgActive};
     &:hover {
       color: ${({ theme }) => theme.color.accent[700]};
     }
@@ -28,16 +28,16 @@ const variantStyles: Record<LinkVariant, ReturnType<typeof css>> = {
   `, 
 
   subtle: css`
-    color: ${({ theme }) => theme.color.neutral[700]};
+    color: ${({ theme }) => theme.color.neutral.text};
     &:hover {
-      color: ${({ theme }) => theme.color.neutral[900]};
+      color: ${({ theme }) => theme.color.text.default};
     }
   `, 
 
   danger: css`
-    color: ${({ theme }) => theme.color.danger[600]};
+    color: ${({ theme }) =>theme.color.danger.bgDefault};
     &:hover {
-      color: ${({ theme }) => theme.color.danger[600]};
+      color: ${({ theme }) =>theme.color.danger.bgDefault};
     }
   `,
 };
@@ -59,7 +59,7 @@ export const StyledLink = styled.a<StyledProps>`
   cursor: pointer;
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.color.accent[500]};
+    outline: 2px solid ${({ theme }) => theme.color.border.focus};;
     outline-offset: 2px;
     border-radius: ${({ theme }) => theme.radius.sm};
   }

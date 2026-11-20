@@ -25,7 +25,7 @@ top: css`
     left: 50%;
     transform: translateX(-50%);
     border: 4px solid transparent;
-    border-top-color: ${({ theme }) => theme.color.neutral[900]};
+    border-top-color: ${({ theme }) => theme.color.text.default};
   }
 `, 
 
@@ -42,7 +42,7 @@ bottom: css`
     left: 50%;
     transform: translateX(-50%);
     border: 4px solid transparent;
-    border-bottom-color: ${({ theme }) => theme.color.neutral[900]};
+    border-bottom-color: ${({ theme }) => theme.color.text.default};
   }
 
 
@@ -61,7 +61,7 @@ left: css`
     top: 50%;
     transform: translateY(-50%);
     border: 4px solid transparent;
-    border-left-color: ${({ theme }) => theme.color.neutral[900]};
+    border-left-color: ${({ theme }) => theme.color.text.default};
   }
 `, 
 
@@ -78,7 +78,7 @@ right: css`
     top: 50%;
     transform: translateY(-50%);
     border: 4px solid transparent;
-    border-right-color: ${({ theme }) => theme.color.neutral[900]};
+    border-right-color: ${({ theme }) => theme.color.text.default};
   }
 `,
 };
@@ -87,8 +87,8 @@ export const TooltipContent = styled.div<TooltipContentProps>`
   position: absolute;
   z-index: ${({ theme }) => theme.zIndices.tooltip};
   padding: ${({ theme }) => theme.spacing[12]}px ${({ theme }) => theme.spacing[3]}px;
-  background-color: ${({ theme }) => theme.color.neutral[900]};
-  color: ${({ theme }) => theme.color.neutral[0]};
+  background-color: ${({ theme }) => theme.color.text.default};
+  color: ${({ theme }) => theme.color.accent.onFill};
   font-size: ${({ theme }) => theme.typography.size.sm};
   border-radius: ${({ theme }) => theme.radius.md};
   white-space: nowrap;

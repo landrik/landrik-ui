@@ -8,15 +8,19 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+
+    "rootDir": "./src",
     "outDir": "./dist",
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": false,
+
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
-    "typeRoots" : ["node_modules/@types", "src/types"],
+    "typeRoots": ["node_modules/@types", "src/types"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -24,21 +28,13 @@
     }
   },
   "ts-node": {
-    "esm": true,
+    "esm": true
   },
   "include": [
     "src/types/styled-components.d.ts",
     "src/types/fonts.d.ts",
     "src/types/svg.d.ts",
-    "src/**/*", 
-    "src/**/*.ts",
-    "vite.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test.tsx",
-    "**/*.test.ts",
-    "**/*.stories.tsx"
+    "src/**/*"
   ]
+
 }

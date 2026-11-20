@@ -1,6 +1,6 @@
 import React, { useState, useRef, FC, DragEvent } from 'react';
 import { FileUploadProps, UploadedFile } from './FileUpload.types';
-import { Upload, File, X, CheckCircle, AlertCircle, Image as ImageIcon } from 'lucide-react';
+import { Icon } from '../Icons';
 
 import {
   DropZone,
@@ -26,29 +26,7 @@ import {
   ErrorMessage,
   Progress,
 } from './FileUpload.styled';
-import { Icon } from '../Icons';
 
-const UploadCloudIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-  <path d="M16 16l-4-4-4 4"></path>
-  <path d="M12 12v9"></path>
-  <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"></path>
-  <polyline points="16 16 12 12 8 16"></polyline>
-  </svg>
-);
-
-// const FileIcon = () => (
-//   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-//   <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
-//   <polyline points="13 2 13 9 20 9"></polyline>
-//   </svg>
-// );
-
-const CloseIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-  </svg>
-);
 
 export const FileUpload: FC<FileUploadProps> = ({
   accept,
@@ -252,8 +230,9 @@ export const FileUpload: FC<FileUploadProps> = ({
         <>
           <AvatarPreview src={avatarFile.url} alt="Avatar" />
           <AvatarOverlay>
+            
             <UploadIcon $color="white">
-              <UploadCloudIcon />
+              <Icon name='upload' />
             </UploadIcon>
           </AvatarOverlay>
         </>
@@ -261,11 +240,12 @@ export const FileUpload: FC<FileUploadProps> = ({
         <>
           <UploadIcon $color={color}>
             {variant === 'compact' ? (
-              <Upload size={20} />
+              <Icon name="upload" size="md" />
             ) : (
-              <Upload size={variant === 'avatar' ? 32 : 40} />
+              <Icon name="upload" size={variant === 'avatar' ? "lg" : "xl"} />
             )}
           </UploadIcon>
+
           {variant !== 'avatar' && (
             <>
               <UploadText>
@@ -290,7 +270,7 @@ export const FileUpload: FC<FileUploadProps> = ({
             <ImagePreview key={file.id}>
               <PreviewImage src={file.url} alt={file.name} />
               <PreviewRemoveButton onClick={() => removeFile(file.id)}>
-                <CloseIcon />
+                <Icon name='cross' />
               </PreviewRemoveButton>
             </ImagePreview>
           ))}
@@ -305,10 +285,10 @@ export const FileUpload: FC<FileUploadProps> = ({
                 file.status === 'error' ? '#ef4444' :
                 file.status === 'success' ? '#10b981' : color
               }>
-                {file.status === 'error' && <AlertCircle size={20} />}
-                {file.status === 'success' && <CheckCircle size={20} />}
+                {file.status === 'error' && <Icon name="exclamation-triangle" size="md" />}
+                {file.status === 'success' && <Icon name="check-circled" size="md" />}
                 {file.status === 'uploading' && (
-                  file.type.startsWith('image/') ? <ImageIcon size={20} /> : <File size={20} />
+                  file.type.startsWith('image/') ? <Icon name="image" size="md" /> : <Icon name="file" size="md" />
                 )}
               </FileIcon>
 
@@ -324,7 +304,7 @@ export const FileUpload: FC<FileUploadProps> = ({
               </FileInfo>
 
               <RemoveButton onClick={() => removeFile(file.id)}>
-                <CloseIcon />
+                <Icon name="cross" />
               </RemoveButton>
 
             </FileItem>

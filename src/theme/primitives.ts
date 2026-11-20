@@ -26,32 +26,33 @@ export const palette = {
     // neutral[0]   → white (#ffffff)
     // neutral[900] → darkest (#111827)
     neutral: {
-        0: "#ffffff",
-       50: "#f9fafb",
-      100: "#f3f4f6",
-      200: "#e5e7eb",
-      300: "#d1d5db",
-      400: "#9ca3af",
-      500: "#6b7280",
-      600: "#4b5563",
-      700: "#374151",
-      800: "#1f2937",
-      900: "#111827",
+          0: "#ffffff",
+          50: "#f9fafb",
+          100: "#f3f4f6",
+          200: "#e5e7eb",
+          300: "#d1d5db",
+          400: "#9ca3af",
+          500: "#6b7280",
+          600: "#4b5563",
+          700: "#374151",
+          800: "#1f2937",
+          900: "#111827",
+          950: "#090d16",
     },
 
     // Brand accent — purple
     // accent[500] → default brand color
     accent: {
-       50: "#6c53ff",
-      100: "#4b2bff",
-      200: "#2903ff",
-      300: "#2100da",
-      400: "#1b00b0",
-      500: "#1a0596",
-      600: "#19087c",
-      700: "#170a62",
-      800: "#140a4a",
-      900: "#100934",
+         50: "#f3f1ff", // Soft light-mode subtle tint
+        100: "#e4dfff",
+        200: "#c7bdff", // High-contrast light purple for dark-mode text & links
+        300: "#a594ff", // Dark-mode link hover
+        400: "#6c53ff", // Vibrant purple for dark-mode borders, focus rings & active fills
+        500: "#1a0596", // Primary brand purple (WCAG AAA with white text)
+        600: "#16047d", // Pressed / active state
+        700: "#120363",
+        800: "#0e024a",
+        900: "#140a4a", // Deep purple tint for dark-mode bgSubtle
     },
 
     // Alpha overlays — named by color + opacity, not a linear scale

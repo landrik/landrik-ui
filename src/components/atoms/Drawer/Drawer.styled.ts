@@ -49,7 +49,7 @@ return css`height: ${sizeMap[size]}; max-height: 100%;`;
 export const DrawerContainer = styled.div<DrawerContainerProps>`
 position: fixed;
 z-index: ${({ theme }) => theme.zIndices.modal + 1};
-background-color: ${({ theme }) => theme.color.neutral[0]};
+background-color: ${({ theme }) => theme.color.surface.raised};
 box-shadow: ${({ theme }) => theme.shadows.xl};
 display: ${p => p.$open ? 'flex' : 'none'};
 flex-direction: column;
@@ -58,9 +58,9 @@ ${p => placementStyles[p.$placement]}
 ${p => getSizeStyles(p.$placement, p.$size)}
 `;
 
-export const DrawerHeader = styled.div`display: flex; align-items: center; justify-content: space-between; padding: ${({ theme }) => theme.spacing[6]}px; border-bottom: 1px solid ${({ theme }) => theme.color.neutral[200]}; flex-shrink: 0;`;
+export const DrawerHeader = styled.div`display: flex; align-items: center; justify-content: space-between; padding: ${({ theme }) => theme.spacing[6]}px; border-bottom: 1px solid ${({ theme }) => theme.color.border.default}; flex-shrink: 0;`;
 
-export const DrawerTitle = styled.h2`margin: 0; font-size: ${({ theme }) => theme.typography.size.xl}; font-weight: ${({ theme }) => theme.typography.weight.semibold}; color: ${({ theme }) => theme.color.neutral[900]};`;
+export const DrawerTitle = styled.h2`margin: 0; font-size: ${({ theme }) => theme.typography.size.xl}; font-weight: ${({ theme }) => theme.typography.weight.semibold}; color: ${({ theme }) => theme.color.text.default};`;
 
 export const DrawerCloseButton = styled.button`
 display: inline-flex;
@@ -72,21 +72,21 @@ padding: 0;
 background-color: transparent;
 border: none;
 border-radius: ${({ theme }) => theme.radius.md};
-color: ${({ theme }) => theme.color.neutral[600]};
+color: ${({ theme }) => theme.color.neutral.text};
 cursor: pointer;
 transition: all ${({ theme }) => theme.transitions.duration.base};
 
 &:hover {
 background-color: ${({ theme }) => theme.color.neutral[100]};
-color: ${({ theme }) => theme.color.neutral[900]};
+color: ${({ theme }) => theme.color.text.default};
 }
 
 &:focus-visible {
-outline: 2px solid ${({ theme }) => theme.color.accent[500]};
+outline: 2px solid ${({ theme }) => theme.color.border.focus};;
 outline-offset: 2px;
 }
 `;
 
 export const DrawerBody = styled.div`flex: 1; overflow-y: auto; padding: ${({ theme }) => theme.spacing[6]}px;`;
 
-export const DrawerFooter = styled.div`padding: ${({ theme }) => theme.spacing[6]}px; border-top: 1px solid ${({ theme }) => theme.color.neutral[200]}; flex-shrink: 0;`;
+export const DrawerFooter = styled.div`padding: ${({ theme }) => theme.spacing[6]}px; border-top: 1px solid ${({ theme }) => theme.color.border.default}; flex-shrink: 0;`;

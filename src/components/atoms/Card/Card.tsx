@@ -41,12 +41,12 @@ import {
 const Card = forwardRef<HTMLDivElement, CardProps>(
   (
     {
-      variant = "elevated",
+      $variant = "elevated",
       size = "md",
       radius = "lg",
       interactive = false,
       disabled = false,
-      fullWidth = false,
+      $fullWidth = false,
       children,
       ...rest
     },
@@ -78,12 +78,12 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     return (
       <StyledCard
         ref={ref}
-        $variant={variant}
-        $size={size}
-        $radius={radius}
-        $interactive={interactive}
-        $disabled={disabled}
-        $fullWidth={fullWidth}
+        $variant={$variant}
+        size={size}
+        radius={radius}
+        interactive={interactive}
+        disabled={disabled}
+        $fullWidth={$fullWidth}
         role={interactive ? "button" : undefined}
         tabIndex={interactive && !disabled ? 0 : undefined}
         aria-disabled={disabled || undefined}
@@ -128,7 +128,7 @@ const CardFooter = forwardRef<
   HTMLDivElement,
   CardFooterProps & CardSizeProp
 >(({ align = "left", children, size = "md", ...rest }, ref) => (
-  <StyledCardFooter ref={ref} $align={align} $size={size} {...rest}>
+  <StyledCardFooter ref={ref} align={align} $size={size} {...rest}>
     {children}
   </StyledCardFooter>
 ));
@@ -141,15 +141,15 @@ const CardMedia = forwardRef<
   CardMediaProps & CardSizeProp
 >(
   (
-    { src, alt, height, objectFit, size: _size, ...rest },
+    { src, alt, $height, $objectFit, size: _size, ...rest },
     ref
   ) => (
     // Only $height and $objectFit go to the styled div;
     // src/alt are passed directly to the <img> — not the wrapper div.
     <StyledCardMedia
       ref={ref}
-      $height={height}
-      $objectFit={objectFit}
+      $height={$height}
+      $objectFit={$objectFit}
       {...rest}
     >
       <img src={src} alt={alt} loading="lazy" />

@@ -1,58 +1,65 @@
-import clsx from 'clsx';
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react';
+import { RadioButtonProps } from './RadioButton.types';
+import {
+  RadioWrapper,
+  RadioLabel,
+  HiddenRadio,
+  StyledRadio,
+  LabelText,
+  RadioDot,
+} from './RadioButton.styles';
 
-import { RadioWrapper, RadioLabel, HiddenRadio, StyledRadio, LabelText, RadioDot } from './Radiobutton.styles'
-
-
-
-export interface RadioOptionProps {
-  value: string;
-  label: string;
-  disabled?: boolean;
-}
-
-export interface RadioButtonProps {
-  name: string;
-  options: RadioOptionProps[];
-  value: string;
-  onChange: (value: string) => void;
-  color?: string;
-  size?: 'sm' | 'md' | 'lg';
-}
-
-export const RadioButton: React.FC<RadioButtonProps> = ({
+export const RadioButton: FC<RadioButtonProps> = ({
   name,
   options,
   value,
+  defaultValue,
   onChange,
-  color = '#3b82f6',
-  size = 'md'
+  disabled = false,
+  color,
+  size = 'md',
+  ariaLabel,
 }) => {
-return (
-  <RadioWrapper role="radiogroup">
-    {options.map((option) => (
-      <RadioLabel key={option.value} $disabled={option.disabled}>
-        <HiddenRadio
-          name={name}
-          value={option.value}
-          checked={value === option.value}
-          onChange={(e) => onChange(e.target.value)}
-          disabled={option.disabled}
-        />
-        <StyledRadio
-          $checked={value === option.value}
-          $color={color}
-          $size={size}
-          data-checked={value === option.value}
-        >
-          <RadioDot $color={color} $size={size} />
-        </StyledRadio>
-        <LabelText $size={size}>{option.label}</LabelText>
-      </RadioLabel>
-    ))}
-  </RadioWrapper>
-);
+  const [internalValue, setInternalValue] = useState(defaultValue);
+
+  const isControlled = value !== undefined;
+  const selectedValue = isControlled ? value : internalValue;
+
+  const handleSelect = (optionValue: string) => {
+    if (!isControlled) {
+      setInternalValue(optionValue);
+    }
+    onChange?.(optionValue);
+  };
+
+  return (
+    <RadioWrapper role="radiogroup" aria-label={ariaLabel || name}>
+      {options.map((option) => {
+        const isChecked = selectedValue === option.value;
+        const isOptionDisabled = disabled || Boolean(option.disabled);
+
+        return (
+          <RadioLabel key={String(option.value)} $disabled={isOptionDisabled}>
+            <HiddenRadio
+              type="radio"
+              name={name}
+              value={option.value}
+              checked={isChecked}
+              onChange={() => handleSelect(option.value)}
+              disabled={isOptionDisabled}
+            />
+            <StyledRadio
+              $checked={isChecked}
+              $color={color}
+              $size={size}
+              data-checked={isChecked}
+            >
+              <RadioDot $color={color} $size={size} />
+            </StyledRadio>
+            <LabelText $size={size}>{option.label}</LabelText>
+          </RadioLabel>
+        );
+      })}
+    </RadioWrapper>
+  );
 };
-
-
-

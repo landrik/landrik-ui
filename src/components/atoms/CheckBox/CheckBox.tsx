@@ -1,46 +1,59 @@
 import clsx from 'clsx';
-import React, { FC } from 'react'
+import React, { FC, useState, useEffect, ChangeEvent, useRef } from 'react'
 import {Icon} from '../Icons';
 import { icons, IconName  } from '../../../assets/svgs';
 //export type IconType = keyof typeof icons;
 
+import { CheckboxProps } from './CheckBox.types';
 import {CheckboxWrapper, HiddenCheckbox, StyledCheckbox, CheckIcon, CheckboxLabel } from './CheckBox.styles'
 
-export interface CheckboxProps {
-  label?: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  disabled?: boolean;
-  indeterminate?: boolean;
-  color?: string;
-  size?: 'sm' | 'md' | 'lg';
-}
 
-export const CheckBox: React.FC<CheckboxProps> = ({
+export const CheckBox:FC<CheckboxProps> = ({
   label,
   checked,
+  defaultChecked= false,
   onChange,
   disabled = false,
   indeterminate = false,
-  color = '#3b82f6',
+  color,
   size = 'md'
 }) => {
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
   //const iconSize = size === 'sm' ? 12 : size === 'lg' ? 18 : 14;
+  const [internalChecked, setInternalChecked] = useState(defaultChecked);
+  const isControlled = checked !== undefined;
+  const isChecked = isControlled ? checked : internalChecked
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate])
+  
+
+  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
+    const nextChecked = e.target.checked;
+    if(!isControlled) setInternalChecked(nextChecked);
+    onChange?.(nextChecked)
+  }
 
   return (
     <CheckboxWrapper $disabled={disabled}>
       <HiddenCheckbox
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
+        ref={inputRef}
+        checked={isChecked}
+        onChange={handleChange}
         disabled={disabled}
       />
       <StyledCheckbox
-        $checked={checked}
+        $checked={isChecked}
         $indeterminate={indeterminate}
         $color={color}
         $size={size}
       >
-        <CheckIcon $visible={indeterminate || checked} $size={size}>
+        <CheckIcon $visible={indeterminate || isChecked}>
           {indeterminate ? <Icon name={'minus'} size={size} /> : <Icon name={'check'} size={size} />}
         </CheckIcon>
       </StyledCheckbox>

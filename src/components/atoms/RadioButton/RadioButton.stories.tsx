@@ -1,8 +1,3 @@
-
-// ========================================
-// RadioButton.stories.tsx
-// ========================================
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { RadioButton } from './RadioButton';
 
@@ -13,6 +8,14 @@ const meta: Meta<typeof RadioButton> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    color: { control: 'color' },
+    size: {
+      control: 'inline-radio',
+      options: ['sm', 'md', 'lg'],
+    },
+    disabled: { control: 'boolean' },
+  },
 };
 
 export default meta;
@@ -26,8 +29,7 @@ export const Default: Story = {
       { value: 'option2', label: 'Option 2' },
       { value: 'option3', label: 'Option 3' },
     ],
-    value: 'option1',
-    onChange: (value) => console.log(value),
+    defaultValue: 'option1',
   },
 };
 
@@ -39,49 +41,56 @@ export const CustomColor: Story = {
       { value: 'green', label: 'Green' },
       { value: 'blue', label: 'Blue' },
     ],
-    value: 'green',
+    defaultValue: 'green',
     color: '#10b981',
-    onChange: (value) => console.log(value),
   },
 };
 
-export const WithDisabled: Story = {
+export const WithDisabledOption: Story = {
   args: {
-    name: 'disabled',
+    name: 'disabled-option',
     options: [
       { value: 'enabled1', label: 'Enabled Option 1' },
       { value: 'disabled', label: 'Disabled Option', disabled: true },
       { value: 'enabled2', label: 'Enabled Option 2' },
     ],
-    value: 'enabled1',
-    onChange: (value) => console.log(value),
+    defaultValue: 'enabled1',
+  },
+};
+
+export const GroupDisabled: Story = {
+  args: {
+    name: 'group-disabled',
+    disabled: true,
+    options: [
+      { value: 'option1', label: 'Option 1' },
+      { value: 'option2', label: 'Option 2' },
+    ],
+    defaultValue: 'option1',
   },
 };
 
 export const Sizes: Story = {
-   render: () => (
+  render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <RadioButton
         name="small"
         options={[{ value: '1', label: 'Small' }]}
-        value="1"
+        defaultValue="1"
         size="sm"
-        onChange={() => {}}
       />
       <RadioButton
         name="medium"
         options={[{ value: '1', label: 'Medium' }]}
-        value="1"
+        defaultValue="1"
         size="md"
-        onChange={() => {}}
       />
       <RadioButton
         name="large"
         options={[{ value: '1', label: 'Large' }]}
-        value="1"
+        defaultValue="1"
         size="lg"
-        onChange={() => {}}
       />
     </div>
-   )
+  ),
 };

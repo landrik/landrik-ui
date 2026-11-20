@@ -6,19 +6,21 @@
 
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
-
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+//import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { lightTheme, darkTheme, GlobalStyles } from '../src/theme';
 
 /**
  * Global decorator — wraps every story with ThemeProvider + GlobalStyles.
  * Storybook's backgrounds toolbar controls the `theme` parameter below.
  */
+
+
 const withTheme = (Story: React.ComponentType, context: any) => {
-  const theme = context.globals.backgrounds?.value === "#0A0A0A" ? darkTheme : lightTheme;
+  const selectedTheme = context.globals.theme === "dark" ? darkTheme : lightTheme;
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={selectedTheme}>
       
       <div
         style={{
@@ -76,11 +78,12 @@ const preview: Preview = {
   // Adds a Light / Dark button to the Storybook toolbar.
   // Global types for the toolbar
   globalTypes: {
-    themeMode: {
+    theme: {
       name: "Theme",
-      description: "Global theme mode",
+      description: "Global theme mode for components",
       defaultValue: "light",
       toolbar: {
+        title: "Theme",
         icon: "circlehollow",
         items: [
           { value: "light", icon: "sun",  title: "Light" },
@@ -88,15 +91,6 @@ const preview: Preview = {
         ],
         showName: true,
         dynamicTitle: true,
-      },
-    },
-    locale: {
-      description: "Locale for i18n",
-      defaultValue: "en",
-      toolbar: {
-        icon: "globe",
-        items: ["en", "fr"],
-        showName: true,
       },
     },
   },

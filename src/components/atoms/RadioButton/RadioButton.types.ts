@@ -1,6 +1,5 @@
+export type RadioButtonSize = 'sm' | 'md' | 'lg';
 
-
-export type RadioButtonShape = 'sm' | 'md' | 'lg';
 export interface RadioOptionProps {
   value: string;
   label: string;
@@ -10,8 +9,11 @@ export interface RadioOptionProps {
 export interface RadioButtonProps {
   name: string;
   options: RadioOptionProps[];
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  ariaLabel?: string;
   color?: string;
-  size?: RadioButtonShape;
+  size?: RadioButtonSize;
+  disabled?: boolean;
 }

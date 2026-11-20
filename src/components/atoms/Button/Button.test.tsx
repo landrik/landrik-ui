@@ -1,54 +1,11 @@
-// import '@testing-library/jest-dom';
-
-// import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-// import Button from './Button';
-
-// /**
-//  * @jest-environment jsdom
-//  */
-
-// describe('Button', () => {
-//   afterEach(() => cleanup());
-
-//   it('renders', () => {
-//     render(<Button loading={false} children={undefined} />);
-//     const button = screen.getByTestId('btn');
-
-//     expect(button).toBeInTheDocument();
-//   });
-
-//   it('fires an event on onClick', () => {
-//     const fn = jest.fn();
-//     render(<Button onClick={fn} loading={false} children={undefined} />);
-
-//     const button = screen.getByTestId('btn');
-//     fireEvent.click(button);
-//     expect(fn).toHaveBeenCalled();
-//   });
-
-//   it('renders the correct classes', () => {
-//     const fn = jest.fn();
-//     render(<Button variant="primary" onClick={fn} data-testid="p-btn" loading={false} children={undefined} />);
-
-//     const pBtn = screen.getByTestId('p-btn');
-//     screen.debug();
-//     expect(pBtn).toHaveClass('lk-button', {exact:true});
-//   });
-// });
-
-
-// ========================================
-// Button.test.tsx
-// ========================================
-
 import React from 'react';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen } from '../../../utils/test-utils';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import Button from './Button';
+import { Button } from './Button';
+import { lightTheme, darkTheme } from '../../../theme/theme';
 
 describe('Button', () => {
-  afterEach(() => cleanup());
-
   describe('Rendering', () => {
     it('renders with text content', () => {
       render(<Button>Click me</Button>);
@@ -56,205 +13,202 @@ describe('Button', () => {
     });
 
     it('renders with icon on left by default', () => {
-      const { container } = render(
-        <Button icon='email'>
-          Send
-        </Button>
-      );
-      const icon = container.querySelector("[data-icon='email']") as HTMLImageElement;
-      expect(icon.classList.toString()).toContain('icon-svg') ;
+      const { container } = render(<Button icon="envelope-closed">Send</Button>);
+      const icon = container.querySelector("[data-icon='envelope-closed']");
+      expect(icon).toBeInTheDocument();
       expect(screen.getByText('Send')).toBeInTheDocument();
     });
 
     it('renders with icon on right when specified', () => {
       const { container } = render(
-        <Button icon='email' iconPosition="right">
+        <Button icon="envelope-closed" iconPosition="right">
           Send
         </Button>
       );
-      const icon = container.querySelector("[data-icon='email']") as HTMLImageElement;
-      expect(icon.classList.toString()).toContain('icon-svg');
+      const icon = container.querySelector("[data-icon='envelope-closed']");
+      expect(icon).toBeInTheDocument();
       expect(screen.getByText('Send')).toBeInTheDocument();
     });
 
     it('renders as icon-only button when iconOnly is true', () => {
-      const { container } = render(<Button icon='email' iconOnly />);
-      const icon = container.querySelector("[data-icon='email']") as HTMLImageElement;
-      expect(icon.classList.toString()).toContain('icon-svg');
+      const { container } = render(
+        <Button icon="envelope-closed" iconOnly>
+          Send
+        </Button>
+      );
+      const icon = container.querySelector("[data-icon='email']");
+      expect(icon).toBeInTheDocument();
       expect(screen.queryByText('Send')).not.toBeInTheDocument();
     });
 
     it('renders as icon-only button when no children provided', () => {
-      const { container } = render(<Button icon='download' />);
-      const icon = container.querySelector("[data-icon='download']") as HTMLImageElement;
-      expect(icon.classList.toString()).toContain('icon-svg');
+      const { container } = render(<Button icon="download" aria-label="Download" />);
+      const icon = container.querySelector("[data-icon='download']");
+      expect(icon).toBeInTheDocument();
     });
   });
 
   describe('Variants', () => {
-    it('renders primary variant', () => {
-      const { container } = render(<Button variant="primary">Primary</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ background: '#3b82f6' });
+    it('renders primary variant with light theme accent color', () => {
+      render(<Button variant="primary">Primary</Button>);
+      expect(screen.getByRole('button')).toHaveStyle({
+        backgroundColor: lightTheme.color.accent.bgDefault,
+      });
+    });
+
+    it('renders primary variant with dark theme accent color', () => {
+      render(<Button variant="primary">Primary</Button>, { themeMode: 'dark' });
+      expect(screen.getByRole('button')).toHaveStyle({
+        backgroundColor: darkTheme.color.accent.bgDefault,
+      });
     });
 
     it('renders secondary variant', () => {
-      const { container } = render(<Button variant="secondary">Secondary</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ background: '#6b7280' });
+      render(<Button variant="secondary">Secondary</Button>);
+      expect(screen.getByRole('button')).toHaveStyle({
+        backgroundColor: lightTheme.color.neutral.bgSubtle,
+      });
     });
 
     it('renders outline variant', () => {
-      const { container } = render(<Button variant="outline">Outline</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ background: 'transparent' });
+      render(<Button variant="outline">Outline</Button>);
+      expect(screen.getByRole('button')).toHaveStyle({
+        backgroundColor: 'transparent',
+      });
     });
 
     it('renders ghost variant', () => {
       render(<Button variant="ghost">Ghost</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ background: 'transparent' });
+      expect(screen.getByRole('button')).toHaveStyle({
+        backgroundColor: 'transparent',
+      });
     });
 
     it('renders danger variant', () => {
       render(<Button variant="danger">Delete</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ background: '#ef4444' });
+      expect(screen.getByRole('button')).toHaveStyle({
+        backgroundColor: lightTheme.color.danger.bgDefault,
+      });
     });
-
   });
 
   describe('Shapes', () => {
-    it('applies rounded shape', () => {
-      render(<Button shape="rounded">Rounded</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ borderRadius: '8px' });
+    it.each([
+      ['square', lightTheme.radius.none],
+      ['rounded', lightTheme.radius.lg],
+      ['pill', lightTheme.radius.full],
+    ] as const)('applies %s shape (%s)', (shape, expectedRadius) => {
+      render(<Button shape={shape}>Shape</Button>);
+      expect(screen.getByRole('button')).toHaveStyle({ borderRadius: expectedRadius });
     });
-
-    it('applies pill shape', () => {
-      render(<Button shape="pill">Pill</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ borderRadius: '999px' });
-    });
-
-    it('applies square shape', () => {
-      render(<Button shape="square">Square</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ borderRadius: '4px' });
-    });
-
   });
 
   describe('Sizes', () => {
-    it('renders small size', () => {
-      render(<Button size="sm">Small</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ padding: '6px 12px', fontSize: '13px' });
+    it.each([
+      ['sm', '8px 12px', lightTheme.typography.size.sm],
+      ['md', '12px 16px', lightTheme.typography.size.base],
+      ['lg', '16px 24px', lightTheme.typography.size.lg],
+    ] as const)('renders %s size', (size, expectedPadding, expectedFontSize) => {
+      render(<Button size={size}>Size</Button>);
+      expect(screen.getByRole('button')).toHaveStyle({
+        padding: expectedPadding,
+        fontSize: expectedFontSize,
+      });
     });
 
-    it('renders medium size', () => {
-      render(<Button size="md">Medium</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ padding: '10px 18px', fontSize: '14px' });
+    it('applies symmetric padding for icon-only small button', () => {
+      render(
+        <Button icon="envelope-closed" iconOnly size="sm">
+          email
+        </Button>
+      );
+      expect(screen.getByRole('button')).toHaveStyle({ padding: '8px' });
     });
-
-    it('renders large size', () => {
-      render(<Button size="lg">Large</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ padding: '14px 24px', fontSize: '16px' });
-    });
-
-    it('applies correct padding for icon-only small button', () => {
-      render(<Button icon='email' iconOnly size="sm">email</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ padding: '6px' });
-    });
-
   });
 
   describe('States', () => {
-    it('shows loading spinner when loading is true', () => {
-    const { container } = render(<Button loading>Loading</Button>);
-    // Loader2 icon should be spinning
-    const spinningIcon = container.querySelector("span") as HTMLImageElement;
-    expect(spinningIcon).toHaveStyle({ animation: 'spin 1s linear infinite' });
-
+    it('shows loading state and sets aria-busy when isLoading is true', () => {
+      render(<Button isLoading>Loading</Button>);
+      const button = screen.getByRole('button');
+      expect(button).toHaveAttribute('aria-busy', 'true');
+      expect(button).toBeDisabled();
     });
 
-    it('hides icon when loading', () => {
-      render(
-        <Button icon='lock' loading>
+    it('hides icon when isLoading is true', () => {
+      const { container } = render(
+        <Button icon="plus" isLoading>
           Send
         </Button>
       );
-      expect(screen.queryByTestId('icon')).not.toBeInTheDocument();
+      expect(container.querySelector("[data-icon='lock']")).not.toBeInTheDocument();
     });
 
     it('is disabled when disabled prop is true', () => {
       render(<Button disabled>Disabled</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toBeDisabled();
-    });
-
-    it('is disabled when loading is true', () => {
-      render(<Button loading>Loading</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toBeDisabled();
+      expect(screen.getByRole('button')).toBeDisabled();
     });
 
     it('renders full width button', () => {
       render(<Button fullWidth>Full Width</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveStyle({ width: '100%' });
+      expect(screen.getByRole('button')).toHaveStyle({ width: '100%' });
     });
-
   });
 
   describe('User Interactions', () => {
-    it('calls onClick when clicked', () => {
+    it('calls onClick when clicked', async () => {
+      const user = userEvent.setup();
       const handleClick = jest.fn();
       render(<Button onClick={handleClick}>Click me</Button>);
 
-      const button = screen.getByRole('button');
-      fireEvent.click(button);
-
+      await user.click(screen.getByRole('button'));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it('does not call onClick when disabled', () => {
+    it('does not call onClick when disabled', async () => {
+      const user = userEvent.setup();
       const handleClick = jest.fn();
-      render(<Button onClick={handleClick} disabled>Click me</Button>);
+      render(
+        <Button onClick={handleClick} disabled>
+          Click me
+        </Button>
+      );
 
-      const button = screen.getByRole('button');
-      fireEvent.click(button);
-
+      await user.click(screen.getByRole('button'));
       expect(handleClick).not.toHaveBeenCalled();
     });
 
-    it('does not call onClick when loading', () => {
+    it('does not call onClick when isLoading', async () => {
+      const user = userEvent.setup();
       const handleClick = jest.fn();
-      render(<Button onClick={handleClick} loading>Click me</Button>);
+      render(
+        <Button onClick={handleClick} isLoading>
+          Click me
+        </Button>
+      );
 
-      const button = screen.getByRole('button');
-      fireEvent.click(button);
-
+      await user.click(screen.getByRole('button'));
       expect(handleClick).not.toHaveBeenCalled();
     });
-
   });
 
   describe('Accessibility', () => {
     it('has proper aria-label for icon-only button', () => {
-      render(<Button icon='email' iconOnly>Send Message</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveAttribute('aria-label', 'Send Message');
+      render(
+        <Button icon="envelope-closed" iconOnly>
+          Send Message
+        </Button>
+      );
+      expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Send Message');
     });
 
     it('does not have aria-label for regular button', () => {
       render(<Button>Regular Button</Button>);
-      const button = screen.getByRole('button');
-      expect(button).not.toHaveAttribute('aria-label');
+      expect(screen.getByRole('button')).not.toHaveAttribute('aria-label');
     });
 
+    it('sets button type properly for forms', () => {
+      render(<Button htmlType="submit">Submit</Button>);
+      expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');
+    });
   });
 });

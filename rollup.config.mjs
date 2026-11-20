@@ -1,55 +1,3 @@
-// import commonjs from '@rollup/plugin-commonjs';
-// import resolve from '@rollup/plugin-node-resolve';
-// import typescript from '@rollup/plugin-typescript';
-// import dts from 'rollup-plugin-dts';
-// import postcss from 'rollup-plugin-postcss';
-// import scss from 'rollup-plugin-scss';
-// import pkg from './package.json' with { type: 'json' };
-
-// export default [
-//   {
-//     input: 'src/index.ts',
-//     output: [
-//       {
-//         file: pkg.main,
-//         format: 'cjs',
-//         sourcemap: true,
-//       },
-//       {
-//         file: pkg.module,
-//         format: 'esm',
-//         sourcemap: true,
-//       },
-//     ],
-//     plugins: [
-//       resolve(),
-//       commonjs(),
-//       typescript({ tsconfig: './tsconfig.json', exclude: ['**/*.test.tsx', '**/*.test.ts', '**/*.stories.ts'] }),
-//       scss({
-//         output: "dist/esm/css/style.css",
-//         failOnError: true,
-//       }),
-//       postcss({ extensions: ['.css'], inject: true, extract: false, minimize: true, sourceMap: true, modules: true }),
-//     ],
-//   },
-//   {
-//     input: 'dist/esm/types/index.d.ts',
-//     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-//     plugins: [dts()],
-//     external: [/\.(css|less|scss)$/],
-//   },
-// ];
-
-
-
-/** ────────────────────────────────────────────────────────────
-
-# rollup.config.mjs
-
-# ────────────────────────────────────────────────────────────
-*/
-
-
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -60,6 +8,10 @@ import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import pkg from './package.json' with { type: 'json' };
 
+const peerDeps = Object.keys(pkg.peerDependencies || {});
+const isExternal = (id) =>
+  peerDeps.some((dep) => id === dep || id.startsWith(`${dep}/`));
+
 export default [
   {
     input: pkg.source,
@@ -68,6 +20,7 @@ export default [
         file: pkg.main,
         format: 'cjs',
         sourcemap: true,
+        exports: 'named',
       },
       {
         file: pkg.module,
@@ -81,7 +34,14 @@ export default [
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
-        exclude: ['**/*.test.tsx', '**/*.test.ts', '**/*.stories.tsx'],
+        declaration: true,
+        declarationDir: 'dist/types',
+        exclude: [
+          '**/*.test.tsx',
+          '**/*.test.ts',
+          '**/*.stories.tsx',
+          '**/test-utils.tsx',
+        ],
       }),
       url({
         include: ['**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot'],
@@ -89,15 +49,34 @@ export default [
         fileName: '[dirname][name][extname]',
       }),
       image(),
-      visualizer(),
-
+      ...(process.env.ANALYZE === 'true'
+        ? [visualizer({ filename: 'dist/bundle-stats.html', open: true })]
+        : []),
     ],
-    external: Object.keys(pkg.peerDependencies || {}),
+    external: isExternal,
   },
   {
-    input: 'dist/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
-    external: [/\.css$/],
+    input: 'dist/types/index.d.ts',
+    output: [{ file: pkg.types, format: 'esm' }],
+    plugins: [
+      dts({
+        respectExternal: true,
+        compilerOptions: {
+          baseUrl: '.',
+          paths: {
+            '@/*': ['src/*'],
+          },
+          types: [], // Prevents rollup-plugin-dts from crawling @types/react & @types/prop-types
+        },
+      }),
+    ],
+    external: (id) =>
+      id === 'react' ||
+      id.startsWith('react/') ||
+      id === 'react-dom' ||
+      id.startsWith('react-dom/') ||
+      id === 'styled-components' ||
+      id.startsWith('styled-components/') ||
+      /\.(css|less|scss|woff|woff2|ttf|eot|otf|svg|png|jpg|jpeg|gif|webp)$/.test(id),
   },
 ];

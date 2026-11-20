@@ -1,58 +1,13 @@
 
 import styled, { css, keyframes } from 'styled-components';
+import { lighten } from 'polished';
 import {
   CardProps,
   CardFooterProps,
   CardMediaProps,
   CardBadgeProps,
-  CardSize
+  CardSize,
 } from './Card.types';
-import { lighten } from 'polished';
-
-// ─── Design Tokens ──────────────────────────────────────────────────────────
-
-// export const tokens = {
-//   color: {
-//     surface: '#ffffff',
-//     surfaceFilled: '#f4f3f0',
-//     border: '#e2e0db',
-//     borderHover: '#b8b4ad',
-//     shadow: 'rgba(30, 25, 15, 0.08)',
-//     shadowHover: 'rgba(30, 25, 15, 0.16)',
-//     shadowElevated: 'rgba(30, 25, 15, 0.12)',
-//     text: '#1a1814',
-//     textMuted: '#6b6760',
-//     glass: 'rgba(255, 255, 255, 0.55)',
-//     glassBorder: 'rgba(255, 255, 255, 0.7)',
-//     primary: '#c9622f',
-//     primaryLight: '#fdf0e8',
-//     success: '#2d7d52',
-//     successLight: '#e8f5ee',
-//     warning: '#b87b1e',
-//     warningLight: '#fdf4e0',
-//     danger: '#c0392b',
-//     dangerLight: '#fdecea',
-//     badgeDefault: '#e8e6e0',
-//     badgeDefaultText: '#4a4740',
-//   },
-//   radius: {
-//     none: '0px',
-//     sm: '6px',
-//     md: '12px',
-//     lg: '16px',
-//     xl: '24px',
-//     full: '9999px',
-//   },
-//   padding: {
-//     sm: '12px 16px',
-//     md: '20px 24px',
-//     lg: '28px 32px',
-//   },
-//   font: {
-//     heading: " 'Playfair Display', Georgia, serif",
-//     body: "DM Sans', 'Helvetica Neue', sans-serif",
-//   },
-// };
 
 // ─── Animations ─────────────────────────────────────────────────────────────
 
@@ -65,28 +20,24 @@ const liftUp = keyframes`
 
 const variantStyles = {
   elevated: css`
-    background: ${({theme}) => theme.color.neutral[200]};
-    border: 1px solid ${({theme}) => theme.color.neutral[200]};
-    box-shadow:
-      0 1px 3px ${({theme}) => theme.shadows.base},
-      0 4px 16px ${({theme}) => theme.shadows.base};
+    background: ${({ theme }) => theme.color.surface.raised};
+    border: 1px solid ${({ theme }) => theme.color.border.subtle};
+    box-shadow: ${({ theme }) => theme.shadows.md};
   `,
   outlined: css`
-    background: ${({theme}) => theme.color.neutral[200]};
-    border: 1.5px solid ${({theme}) => theme.color.neutral[200]};
+    background: ${({ theme }) => theme.color.surface.raised};
+    border: 1.5px solid ${({ theme }) => theme.color.border.default};
     box-shadow: none;
   `,
   filled: css`
-    background: ${({theme}) => theme.color.neutral[400]};
+    background: ${({ theme }) => theme.color.surface.sunken};
     border: 1px solid transparent;
     box-shadow: none;
   `,
   glass: css`
-    background: ${({theme}) => theme.color.neutral[400]};
-    border: 1px solid ${({theme}) => theme.color.neutral[400]};
-    box-shadow:
-      0 4px 24px ${({theme}) => theme.shadows.base},
-      inset 0 1px 0 ${({theme}) => theme.shadows.base};
+    background: ${({ theme }) => theme.color.overlay.whiteA20};
+    border: 1px solid ${({ theme }) => theme.color.border.default};
+    box-shadow: ${({ theme }) => theme.shadows.lg};
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
   `,
@@ -95,10 +46,8 @@ const variantStyles = {
 const interactiveStyles = {
   elevated: css`
     &:hover {
-      border-color: ${({theme}) => theme.color.border.default};
-      box-shadow:
-        0 4px 12px ${({theme}) => theme.shadows.base},
-        0 12px 40px ${({theme}) => theme.shadows.base};
+      border-color: ${({ theme }) => theme.color.border.strong};
+      box-shadow: ${({ theme }) => theme.shadows.lg};
       animation: ${liftUp} 0.2s ease forwards;
     }
     &:active {
@@ -107,8 +56,8 @@ const interactiveStyles = {
   `,
   outlined: css`
     &:hover {
-      border-color: ${({theme}) => theme.color.border.default};
-      box-shadow: 0 2px 12px ${({theme}) => theme.shadows.base};
+      border-color: ${({ theme }) => theme.color.border.strong};
+      box-shadow: ${({ theme }) => theme.shadows.sm};
       animation: ${liftUp} 0.2s ease forwards;
     }
     &:active {
@@ -117,7 +66,7 @@ const interactiveStyles = {
   `,
   filled: css`
     &:hover {
-      background: #ece9e3;
+      background: ${({ theme }) => theme.color.neutral.bgSubtle};
       animation: ${liftUp} 0.2s ease forwards;
     }
     &:active {
@@ -126,8 +75,7 @@ const interactiveStyles = {
   `,
   glass: css`
     &:hover {
-      background: rgba(255, 255, 255, 0.68);
-      border-color: rgba(255, 255, 255, 0.85);
+      border-color: ${({ theme }) => theme.color.border.strong};
       animation: ${liftUp} 0.2s ease forwards;
     }
     &:active {
@@ -154,6 +102,8 @@ const sizeStyles: Record<CardSize, ReturnType<typeof css>> = {
   `,
 };
 
+
+
 // ─── Root Card ───────────────────────────────────────────────────────────────
 
 export const StyledCard = styled.div<CardProps>`
@@ -170,21 +120,21 @@ export const StyledCard = styled.div<CardProps>`
     transform 0.2s ease;
 
   /* Width */
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
 
   /* Radius */
   border-radius: ${({ radius = 'lg' }) => ({ theme }) => theme.radius[radius]};
 
   /* Variant */
-  ${({ variant = 'elevated' }) => variantStyles[variant]}
+  ${({ $variant = 'elevated' }) => variantStyles[$variant]}
 
   /* Interactive */
-  ${({ interactive, variant = 'elevated' }) =>
+  ${({ interactive, $variant = 'elevated' }) =>
     interactive &&
     css`
       cursor: pointer;
       user-select: none;
-      ${interactiveStyles[variant]}
+      ${interactiveStyles[$variant]}
     `}
 
   /* Disabled */
@@ -268,12 +218,13 @@ export const StyledCardFooterInner = styled.div<Pick<CardFooterProps, 'align'> &
   }};
 `;
 
-// ─── Card Media ─────────────────────────────────────────────────────────────
+export type StyledCardMediaProps = Pick<CardMediaProps, '$height' | '$objectFit'>;
 
-export const StyledCardMedia = styled.div<CardMediaProps>`
+export const StyledCardMedia = styled.div<StyledCardMediaProps>`
   position: relative;
   width: 100%;
-  height: ${({ theme, $height }) => $height !== undefined ? `${theme.spacing[$height]}px` : undefined};
+  height: ${({ theme, $height }) =>
+    $height !== undefined ? `${theme.spacing[$height]}px` : undefined};
   overflow: hidden;
   flex-shrink: 0;
 

@@ -1,9 +1,6 @@
-// ========================================
-// CheckBox.test.tsx
-// ========================================
-
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { CheckBox } from './CheckBox';
 
@@ -18,119 +15,119 @@ describe('CheckBox', () => {
   });
 
   describe('Rendering', () => {
-
     it('renders without label', () => {
-      const { container } = render(<CheckBox {...defaultProps} />);
-      expect(container.querySelector('input[type="checkbox"]')).toBeInTheDocument();
+      render(<CheckBox {...defaultProps} />);
+      expect(screen.getByRole('checkbox')).toBeInTheDocument();
     });
 
-    it('renders with label', () => {
+    it('renders with label associated to input', () => {
       render(<CheckBox {...defaultProps} label="Accept terms" />);
-      expect(screen.getByText('Accept terms')).toBeInTheDocument();
+      expect(screen.getByRole('checkbox', { name: 'Accept terms' })).toBeInTheDocument();
     });
 
     it('renders checked state', () => {
       render(<CheckBox {...defaultProps} checked={true} />);
-      const Checkbox = screen.getByRole('checkbox') as HTMLInputElement;
-      expect(Checkbox.checked).toEqual(true);
+      expect(screen.getByRole('checkbox')).toBeChecked();
     });
 
     it('renders unchecked state', () => {
       render(<CheckBox {...defaultProps} checked={false} />);
-      const Checkbox = screen.getByRole('checkbox') as HTMLInputElement;
-      expect(Checkbox.checked).toEqual(false);
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
 
     it('renders indeterminate state', () => {
       const { container } = render(<CheckBox {...defaultProps} indeterminate={true} />);
-      // Indeterminate shows minus icon
       expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
 
   describe('Sizes', () => {
-    it('renders small size', () => {
-      const { container } = render(<CheckBox {...defaultProps} size="sm" />);
-      const CheckBoxElement = container.querySelector('label > div');
-      expect(CheckBoxElement).toHaveStyle({ width: '16px', height: '16px' });
+    it.each([
+      ['sm', '16px'],
+      ['md', '20px'],
+      ['lg', '24px'],
+    ] as const)('renders %s size (%s)', (size, expectedSize) => {
+      const { container } = render(<CheckBox {...defaultProps} size={size} />);
+      const boxElement = container.querySelector('label > div');
+      expect(boxElement).toHaveStyle({ width: expectedSize, height: expectedSize });
     });
-
-    it('renders medium size', () => {
-      const { container } = render(<CheckBox {...defaultProps} size="md" />);
-      const CheckBoxElement = container.querySelector('label > div');
-      expect(CheckBoxElement).toHaveStyle({ width: '20px', height: '20px' });
-    });
-
-    it('renders large size', () => {
-      const { container } = render(<CheckBox {...defaultProps} size="lg" />);
-      const CheckBoxElement = container.querySelector('label > div');
-      expect(CheckBoxElement).toHaveStyle({ width: '24px', height: '24px' });
-    });
-
   });
 
   describe('User Interactions', () => {
-
-    it('calls onChange with true when unchecked CheckBox is clicked', () => {
+    it('calls onChange with true when unchecked CheckBox is clicked', async () => {
+      const user = userEvent.setup();
       const handleChange = jest.fn();
-      render(<CheckBox {...defaultProps} checked={false} onChange={handleChange} />);
+      render(<CheckBox checked={false} onChange={handleChange} label="Agree" />);
 
-
-      const Checkbox = screen.getByRole('checkbox');
-      fireEvent.click(Checkbox);
-
+      await user.click(screen.getByRole('checkbox', { name: 'Agree' }));
+      expect(handleChange).toHaveBeenCalledTimes(1);
       expect(handleChange).toHaveBeenCalledWith(true);
     });
 
-    it('calls onChange with false when checked CheckBox is clicked', () => {
+    it('calls onChange with false when checked CheckBox is clicked', async () => {
+      const user = userEvent.setup();
       const handleChange = jest.fn();
-      render(<CheckBox {...defaultProps} checked={true} onChange={handleChange} />);
+      render(<CheckBox checked={true} onChange={handleChange} label="Agree" />);
 
-      const Checkbox = screen.getByRole('checkbox');
-      fireEvent.click(Checkbox);
-
+      await user.click(screen.getByRole('checkbox', { name: 'Agree' }));
+      expect(handleChange).toHaveBeenCalledTimes(1);
       expect(handleChange).toHaveBeenCalledWith(false);
     });
 
-    it('does not call onChange when disabled', () => {
+    it('toggles internal state when used in uncontrolled mode', async () => {
+      const user = userEvent.setup();
+      render(<CheckBox defaultChecked={false} label="Uncontrolled" />);
+
+      const checkbox = screen.getByRole('checkbox', { name: 'Uncontrolled' });
+      expect(checkbox).not.toBeChecked();
+
+      await user.click(checkbox);
+      expect(checkbox).toBeChecked();
+    });
+
+    it('does not call onChange when disabled', async () => {
+      const user = userEvent.setup();
       const handleChange = jest.fn();
-      render(<CheckBox {...defaultProps} disabled onChange={handleChange} />);
+      render(<CheckBox checked={false} disabled onChange={handleChange} label="Disabled" />);
 
-      const Checkbox = screen.getByRole('checkbox') as HTMLElement;
-      fireEvent.click(Checkbox);
-
-      expect(handleChange).not.toHaveBeenCalledWith();
+      await user.click(screen.getByRole('checkbox', { name: 'Disabled' }));
+      expect(handleChange).not.toHaveBeenCalled();
     });
   });
 
   describe('Disabled State', () => {
     it('renders as disabled', () => {
       render(<CheckBox {...defaultProps} disabled />);
-      const Checkbox = screen.getByRole('checkbox') as HTMLInputElement;
-      expect(Checkbox.disabled).toBe(true);
+      expect(screen.getByRole('checkbox')).toBeDisabled();
     });
-
 
     it('applies disabled styling', () => {
       const { container } = render(<CheckBox {...defaultProps} label="Test" disabled />);
       const label = container.querySelector('label');
-      expect(label).toHaveStyle({ opacity: 0.5, cursor: 'not-allowed' });
+      expect(label).toHaveStyle({ opacity: '0.5', cursor: 'not-allowed' });
     });
   });
 
   describe('Custom Color', () => {
-    it('applies custom color', () => {
+    it('applies custom color when checked', () => {
       const { container } = render(<CheckBox {...defaultProps} checked color="#ff0000" />);
-      const CheckBoxElement = container.querySelector('label > div');
-      expect(CheckBoxElement).toHaveStyle({ background: '#ff0000', borderColor: '#ff0000' });
+      const boxElement = container.querySelector('label > div');
+      expect(boxElement).toHaveStyle({ background: '#ff0000', borderColor: '#ff0000' });
     });
   });
 
   describe('Accessibility', () => {
-    it('is keyboard accessible', () => {
-      render(<CheckBox {...defaultProps} label="Test CheckBox" />);
-      const Checkbox = screen.getByRole('checkbox');
-      expect(Checkbox).toBeInTheDocument();
+    it('supports keyboard focus and Space key toggling', async () => {
+      const user = userEvent.setup();
+      const handleChange = jest.fn();
+      render(<CheckBox checked={false} onChange={handleChange} label="Keyboard CheckBox" />);
+
+      const checkbox = screen.getByRole('checkbox', { name: 'Keyboard CheckBox' });
+      await user.tab();
+      expect(checkbox).toHaveFocus();
+
+      await user.keyboard(' ');
+      expect(handleChange).toHaveBeenCalledWith(true);
     });
   });
 });

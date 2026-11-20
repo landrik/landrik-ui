@@ -11,7 +11,7 @@ import AvertaRegular from '../assets/fonts/Averta/AvertaRegular.ttf';
 import AvertaBold from '../assets/fonts/Averta/AvertaBold.ttf';
   
 
-export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
+export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: "Averta";
@@ -91,6 +91,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
     color: ${({ theme }) => theme.color.text.default};
     background: ${({ theme }) => theme.color.surface.page};
     line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+    transition: background-color 0.2s ease, color 0.2s ease;
     
   }
 

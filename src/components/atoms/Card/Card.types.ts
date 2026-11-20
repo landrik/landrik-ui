@@ -8,6 +8,7 @@ export type CardRadius = "none" | "sm" | "md" | "lg" | "xl" | "full";
 export type CardFooterAlign = "left" | "center" | "right" | "space-between";
 export type CardBadgeColor = "default" | "primary" | "success" | "warning" | "danger";
 import type { SpacingIndex } from "@/theme";
+import type { DefaultTheme } from 'styled-components';
 
 // ─── Internal prop passed from Card root to sub-components via cloneElement ──
 
@@ -20,24 +21,12 @@ export interface CardSizeProp {
 // ─── Component Prop Interfaces ───────────────────────────────────────────────
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /** Visual style variant
-   * @default "elevated"
-   */
-  variant?: CardVariant;
-  /** Controls internal padding of all sub-components
-   * @default "md"
-   */
+  $variant?: CardVariant;
   size?: CardSize;
-  /** Border radius preset
-   * @default "lg"
-   */
   radius?: CardRadius;
-  /** Enables hover/focus lift interaction */
   interactive?: boolean;
-  /** Disables the card visually and blocks pointer events */
   disabled?: boolean;
-  /** Stretches the card to 100% of its container width */
-  fullWidth?: boolean;
+  $fullWidth?: boolean;
   children?: ReactNode;
 }
 
@@ -59,18 +48,11 @@ export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface CardMediaProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
-  /** Image source URL — forwarded to the inner <img> only */
   src: string;
-  /** Accessible alt text for the inner <img> */
   alt: string;
-  /** Height of the media area in px (number) or any CSS unit (string)
-   * @default 200
-   */
-  //$height?: SpacingIndex;
-  height?: number;
-  /** CSS object-fit for the image
-   * @default "cover"
-   */
+  // $height?: number;
+  // $height?: SpacingIndex;
+  $height?:  keyof DefaultTheme['spacing'];
   $objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 

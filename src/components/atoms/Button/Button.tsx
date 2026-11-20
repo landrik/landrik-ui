@@ -1,87 +1,90 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { StyledButton, IconWrapper, Spinner } from './Button.styled';
-import { ReactNode } from 'react';
-
-
-import {Icon} from '../Icons';
-import { icons, IconName  } from '../../../assets/svgs';
-
-//export type IconType = keyof typeof icons;
+import { Icon } from '../Icons';
+import { IconName } from '../../../assets/svgs';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';
-export type ButtonShape= 'rounded' | 'square' | 'pill';
+export type ButtonShape = 'rounded' | 'square' | 'pill';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
-  variant?: ButtonVariant,
-  shape?: ButtonShape,
-  textColor?: 'default'| 'white'| 'primary';
+  variant?: ButtonVariant;
+  shape?: ButtonShape;
+  textColor?: 'default' | 'white' | 'primary';
   htmlType?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   isLoading?: boolean;
   icon?: IconName;
   iconOnly?: boolean;
-  iconPosition?: 'left' | 'right',
+  iconPosition?: 'left' | 'right';
   backgroundColor?: string;
   children?: ReactNode;
   fullWidth?: boolean;
-  onClick?: () => void;
 }
 
-/**
-* @author landry.karege
-* @function @Button
-**/
-
-export const Button:FC<ButtonProps> = ({ 
+export const Button: FC<ButtonProps> = ({
   size = 'md',
   backgroundColor,
   textColor,
-  children = 'Button component',
+  children,
   fullWidth = false,
   disabled = false,
   isLoading = false,
   variant = 'primary',
   htmlType = 'button',
+  type,
   shape = 'rounded',
   icon,
   iconPosition = 'left',
   iconOnly = false,
-  onClick, 
+  onClick,
   ...props
 }) => {
-
-
-
-  const iconSize = size === 'sm' ? 14 : size === 'lg' ? 20 : 16;
-  const showIcon = !isLoading && icon;
-  const isIconOnly = iconOnly || (!children && icon)
+  const showIcon = !isLoading && Boolean(icon);
+  const isIconOnly = Boolean(iconOnly || (!children && icon));
+  const resolvedType = type ?? htmlType;
 
   return (
-
     <StyledButton
+      type={resolvedType}
       $shape={shape}
       $variant={variant}
       $size={size}
-      $fullWidth={fullWidth}  
-      $iconOnly={iconOnly}
+      $fullWidth={fullWidth}
+      $iconOnly={isIconOnly}
+      $backgroundColor={backgroundColor}
+      $textColor={textColor}
       disabled={disabled || isLoading}
+      aria-busy={isLoading || undefined}
       onClick={onClick}
-      aria-label={iconOnly && typeof children === 'string' ? children : undefined}
+      aria-label={
+        props['aria-label'] ??
+        (isIconOnly && typeof children === 'string' ? children : undefined)
+      }
       {...props}
     >
-      
-      { isLoading && <Spinner />}
-      { !isIconOnly && showIcon && iconPosition === 'left' && (<IconWrapper><Icon name={icon} /></IconWrapper>)}
-      <span className='lk-button__text'>{isIconOnly && showIcon ? <IconWrapper><Icon name={icon} /></IconWrapper> : children}</span>
-      {!isIconOnly && showIcon && iconPosition === 'right' && (<IconWrapper><Icon name={icon} /></IconWrapper>)}
-      
+      {isLoading && <Spinner />}
+
+      {!isIconOnly && showIcon && icon && iconPosition === 'left' && (
+        <IconWrapper>
+          <Icon name={icon} />
+        </IconWrapper>
+      )}
+
+      {isIconOnly && showIcon && icon ? (
+        <IconWrapper>
+          <Icon name={icon} />
+        </IconWrapper>
+      ) : (
+        children && <span className="lk-button__text">{children}</span>
+      )}
+
+      {!isIconOnly && showIcon && icon && iconPosition === 'right' && (
+        <IconWrapper>
+          <Icon name={icon} />
+        </IconWrapper>
+      )}
     </StyledButton>
-  )
-}
-
-//export default Button;
-
-
-
+  );
+};

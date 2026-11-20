@@ -38,7 +38,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         </AvatarFallback>
         )}
         </AvatarContainer>
-        {status && <StatusIndicator $status={status} $size={size} $statusColor={status} />}
+        {status && <StatusIndicator $status={status} $size={size} />}
     </AvatarWrap>
   );
 };

@@ -9,7 +9,7 @@ export default create({
   brandTarget: '_self',
 
   colorPrimary: '#F27A1A',
-  colorSecondary: '#00dfa6',
+  colorSecondary: '#99b3ff',
 
   // UI
   appBg: '#fff',
@@ -25,7 +25,7 @@ export default create({
   // Text colors
   textColor: '#2f2a40',
   textInverseColor: 'rgba(255,255,255, 1)',
-  textMutedColor: 'rgba(125,88,255,1)',
+  textMutedColor: '#0040ff',
 
   //Typography
   fontBase: '"IBM Plex Sans", sans-serif',

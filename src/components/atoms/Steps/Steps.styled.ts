@@ -26,10 +26,10 @@ $status: StepStatus;
 }
 
 const iconStatusStyles: Record<StepStatus, ReturnType<typeof css>> = {
-wait: css`background-color: ${({ theme }) => theme.color.neutral[0]}; border: 2px solid ${({ theme }) => theme.color.neutral[300]}; color: ${({ theme }) => theme.color.neutral[500]};`,
-process: css`background-color: ${({ theme }) => theme.color.accent[600]}; border: 2px solid ${({ theme }) => theme.color.accent[600]}; color: ${({ theme }) => theme.color.neutral[0]};`,
-finish: css`background-color: ${({ theme }) => theme.color.accent[600]}; border: 2px solid ${({ theme }) => theme.color.accent[600]}; color: ${({ theme }) => theme.color.neutral[0]};`,
-error: css`background-color: ${({ theme }) => theme.color.danger[600]}; border: 2px solid ${({ theme }) => theme.color.danger[600]}; color: ${({ theme }) => theme.color.neutral[0]};`,
+wait: css`background-color: ${({ theme }) => theme.color.surface.raised}; border: 2px solid ${({ theme }) => theme.color.border.strong}; color: ${({ theme }) => theme.color.text.muted};`,
+process: css`background-color: ${({ theme }) => theme.color.accent.bgActive}; border: 2px solid ${({ theme }) => theme.color.accent.bgActive}; color: ${({ theme }) => theme.color.accent.onFill};`,
+finish: css`background-color: ${({ theme }) => theme.color.accent.bgActive}; border: 2px solid ${({ theme }) => theme.color.accent.bgActive}; color: ${({ theme }) => theme.color.accent.onFill};`,
+error: css`background-color: ${({ theme }) =>theme.color.danger.bgDefault}; border: 2px solid ${({ theme }) =>theme.color.danger.bgDefault}; color: ${({ theme }) => theme.color.accent.onFill};`,
 };
 
 export const StepIcon = styled.div<StepIconProps>`
@@ -73,6 +73,6 @@ interface StepTitleProps {
 $status: StepStatus;
 }
 
-export const StepTitle = styled.div<StepTitleProps>`font-size: ${({ theme }) => theme.typography.size.base}; font-weight: ${({ theme }) => theme.typography.weight.medium}; color: ${p =>  p.$status === 'wait'  ? p.theme.color.neutral[500] : p.theme.color.neutral[900] }; margin-bottom: ${({ theme }) => theme.spacing[4]}px;`;
+export const StepTitle = styled.div<StepTitleProps>`font-size: ${({ theme }) => theme.typography.size.base}; font-weight: ${({ theme }) => theme.typography.weight.medium}; color: ${(p) => p.$status === 'wait' ? p.theme.color.text.muted : p.theme.color.text.default}; margin-bottom: ${({ theme }) => theme.spacing[4]}px;`;
 
-export const StepDescription = styled.div`font-size: ${({ theme }) => theme.typography.size.sm}; color: ${({ theme }) => theme.color.neutral[600]};`;
+export const StepDescription = styled.div`font-size: ${({ theme }) => theme.typography.size.sm}; color: ${({ theme }) => theme.color.neutral.text};`;
