@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 import { Button } from '../../atoms/Button/Button';
 import {
   StyledForm,
@@ -6,61 +6,34 @@ import {
   Title,
   Description,
   FieldsContainer,
-  FieldWrapper,
-  Label,
-  Required,
-  HelperText,
-  ErrorText,
+  StyledFieldset,
+  Legend,
+  GroupDescription,
+  GroupItems,
   Actions,
   FooterWrapper,
 } from './FormGroup.styled';
 import { FormProps, FormGroupProps } from './FormGroup.types';
 
-/* ---------- FormGroup: Label + Control + Helper/Error ---------- */
+/* ---------- FormGroup: Semantic Section / Row of FormFields ---------- */
 export const FormGroup: React.FC<FormGroupProps> = ({
-  label,
-  htmlFor,
-  required = false,
-  helperText,
-  error,
+  legend,
+  description,
+  direction = 'column',
+  disabled = false,
+  className,
   children,
 }) => {
-  const generatedId = useId();
-  const fieldId = htmlFor || generatedId;
-  const messageId = error ? `${fieldId}-error` : helperText ? `${fieldId}-helper` : undefined;
-
-  // Clone single child element to automatically connect id and ARIA attributes
-  const enhancedChild = React.isValidElement(children)
-    ? React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
-        id: fieldId,
-        'aria-invalid': Boolean(error) || undefined,
-        'aria-describedby': messageId,
-      })
-    : children;
-
   return (
-    <FieldWrapper>
-      {label && (
-        <Label htmlFor={fieldId}>
-          {label}
-          {required && <Required aria-hidden="true">*</Required>}
-        </Label>
-      )}
-
-      {enhancedChild}
-
-      {error ? (
-        <ErrorText id={`${fieldId}-error`} role="alert">
-          {error}
-        </ErrorText>
-      ) : helperText ? (
-        <HelperText id={`${fieldId}-helper`}>{helperText}</HelperText>
-      ) : null}
-    </FieldWrapper>
+    <StyledFieldset disabled={disabled} className={className}>
+      {legend && <Legend>{legend}</Legend>}
+      {description && <GroupDescription>{description}</GroupDescription>}
+      <GroupItems $direction={direction}>{children}</GroupItems>
+    </StyledFieldset>
   );
 };
 
-/* ---------- Form: Header + Fields + Actions ---------- */
+/* ---------- Form: Root Form Container with Header & Actions ---------- */
 export const Form: React.FC<FormProps> = ({
   title,
   description,

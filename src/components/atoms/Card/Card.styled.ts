@@ -35,7 +35,7 @@ const variantStyles = {
     box-shadow: none;
   `,
   glass: css`
-    background: ${({ theme }) => theme.color.overlay.whiteA20};
+    background: ${({ theme }) => theme.color.surface.overlay};
     border: 1px solid ${({ theme }) => theme.color.border.default};
     box-shadow: ${({ theme }) => theme.shadows.lg};
     backdrop-filter: blur(16px) saturate(180%);

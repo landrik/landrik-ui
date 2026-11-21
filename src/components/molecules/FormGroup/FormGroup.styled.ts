@@ -5,7 +5,6 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: ${({ theme }) => `${theme?.spacing?.[5] ?? 20}px`};
   width: 100%;
-  max-width: 440px;
   padding: ${({ theme }) => `${theme?.spacing?.[6] ?? 24}px`};
   background: ${({ theme }) => theme?.color?.surface?.default || '#ffffff'};
   border: 1px solid ${({ theme }) => theme?.color?.border?.default || '#e5e7eb'};
@@ -37,33 +36,41 @@ export const FieldsContainer = styled.div`
   gap: ${({ theme }) => `${theme?.spacing?.[4] ?? 16}px`};
 `;
 
-export const FieldWrapper = styled.div`
+export const StyledFieldset = styled.fieldset`
+  border: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => `${theme?.spacing?.[1] ?? 4}px`};
+  gap: ${({ theme }) => `${theme?.spacing?.[3] ?? 12}px`};
+
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 `;
 
-export const Label = styled.label`
-  font-size: ${({ theme }) => theme?.typography?.size?.sm || '0.875rem'};
-  font-weight: ${({ theme }) => theme?.typography?.weight?.medium || 500};
+export const Legend = styled.legend`
+  padding: 0;
+  font-size: ${({ theme }) => theme?.typography?.size?.base || '1rem'};
+  font-weight: ${({ theme }) => theme?.typography?.weight?.semibold || 600};
   color: ${({ theme }) => theme?.color?.text?.default || '#111827'};
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
 `;
 
-export const Required = styled.span`
-  color: ${({ theme }) => theme?.color?.danger?.text || '#c03a3a'};
-`;
-
-export const HelperText = styled.span`
+export const GroupDescription = styled.p`
+  margin: 0;
   font-size: ${({ theme }) => theme?.typography?.size?.xs || '0.75rem'};
   color: ${({ theme }) => theme?.color?.text?.muted || '#6b7280'};
 `;
 
-export const ErrorText = styled.span`
-  font-size: ${({ theme }) => theme?.typography?.size?.xs || '0.75rem'};
-  color: ${({ theme }) => theme?.color?.danger?.text || '#c03a3a'};
+export const GroupItems = styled.div<{ $direction: 'column' | 'row' }>`
+  display: flex;
+  flex-direction: ${({ $direction }) => $direction};
+  gap: ${({ theme }) => `${theme?.spacing?.[4] ?? 16}px`};
+
+  @media (max-width: ${({ theme }) => theme?.breakpoints?.sm || '640px'}) {
+    flex-direction: column;
+  }
 `;
 
 export const Actions = styled.div`

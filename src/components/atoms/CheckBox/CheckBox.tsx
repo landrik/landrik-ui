@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import React, { FC, useState, useEffect, ChangeEvent, useRef } from 'react'
 import {Icon} from '../Icons';
 import { icons, IconName  } from '../../../assets/svgs';

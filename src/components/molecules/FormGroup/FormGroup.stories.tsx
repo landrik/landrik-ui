@@ -1,23 +1,72 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Form, FormGroup } from './FormGroup';
+import { FormField } from '../FormField/FormField';
 import { TextInput } from '../../atoms/TextInput/TextInput';
 import { Select } from '../../atoms/Select/Select';
 import { CheckBox } from '../../atoms/CheckBox/CheckBox';
 
-const meta: Meta<typeof Form> = {
+const meta: Meta<typeof FormGroup> = {
   title: 'Molecules/FormGroup',
-  component: Form,
+  component: FormGroup,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    legend: { control: 'text' },
+    description: { control: 'text' },
+    direction: {
+      control: 'inline-radio',
+      options: ['column', 'row'],
+    },
+    disabled: { control: 'boolean' },
+  },
 };
 
 export default meta;
-type Story = StoryObj<typeof Form>;
+type Story = StoryObj<typeof FormGroup>;
 
-/* ── 1. Login Form ────────────────────────────────────────────────────────── */
+/* ── 1. Default FormGroup Template ────────────────────────────────────────── */
+export const Default: Story = {
+  args: {
+    legend: 'Personal Information',
+    description: 'Enter your name as it appears on your official ID.',
+    direction: 'row',
+    disabled: false,
+  },
+  render: (args) => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
+    return (
+      <div style={{ width: '480px', maxWidth: '100%' }}>
+        <FormGroup {...args}>
+          <FormField>
+            <TextInput
+              labelText="First name"
+              placeholder="Jane"
+              isRequired
+              value={firstName}
+              onChangeInput={setFirstName}
+            />
+          </FormField>
+          <FormField>
+            <TextInput
+              labelText="Last name"
+              placeholder="Doe"
+              isRequired
+              value={lastName}
+              onChangeInput={setLastName}
+            />
+          </FormField>
+        </FormGroup>
+      </div>
+    );
+  },
+};
+
+/* ── 2. Login Form ────────────────────────────────────────────────────────── */
 export const LoginForm: Story = {
   render: () => {
     const [email, setEmail] = useState('');
@@ -45,49 +94,52 @@ export const LoginForm: Story = {
         onSubmit={handleLogin}
       >
         <FormGroup>
-          <TextInput
-            type="email"
-            labelText="Email"
-            placeholder="you@example.com"
-            isRequired
-            value={email}
-            onChangeInput={setEmail}
-            error={Boolean(errors.email)}
-            errorText={errors.email}
-          />
-        </FormGroup>
+          <FormField>
+            <TextInput
+              type="email"
+              labelText="Email"
+              placeholder="you@example.com"
+              isRequired
+              value={email}
+              onChangeInput={setEmail}
+              error={Boolean(errors.email)}
+              errorText={errors.email}
+            />
+          </FormField>
 
-        <FormGroup>
-          <TextInput
-            type="password"
-            labelText="Password"
-            placeholder="••••••••"
-            isRequired
-            showPasswordToggle
-            value={password}
-            onChangeInput={setPassword}
-            error={Boolean(errors.password)}
-            errorText={errors.password}
-          />
-        </FormGroup>
+          <FormField>
+            <TextInput
+              type="password"
+              labelText="Password"
+              placeholder="••••••••"
+              isRequired
+              showPasswordToggle
+              value={password}
+              onChangeInput={setPassword}
+              error={Boolean(errors.password)}
+              errorText={errors.password}
+            />
+          </FormField>
 
-        <FormGroup>
-          <CheckBox
-            label="Remember me for 30 days"
-            checked={rememberMe}
-            onChange={setRememberMe}
-          />
+          <FormField>
+            <CheckBox
+              label="Remember me for 30 days"
+              checked={rememberMe}
+              onChange={setRememberMe}
+            />
+          </FormField>
         </FormGroup>
       </Form>
     );
   },
 };
 
-/* ── 2. Registration Form ─────────────────────────────────────────────────── */
+/* ── 3. Registration Form ─────────────────────────────────────────────────── */
 export const RegistrationForm: Story = {
   render: () => {
     const [values, setValues] = useState({
-      fullName: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -97,7 +149,8 @@ export const RegistrationForm: Story = {
 
     const handleRegister = () => {
       const nextErrors: Partial<Record<keyof typeof values, string>> = {};
-      if (!values.fullName.trim()) nextErrors.fullName = 'Full name is required';
+      if (!values.firstName.trim()) nextErrors.firstName = 'First name is required';
+      if (!values.lastName.trim()) nextErrors.lastName = 'Last name is required';
       if (!values.email.trim()) nextErrors.email = 'Email is required';
       else if (!/^\S+@\S+\.\S+$/.test(values.email)) nextErrors.email = 'Invalid email address';
       if (values.password.length < 8)
@@ -108,7 +161,7 @@ export const RegistrationForm: Story = {
 
       setErrors(nextErrors);
       if (Object.keys(nextErrors).length === 0) {
-        alert(`Account created for ${values.fullName}`);
+        alert(`Account created for ${values.firstName} ${values.lastName}`);
       }
     };
 
@@ -119,72 +172,90 @@ export const RegistrationForm: Story = {
         submitLabel="Create Account"
         onSubmit={handleRegister}
       >
-        <FormGroup>
-          <TextInput
-            labelText="Full name"
-            placeholder="Jane Doe"
-            isRequired
-            value={values.fullName}
-            onChangeInput={(val) => setValues({ ...values, fullName: val })}
-            error={Boolean(errors.fullName)}
-            errorText={errors.fullName}
-          />
+        <FormGroup legend="Personal Details" direction="row">
+          <FormField>
+            <TextInput
+              labelText="First name"
+              placeholder="Jane"
+              isRequired
+              value={values.firstName}
+              onChangeInput={(val) => setValues({ ...values, firstName: val })}
+              error={Boolean(errors.firstName)}
+              errorText={errors.firstName}
+            />
+          </FormField>
+
+          <FormField>
+            <TextInput
+              labelText="Last name"
+              placeholder="Doe"
+              isRequired
+              value={values.lastName}
+              onChangeInput={(val) => setValues({ ...values, lastName: val })}
+              error={Boolean(errors.lastName)}
+              errorText={errors.lastName}
+            />
+          </FormField>
         </FormGroup>
 
-        <FormGroup helperText={!errors.email ? "We'll never share your email." : undefined}>
-          <TextInput
-            type="email"
-            labelText="Email"
-            placeholder="jane@example.com"
-            isRequired
-            value={values.email}
-            onChangeInput={(val) => setValues({ ...values, email: val })}
-            error={Boolean(errors.email)}
-            errorText={errors.email}
-          />
-        </FormGroup>
+        <FormGroup legend="Account Security">
+          <FormField helperText={!errors.email ? "We'll never share your email." : undefined}>
+            <TextInput
+              type="email"
+              labelText="Email"
+              placeholder="jane@example.com"
+              isRequired
+              value={values.email}
+              onChangeInput={(val) => setValues({ ...values, email: val })}
+              error={Boolean(errors.email)}
+              errorText={errors.email}
+            />
+          </FormField>
 
-        <FormGroup helperText={!errors.password ? 'Must be at least 8 characters long.' : undefined}>
-          <TextInput
-            type="password"
-            labelText="Password"
-            placeholder="••••••••"
-            isRequired
-            showPasswordToggle
-            value={values.password}
-            onChangeInput={(val) => setValues({ ...values, password: val })}
-            error={Boolean(errors.password)}
-            errorText={errors.password}
-          />
-        </FormGroup>
+          <FormField helperText={!errors.password ? 'Must be at least 8 characters long.' : undefined}>
+            <TextInput
+              type="password"
+              labelText="Password"
+              placeholder="••••••••"
+              isRequired
+              showPasswordToggle
+              value={values.password}
+              onChangeInput={(val) => setValues({ ...values, password: val })}
+              error={Boolean(errors.password)}
+              errorText={errors.password}
+            />
+          </FormField>
 
-        <FormGroup>
-          <TextInput
-            type="password"
-            labelText="Confirm password"
-            placeholder="••••••••"
-            isRequired
-            showPasswordToggle
-            value={values.confirmPassword}
-            onChangeInput={(val) => setValues({ ...values, confirmPassword: val })}
-            error={Boolean(errors.confirmPassword)}
-            errorText={errors.confirmPassword}
-          />
-        </FormGroup>
+          <FormField>
+            <TextInput
+              type="password"
+              labelText="Confirm password"
+              placeholder="••••••••"
+              isRequired
+              showPasswordToggle
+              value={values.confirmPassword}
+              onChangeInput={(val) => setValues({ ...values, confirmPassword: val })}
+              error={Boolean(errors.confirmPassword)}
+              errorText={errors.confirmPassword}
+            />
+          </FormField>
 
-        <FormGroup error={errors.acceptTerms}>
-          <CheckBox
-            label="I have read and agree to the Terms of Service"
-            checked={values.acceptTerms}
-            onChange={(checked) => setValues({ ...values, acceptTerms: checked })}
-          />
+          <FormField error={errors.acceptTerms}>
+            <CheckBox
+              label="I have read and agree to the Terms of Service"
+              checked={values.acceptTerms}
+              onChange={(checked) => setValues({ ...values, acceptTerms: checked })}
+            />
+          </FormField>
         </FormGroup>
       </Form>
     );
   },
 };
 
-/* ── 3. Contact Form ──────────────────────────────────────────────────────── */
+
+/* ── 4. Contact Form ──────────────────────────────────────────────────────── */
+
 export const ContactForm: Story = {
   render: () => {
     const [values, setValues] = useState({
@@ -193,7 +264,7 @@ export const ContactForm: Story = {
       role: '',
       message: '',
       subscribe: false,
-    });
+    })
     const [errors, setErrors] = useState<Partial<Record<keyof typeof values, string>>>({});
 
     const roleOptions = [
@@ -232,58 +303,51 @@ export const ContactForm: Story = {
         onCancel={handleReset}
       >
         <FormGroup>
-          <TextInput
-            labelText="Name"
-            placeholder="Your name"
-            isRequired
-            value={values.name}
-            onChangeInput={(val) => setValues({ ...values, name: val })}
-            error={Boolean(errors.name)}
-            errorText={errors.name}
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <TextInput
-            type="email"
-            labelText="Email"
-            placeholder="you@company.com"
-            isRequired
-            value={values.email}
-            onChangeInput={(val) => setValues({ ...values, email: val })}
-            error={Boolean(errors.email)}
-            errorText={errors.email}
-          />
-        </FormGroup>
-
-        <FormGroup label="Role" required error={errors.role}>
-          <Select
-            options={roleOptions}
-            value={values.role}
-            onChange={(val: string) => setValues({ ...values, role: val })}
-          />
-        </FormGroup>
-
-        <FormGroup helperText={!errors.message ? 'Tell us a bit about your project.' : undefined}>
-          <TextInput
-            labelText="Message"
-            placeholder="How can we help?"
-            isRequired
-            value={values.message}
-            onChangeInput={(val) => setValues({ ...values, message: val })}
-            error={Boolean(errors.message)}
-            errorText={errors.message}
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <CheckBox
-            label="Subscribe to our newsletter"
-            checked={values.subscribe}
-            onChange={(checked) => setValues({ ...values, subscribe: checked })}
-          />
+          <FormField>
+            <TextInput 
+              labelText="Name"
+              placeholder="Your name"
+              isRequired
+              value={values.name}
+              onChangeInput={(val) => setValues({ ...values, name: val })}
+              error={Boolean(errors.name)}
+              errorText={errors.name}
+            />
+            <TextInput 
+             type="email"
+              labelText="Email"
+              placeholder="you@company.com"
+              isRequired
+              value={values.email}
+              onChangeInput={(val) => setValues({ ...values, email: val })}
+              error={Boolean(errors.email)}
+              errorText={errors.email}
+            />
+            <Select
+              options={roleOptions}
+              value={values.role}
+              onChange={(val) => setValues({ ...values, role: val })}
+              />
+          </FormField>
+          <FormField helperText={!errors.message ? 'Tell us a bit about your project.' : undefined}>
+            <TextInput
+              labelText="Message"
+              placeholder="How can we help?"
+              isRequired
+              value={values.message}
+              onChangeInput={(val) => setValues({ ...values, message: val })}
+              error={Boolean(errors.message)}
+              errorText={errors.message}
+            />
+            <CheckBox
+              label="Subscribe to our newsletter"
+              checked={values.subscribe}
+              onChange={(checked) => setValues({ ...values, subscribe: checked })}
+            />
+          </FormField>
         </FormGroup>
       </Form>
     );
-  },
+
+  }
 };
