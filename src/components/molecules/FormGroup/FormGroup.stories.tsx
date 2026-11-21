@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Form, FormGroup } from './FormGroup';
 import { FormField } from '../FormField/FormField';
 import { TextInput } from '../../atoms/TextInput/TextInput';
+import { TextArea } from '../../atoms/TextArea/TextArea';
 import { Select } from '../../atoms/Select/Select';
 import { CheckBox } from '../../atoms/CheckBox/CheckBox';
 
@@ -323,6 +324,8 @@ export const ContactForm: Story = {
               error={Boolean(errors.email)}
               errorText={errors.email}
             />
+          </FormField>
+          <FormField>  
             <Select
               options={roleOptions}
               value={values.role}
@@ -330,15 +333,21 @@ export const ContactForm: Story = {
               />
           </FormField>
           <FormField helperText={!errors.message ? 'Tell us a bit about your project.' : undefined}>
-            <TextInput
+            <TextArea
               labelText="Message"
               placeholder="How can we help?"
               isRequired
+              rows={4}
+              maxLength={500}
+              showCharCount
+              helperText={!errors.message ? 'Tell us a bit about your project.' : undefined}
               value={values.message}
               onChangeInput={(val) => setValues({ ...values, message: val })}
               error={Boolean(errors.message)}
               errorText={errors.message}
             />
+          </FormField>
+          <FormField>   
             <CheckBox
               label="Subscribe to our newsletter"
               checked={values.subscribe}

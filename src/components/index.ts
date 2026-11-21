@@ -14,12 +14,14 @@ export type * from './atoms/CheckBox';
 export type * from './atoms/Link';
 export type * from './atoms/Icons';
 export type * from './atoms/Text';
+export type * from './atoms/TextArea';
 export type * from './atoms/Tabs';
 export type * from './atoms/Header';
 export type * from './atoms/Pagination';
 export type * from './atoms/Drawer';
 export type * from './atoms/Avatar'
 export type * from './atoms/Indicator';
+export type * from './molecules/FormField';
 export type * from './molecules/FormGroup';
 export type * from './layout/Box';
 export type * from './layout/Container';
