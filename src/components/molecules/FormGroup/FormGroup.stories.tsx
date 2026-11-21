@@ -315,7 +315,7 @@ export const ContactForm: Story = {
               errorText={errors.name}
             />
             <TextInput 
-             type="email"
+              type="email"
               labelText="Email"
               placeholder="you@company.com"
               isRequired
