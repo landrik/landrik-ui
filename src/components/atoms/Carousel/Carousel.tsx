@@ -33,155 +33,6 @@ const CloseIcon = () => (
   </svg>
 );
 
-// export const Carousel: React.FC<CarouselProps> = ({
-//   images,
-//   autoPlay = 0,
-//   showArrows = true,
-//   showDots = true,
-//   showThumbnails = false,
-//   loop = true,
-//   initialSlide = 0,
-//   onSlideChange,
-//   aspectRatio = '16/9',
-// }) => {
-//   const [currentIndex, setCurrentIndex] = useState(initialSlide);
-//   const [isTransitioning, setIsTransitioning] = useState(false);
-//   const autoPlayRef = useRef<NodeJS.Timeout>();
-
-//   const goToSlide = (index: number) => {
-//     if (isTransitioning) return;
-
-//     setIsTransitioning(true);
-//     setCurrentIndex(index);
-//     onSlideChange?.(index);
-
-//     setTimeout(() => setIsTransitioning(false), 500);
-
-//   };
-
-//   const goToPrevious = () => {
-//     if (currentIndex === 0) {
-//       if (loop) {
-//         goToSlide(images.length - 1);
-//       }
-//     } else {
-//       goToSlide(currentIndex - 1);
-//     }
-//   };
-
-//   const goToNext = () => {
-//     if (currentIndex === images.length - 1) {
-//       if (loop) {
-//         goToSlide(0);
-//       }
-//     } else {
-//       goToSlide(currentIndex + 1);
-//     }
-//   };
-
-//   const resetAutoPlay = () => {
-//     if (autoPlayRef.current) {
-//       clearInterval(autoPlayRef.current);
-//     }
-
-//     if (autoPlay > 0) {
-//       autoPlayRef.current = setInterval(() => {
-//         goToNext();
-//       }, autoPlay);
-//     }
-//   };
-
-//   useEffect(() => {
-//     resetAutoPlay();
-//     return () => {
-//       if (autoPlayRef.current) {
-//         clearInterval(autoPlayRef.current);
-//       }
-//     };
-//   }, [currentIndex, autoPlay]);
-
-//   const handleKeyDown = (e: React.KeyboardEvent) => {
-//     if (e.key === 'ArrowLeft') {
-//       goToPrevious();
-//     } else if (e.key === 'ArrowRight') {
-//       goToNext();
-//     }
-//   };
-
-// return (
-// <div>
-
-// <CarouselContainer onKeyDown={handleKeyDown} tabIndex={0}>
-//   <CarouselViewport $aspectRatio={aspectRatio}>
-//     <CarouselTrack $transform={-currentIndex * 100}>
-//       {images.map((image, index) => (
-//         <CarouselSlide key={index}>
-//           <CarouselImage src={image.src} alt={image.alt} loading="lazy" />
-//           {image.caption && (
-//             <CarouselCaption>{image.caption}</CarouselCaption>
-//           )}
-//         </CarouselSlide>
-//       ))}
-//     </CarouselTrack>
-//   </CarouselViewport>
-
-
-//     {showArrows && (
-//       <>
-//         <CarouselButton
-//           $position="left"
-//           onClick={goToPrevious}
-//           disabled={!loop && currentIndex === 0}
-//           aria-label="Previous slide"
-//         >
-//           <ChevronLeft />
-//         </CarouselButton>
-//         <CarouselButton
-//           $position="right"
-//           onClick={goToNext}
-//           disabled={!loop && currentIndex === images.length - 1}
-//           aria-label="Next slide"
-//         >
-//           <ChevronRight />
-//         </CarouselButton>
-//       </>
-//     )}
-
-//     {showDots && (
-//       <CarouselDots>
-//         {images.map((_, index) => (
-//           <CarouselDot
-//             key={index}
-//             $active={index === currentIndex}
-//             onClick={() => goToSlide(index)}
-//             aria-label={`Go to slide ${index + 1}`}
-//           />
-//         ))}
-//       </CarouselDots>
-//     )}
-//   </CarouselContainer>
-
-//   {showThumbnails && (
-//     <CarouselThumbnails>
-//       {images.map((image, index) => (
-//         <Thumbnail
-//           key={index}
-//           $active={index === currentIndex}
-//           onClick={() => goToSlide(index)}
-//           aria-label={`Thumbnail ${index + 1}`}
-//         >
-//           <img src={image.src} alt={image.alt} />
-//         </Thumbnail>
-//       ))}
-//     </CarouselThumbnails>
-//   )}
-
-// </div>
-
-
-// );
-// };
-
 
 export const Carousel: React.FC<CarouselProps> = ({
   images,
@@ -194,24 +45,30 @@ export const Carousel: React.FC<CarouselProps> = ({
   enableFullscreen = false,
   objectFit = 'cover',
   height,
-  color = '#3b82f6',
+  color,
   loop = true,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-  if (!autoPlay) return;
-
-
-  const interval = setInterval(() => {
-    goToNext();
-  }, autoPlayInterval);
-
-  return () => clearInterval(interval);
-
-
+    if (!autoPlay) return;
+    const interval = setInterval(() => {
+      goToNext();
+    }, autoPlayInterval);
+    return () => clearInterval(interval);
   }, [currentIndex, autoPlay, autoPlayInterval]);
+
+  useEffect(() => {
+    if(!isFullscreen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreen(false)
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  
+  }, [isFullscreen])
+
 
   const goToNext = () => {
   if (currentIndex === images.length - 1) {
@@ -320,44 +177,48 @@ style={{ cursor: enableFullscreen ? 'pointer' : 'default' }}
     )}
   </div>
 
-  <FullscreenOverlay $visible={isFullscreen} onClick={() => setIsFullscreen(false)}>
-    <CloseButton onClick={() => setIsFullscreen(false)} aria-label="Close fullscreen">
-      <CloseIcon />
-    </CloseButton>
-    <FullscreenImage
-      src={images[currentIndex]?.src}
-      alt={images[currentIndex]?.alt}
-      onClick={(e) => e.stopPropagation()}
-    />
-    {showNavButtons && (
-      <>
-        <NavButton
-          $position="left"
-          $color={color}
-          onClick={(e) => {
-            e.stopPropagation();
-            goToPrev();
-          }}
-          disabled={!canGoPrev}
-          aria-label="Previous image"
-        >
-          <ChevronLeft />
-        </NavButton>
-        <NavButton
-          $position="right"
-          $color={color}
-          onClick={(e) => {
-            e.stopPropagation();
-            goToNext();
-          }}
-          disabled={!canGoNext}
-          aria-label="Next image"
-        >
-          <ChevronRight />
-        </NavButton>
-      </>
-    )}
-  </FullscreenOverlay>
+  {isFullscreen && (
+    <FullscreenOverlay $visible={isFullscreen} onClick={() => setIsFullscreen(false)}>
+      <CloseButton onClick={() => setIsFullscreen(false)} aria-label="Close fullscreen">
+        <CloseIcon />
+      </CloseButton>
+      <FullscreenImage
+        src={images[currentIndex]?.src}
+        alt={images[currentIndex]?.alt}
+        onClick={(e) => e.stopPropagation()}
+      />
+      {showNavButtons && (
+        <>
+          <NavButton
+            $position="left"
+            $color={color}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrev();
+            }}
+            disabled={!canGoPrev}
+            aria-label="Previous image"
+          >
+            <ChevronLeft />
+          </NavButton>
+          <NavButton
+            $position="right"
+            $color={color}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+            disabled={!canGoNext}
+            aria-label="Next image"
+          >
+            <ChevronRight />
+          </NavButton>
+        </>
+      )}
+    </FullscreenOverlay>
+  )}
+
+
 </>
 
 

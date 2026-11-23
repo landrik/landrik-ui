@@ -51,6 +51,8 @@ export const Calendar: React.FC<CalendarProps> = ({
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
 
+  const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
   const getFirstDayOfMonth = (date: Date) => {
     const day = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
     return firstDayOfWeek === 1 ? (day === 0 ? 6 : day - 1) : day;
@@ -65,6 +67,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   const isDateDisabled = (date: Date) => {
+    const day = startOfDay(date);
     if (minDate && date < minDate) return true;
     if (maxDate && date > maxDate) return true;
     return disabledDates.some(d => isSameDay(d, date));
@@ -157,7 +160,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           {MONTHS[currentMonth.getMonth()]} {currentMonth.getFullYear()}
         </CalendarTitle>
 
-        <CalendarHeaderButton onClick={handleNextMonth} aria-label="Next month">
+        <CalendarHeaderButton onClick={handleNextMonth} aria-label="Next month" type='button'>
           <ChevronRight />
         </CalendarHeaderButton>
       </CalendarHeader>
@@ -177,6 +180,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             disabled={day.isDisabled}
             aria-label={day.date.toDateString()}
             aria-selected={day.isSelected}
+            type='button'
           >
             {day.day}
           </CalendarDay>

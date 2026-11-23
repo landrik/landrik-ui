@@ -249,24 +249,24 @@ export const StyledCardDivider = styled.hr`
 
 const badgeColorMap = {
   default: css`
-    background: ${(p) => lighten(0.2, p.theme.color.neutral.bgDefault)};
-    color: ${({theme}) => theme.color.neutral.bgDefault};
+    background: ${({ theme }) => theme.color.neutral.bgSubtle};
+    color: ${({ theme }) => theme.color.neutral.text};
   `,
   primary: css`
-    background: ${(p) => lighten(0.2, p.theme.color.accent.bgDefault)};
-    color: ${({theme}) => theme.color.accent.bgDefault};
+    background: ${({ theme }) => theme.color.accent.bgSubtle};
+    color: ${({ theme }) => theme.color.accent.text};
   `,
   success: css`
-    background: ${({theme}) => lighten(0.2, theme.color.success.bgDefault)};
-    color: ${({theme}) => theme.color.success.bgDefault};
+    background: ${({ theme }) => theme.color.success.bgSubtle};
+    color: ${({ theme }) => theme.color.success.text};
   `,
   warning: css`
-    background: ${(p) => lighten(0.2, p.theme.color.warning.bgDefault)};
-    color: ${({theme}) => theme.color.warning.bgDefault};
+    background: ${({ theme }) => theme.color.warning.bgSubtle};
+    color: ${({ theme }) => theme.color.warning.text};
   `,
   danger: css`
-    background: ${(p) => lighten(0.2, p.theme.color.danger.bgDefault)};
-    color: ${({theme}) => theme.color.danger.bgDefault};
+    background: ${({ theme }) => theme.color.danger.bgSubtle};
+    color: ${({ theme }) => theme.color.danger.text};
   `,
 };
 

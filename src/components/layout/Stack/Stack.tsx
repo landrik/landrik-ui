@@ -20,6 +20,7 @@ export const Stack:FC<StackProps> = ({
       $align={align}
       $justify={justify}
       $wrap={wrap}
+      {...props}
     >
       {children}
     </StyledStack>

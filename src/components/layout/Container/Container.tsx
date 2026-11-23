@@ -15,6 +15,7 @@ export const Container: React.FC<ContainerProps> = ({
       $size={size}
       $center={center}
       $px={px}
+      {...props}
     >
       {children}
     </StyledContainer>

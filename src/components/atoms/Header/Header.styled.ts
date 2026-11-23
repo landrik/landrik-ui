@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { HeaderVariant, HeadingSize, HeadingWeight, HeadingAlign  } from "./Header.types";
+import styled, { css } from 'styled-components';
+import { HeaderVariant, HeadingSize, HeadingWeight, HeadingAlign } from './Header.types';
 
 const sizeStyles: Record<HeadingSize, ReturnType<typeof css>> = {
   xs: css`font-size: ${({ theme }) => theme.typography.size.xs};`,
@@ -11,7 +11,6 @@ const sizeStyles: Record<HeadingSize, ReturnType<typeof css>> = {
   '3xl': css`font-size: ${({ theme }) => theme.typography.size['3xl']};`,
   '4xl': css`font-size: ${({ theme }) => theme.typography.size['4xl']};`,
   '5xl': css`font-size: ${({ theme }) => theme.typography.size['5xl']};`,
-  '6xl': css`font-size: ${({ theme }) => theme.typography.size['6xl']};`,
 };
 
 const weightStyles: Record<HeadingWeight, ReturnType<typeof css>> = {
@@ -21,12 +20,11 @@ const weightStyles: Record<HeadingWeight, ReturnType<typeof css>> = {
   bold: css`font-weight: ${({ theme }) => theme.typography.weight.bold};`,
 };
 
-const alignStyles : Record<HeadingAlign, ReturnType<typeof css>> = {
-  left: css`align-items: left; text-align: left;`,
-  center: css`align-items: center; text-align: center;`,
-  right: css`align-items: right; text-align: right;`,
-}
-
+const alignStyles: Record<HeadingAlign, ReturnType<typeof css>> = {
+  left: css`text-align: left;`,
+  center: css`text-align: center;`,
+  right: css`text-align: right;`,
+};
 
 interface StyledHeaderProps {
   $size: HeadingSize;
@@ -40,13 +38,15 @@ export const StyledHeader = styled.h1<StyledHeaderProps>`
   font-family: ${({ theme }) => theme.typography.family.sans};
   line-height: ${({ theme }) => theme.typography.lineHeight.tight};
   letter-spacing: ${({ theme }) => theme.typography.letterSpacing.tight};
-  color: ${p =>
-    p.$variant === 'primary' ? p.theme.color.accent[700] :
-    p.$variant === 'secondary' ? p.theme.color.accent[300] :
-    p.$variant === 'muted' ? p.theme.color.neutral[600] :
-    p.theme.color.neutral[900]
-  };
-  ${p => alignStyles[p.$align]};
-  ${p => sizeStyles[p.$size]};
-  ${p => weightStyles[p.$weight]}
+  color: ${(p) =>
+    p.$variant === 'primary'
+      ? p.theme.color.accent.text
+      : p.$variant === 'secondary'
+        ? p.theme.color.accent.border
+        : p.$variant === 'muted'
+          ? p.theme.color.text.muted
+          : p.theme.color.text.default};
+  ${(p) => alignStyles[p.$align]}
+  ${(p) => sizeStyles[p.$size]}
+  ${(p) => weightStyles[p.$weight]}
 `;

@@ -1,25 +1,22 @@
+export type DatePickerShape = 'rounded' | 'square' | 'pill';
+
 export interface DatePickerProps {
-  /** Currently selected date */
-  value?: Date;
-  /** Callback when date is selected */
-  onChange?: (date: Date | undefined) => void;
-  /** Placeholder text */
+  id?: string;
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (date: Date | null) => void;
   placeholder?: string;
-  /** Minimum selectable date */
   minDate?: Date;
-  /** Maximum selectable date */
   maxDate?: Date;
-  /** Disabled dates */
   disabledDates?: Date[];
-  /** Disabled state */
+  firstDayOfWeek?: 0 | 1;
   disabled?: boolean;
-  /** Error state */
-  error?: string;
-  /** Label */
-  label?: string;
-  /** Show clear button */
+  error?: boolean;
   clearable?: boolean;
-  /** Date format for display */
-  dateFormat?: 'short' | 'medium' | 'long';
+  shape?: DatePickerShape;
+  formatDate?: (date: Date) => string;
+  'aria-invalid'?: boolean;
+  'aria-describedby'?: string;
 }
+
 

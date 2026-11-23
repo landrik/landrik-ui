@@ -71,7 +71,10 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
+    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.tsx',
+    '^@/(.*)$': '<rootDir>/src/$1',
     '\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    
   },
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',

@@ -50,8 +50,6 @@ export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
 export interface CardMediaProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   src: string;
   alt: string;
-  // $height?: number;
-  // $height?: SpacingIndex;
   $height?:  keyof DefaultTheme['spacing'];
   $objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }

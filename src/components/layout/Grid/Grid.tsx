@@ -18,6 +18,7 @@ export const Grid:FC<GridProps> = ({
       $gap={gap}
       $rowGap={rowGap}
       $columnGap={columnGap}
+      {...props}
     >
       {children}
     </StyledGrid>

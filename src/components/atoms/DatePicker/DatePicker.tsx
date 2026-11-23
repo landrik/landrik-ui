@@ -1,123 +1,136 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { DatePickerProps } from './DatePicker.types';
-import { Calendar } from '../Calendar';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { Calendar } from '../../atoms/Calendar/Calendar';
+import { Icon } from '../../atoms/Icons/Icon';
 import {
-DatePickerWrapper,
-DatePickerLabel,
-DatePickerInput,
-DatePickerPlaceholder,
-DatePickerValue,
-DatePickerIcons,
-ClearButton,
-DatePickerDropdown,
-DatePickerError,
+  DatePickerWrapper,
+  TriggerButton,
+  TriggerLeft,
+  TriggerActions,
+  ClearButton,
+  Popover,
 } from './DatePicker.styled';
-import { Icon } from '../Icons';
+import { DatePickerProps } from './DatePicker.types';
 
-const CalendarIcon = () => (
-<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-<path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-</svg>
-);
+const defaultFormatDate = (date: Date): string =>
+  date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
 
-const CloseIcon = () => (
-<svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-<path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-</svg>
-);
-
-export const DatePicker: React.FC<DatePickerProps> = ({
-value,
-onChange,
-placeholder = 'Select date',
-minDate,
-maxDate,
-disabledDates,
-disabled = false,
-error,
-label,
-clearable = true,
-dateFormat = 'medium',
+export const DatePicker: FC<DatePickerProps> = ({
+  id,
+  value,
+  defaultValue = null,
+  onChange,
+  placeholder = 'Select a date',
+  minDate,
+  maxDate,
+  disabledDates,
+  firstDayOfWeek = 1,
+  disabled = false,
+  error = false,
+  clearable = true,
+  shape = 'rounded',
+  formatDate = defaultFormatDate,
+  'aria-invalid': ariaInvalid,
+  'aria-describedby': ariaDescribedBy,
 }) => {
-const [isOpen, setIsOpen] = useState(false);
-const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [internalValue, setInternalValue] = useState<Date | null>(defaultValue);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-const formatDate = (date: Date) => {
-const options: Intl.DateTimeFormatOptions =
-dateFormat === 'short' ? { month: 'numeric', day: 'numeric', year: 'numeric' } :
-dateFormat === 'long' ? { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' } :
-{ year: 'numeric', month: 'short', day: 'numeric' };
+  const isControlled = value !== undefined;
+  const selectedDate = isControlled ? value : internalValue;
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
 
-return date.toLocaleDateString('en-US', options);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape' && isOpen) {
+      e.stopPropagation();
+      setIsOpen(false);
+    }
+  };
 
-};
+  const handleSelectDate = (date: Date) => {
+    if (!isControlled) {
+      setInternalValue(date);
+    }
+    onChange?.(date);
+    setIsOpen(false);
+  };
 
-const handleDateChange = (date: Date) => {
-onChange?.(date);
-setIsOpen(false);
-};
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) return;
+    if (!isControlled) {
+      setInternalValue(null);
+    }
+    onChange?.(null);
+  };
 
-const handleClear = (e: React.MouseEvent) => {
-e.stopPropagation();
-onChange?.(undefined);
-};
+  return (
+    <DatePickerWrapper ref={wrapperRef} onKeyDown={handleKeyDown}>
+      <TriggerButton
+        id={id}
+        type="button"
+        disabled={disabled}
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
+        aria-invalid={ariaInvalid ?? Boolean(error)}
+        aria-describedby={ariaDescribedBy}
+        $isOpen={isOpen}
+        $error={Boolean(error)}
+        $hasValue={Boolean(selectedDate)}
+        $shape={shape}
+        onClick={() => !disabled && setIsOpen((prev) => !prev)}
+      >
+        <TriggerLeft>
+          <Icon name="calendar" size="sm" />
+          <span>{selectedDate ? formatDate(selectedDate) : placeholder}</span>
+        </TriggerLeft>
 
-const handleClickOutside = (event: MouseEvent) => {
-if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-setIsOpen(false);
-}
-};
+        <TriggerActions>
+          {clearable && selectedDate && !disabled && (
+            <ClearButton
+              role="button"
+              tabIndex={0}
+              aria-label="Clear date"
+              onClick={handleClear}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleClear(e as unknown as React.MouseEvent);
+                }
+              }}
+            >
+              <Icon name="cross" size="xs" />
+            </ClearButton>
+          )}
+          <Icon name="arrow-down" size="sm" />
+        </TriggerActions>
+      </TriggerButton>
 
-useEffect(() => {
-document.addEventListener('mousedown', handleClickOutside);
-return () => {
-document.removeEventListener('mousedown', handleClickOutside);
-};
-}, []);
-
-return (
-<DatePickerWrapper ref={wrapperRef}>
-{label && <DatePickerLabel>{label}</DatePickerLabel>}
-
-
-  <DatePickerInput
-    onClick={() => !disabled && setIsOpen(!isOpen)}
-    disabled={disabled}
-    $hasError={!!error}
-    $disabled={disabled}
-    type="button"
-  >
-    {value ? (
-      <DatePickerValue>{formatDate(value)}</DatePickerValue>
-    ) : (
-      <DatePickerPlaceholder>{placeholder}</DatePickerPlaceholder>
-    )}
-
-    <DatePickerIcons>
-      {clearable && value && !disabled && (
-        <ClearButton onClick={handleClear} type="button">
-          <CloseIcon />
-        </ClearButton>
-      )}
-      <Icon name='calendar' />
-    </DatePickerIcons>
-  </DatePickerInput>
-
-  {error && <DatePickerError>{error}</DatePickerError>}
-
-  <DatePickerDropdown $isOpen={isOpen}>
-    <Calendar
-      value={value}
-      onChange={handleDateChange}
-      minDate={minDate}
-      maxDate={maxDate}
-      disabledDates={disabledDates}
-    />
-  </DatePickerDropdown>
-</DatePickerWrapper>
-
-
-);
+      <Popover role="dialog" aria-label="Choose date" $isOpen={isOpen}>
+        <Calendar
+          value={selectedDate || undefined}
+          onChange={handleSelectDate}
+          minDate={minDate}
+          maxDate={maxDate}
+          disabledDates={disabledDates}
+          firstDayOfWeek={firstDayOfWeek}
+        />
+      </Popover>
+    </DatePickerWrapper>
+  );
 };

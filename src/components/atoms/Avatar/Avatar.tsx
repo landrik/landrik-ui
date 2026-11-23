@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { AvatarProps } from './Avatar.types';
 import {
   AvatarWrap,
@@ -9,7 +9,7 @@ import {
 } from './Avatar.styled';
 
 
-export const Avatar: React.FC<AvatarProps> = ({
+export const Avatar:FC<AvatarProps> = ({
   src,
   alt = '',
   size = 'md',
@@ -22,6 +22,9 @@ export const Avatar: React.FC<AvatarProps> = ({
   const [imageError, setImageError] = useState(false);
 
   const showFallback = !src || imageError;
+  useEffect(() => {
+    setImageError(false)
+  }, [src])
 
   return (
     <AvatarWrap $size={size}>
@@ -31,6 +34,7 @@ export const Avatar: React.FC<AvatarProps> = ({
           src={src}
           alt={alt}
           onError={() => setImageError(true)}
+          {...props}
         />
         ) : (
         <AvatarFallback>

@@ -8,7 +8,7 @@ export interface TabItemProps {
 }
 
 export interface TabsProps {
-  tabs: [TabItemProps];
+  tabs: TabItemProps[];
   activeTab: string;
   onChange: (value: string) => void;
   color?: string;
