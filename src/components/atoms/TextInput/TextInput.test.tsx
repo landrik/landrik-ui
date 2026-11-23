@@ -6,6 +6,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { cleanup, render, screen, fireEvent } from '@testing-library/react';
+import { lightTheme } from '../../../theme/theme';
 
 
 import { TextInput } from './TextInput';
@@ -38,17 +39,17 @@ describe('TextInput', () => {
 
     it('renders with icon on left by default', () => {
       const { container } = render(
-        <TextInput {...defaultProps} icon='email' />
+        <TextInput {...defaultProps} icon="envelope-closed" />
       );
-      const icon = container.querySelector("[data-icon='email']") as HTMLImageElement;
-      expect(icon.classList.toString()).toContain('icon-svg');
+      const icon = container.querySelector("[data-icon='envelope-closed']");
+      expect(icon).toBeInTheDocument();
     });
 
     it('renders with icon on right when specified', () => {
       const {container} = render(
         <TextInput
           {...defaultProps}
-          icon='search'
+          icon="magnifying-glass"
           iconPosition="right"
         />
       );
@@ -107,20 +108,20 @@ describe('TextInput', () => {
   describe('Shapes', () => {
     it('applies rounded shape class', () => {
       const { container } = render(<TextInput {...defaultProps} shape="rounded" />);
-      const inputContainer = container.querySelector('div > label + div');
-      expect(inputContainer).toHaveStyle({ borderRadius: '8px' });
+      const inputContainer = container.querySelector('input')?.parentElement;
+      expect(inputContainer).toHaveStyle({ borderRadius: lightTheme.radius.lg });
     });
 
     it('applies pill shape class', () => {
       const { container } = render(<TextInput {...defaultProps} shape="pill" />);
-      const inputContainer = container.querySelector('div > label + div');
-      expect(inputContainer).toHaveStyle({ borderRadius: '999px' });
+      const inputContainer = container.querySelector('input')?.parentElement;
+      expect(inputContainer).toHaveStyle({ borderRadius: lightTheme.radius.full });
     });
 
     it('applies square shape class', () => {
       const { container } = render(<TextInput {...defaultProps} shape="square" />);
-      const inputContainer = container.querySelector('div > label + div');
-      expect(inputContainer).toHaveStyle({ borderRadius: '4px' });
+      const inputContainer = container.querySelector('input')?.parentElement;
+      expect(inputContainer).toHaveStyle({ borderRadius: lightTheme.radius.none });
     });
 
   });

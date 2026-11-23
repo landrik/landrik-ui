@@ -32,13 +32,14 @@ describe('Button', () => {
 
     it('renders as icon-only button when iconOnly is true', () => {
       const { container } = render(
-        <Button icon="envelope-closed" iconOnly>
+        <Button icon="envelope-closed" iconOnly aria-label="Send">
           Send
         </Button>
       );
-      const icon = container.querySelector("[data-icon='email']");
+      const icon = container.querySelector("[data-icon='envelope-closed']");
       expect(icon).toBeInTheDocument();
       expect(screen.queryByText('Send')).not.toBeInTheDocument();
+
     });
 
     it('renders as icon-only button when no children provided', () => {

@@ -24,6 +24,7 @@ export const Text:FC<TextProps> = ({
       $variant={variant}
       $truncate={truncate}
       $lineClamp={lineClamp}
+      {...props}
     >
       {children}
     </StyledText>

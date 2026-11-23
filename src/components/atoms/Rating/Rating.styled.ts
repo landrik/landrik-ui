@@ -1,9 +1,16 @@
-import styled, { css } from "styled-components";
-import { RatingSize, RatingProps } from "./Rating.types";
+import styled, { css } from 'styled-components';
+import { RatingSize } from './Rating.types';
 
+export const RatingContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing[2]}px;
+`;
 
-export const RatingContainer = styled.div`display: inline-flex; align-items: center; gap: ${({ theme }) => theme.spacing[12]}px;`;
-export const StarsContainer = styled.div`display: inline-flex; gap: ${({ theme }) => theme.spacing[4]}px;`;
+export const StarsContainer = styled.div`
+  display: inline-flex;
+  gap: ${({ theme }) => theme.spacing[2]}px;
+`;
 
 interface StarButtonProps {
   $size: RatingSize;
@@ -11,30 +18,38 @@ interface StarButtonProps {
 }
 
 const sizeStyles: Record<RatingSize, ReturnType<typeof css>> = {
-  sm: css`width: 16px; height: 16px;`,
-  md: css`width: 24px; height: 24px;`,
-  lg: css`width: 32px; height: 32px;`,
+  sm: css`
+    width: 16px;
+    height: 16px;
+  `,
+  md: css`
+    width: 24px;
+    height: 24px;
+  `,
+  lg: css`
+    width: 32px;
+    height: 32px;
+  `,
 };
 
 export const StarButton = styled.button<StarButtonProps>`
   padding: 0;
   border: none;
   background: transparent;
-  cursor: ${p => p.$readOnly ? 'default' : 'pointer'};
+  cursor: ${(p) => (p.$readOnly ? 'default' : 'pointer')};
   transition: transform ${({ theme }) => theme.transitions.preset.fast};
 
   &:hover:not(:disabled) {
-    transform: ${p => p.$readOnly ? 'none' : 'scale(1.1)'};
+    transform: ${(p) => (p.$readOnly ? 'none' : 'scale(1.1)')};
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.color.border.focus};;
+    outline: 2px solid ${({ theme }) => theme.color.border.focus};
     outline-offset: 2px;
     border-radius: ${({ theme }) => theme.radius.sm};
   }
 
-  ${p => sizeStyles[p.$size]}
-
+  ${(p) => sizeStyles[p.$size]}
 `;
 
 interface StarIconProps {
@@ -47,17 +62,17 @@ export const StarIcon = styled.svg<StarIconProps>`
   height: 100%;
 
   .star-bg {
-    fill: ${({ theme }) => theme.color.neutral[300]};
+    fill: ${({ theme }) => theme.color.border.default};
   }
 
   .star-fill {
-    fill: ${p => p.$color};
-    clip-path: ${p => `inset(0 ${100 - p.$filled}% 0 0)`};
+    fill: ${(p) => p.$color};
+    clip-path: ${(p) => `inset(0 ${100 - p.$filled}% 0 0)`};
   }
 `;
 
 export const RatingValue = styled.span`
-  font-size: ${({ theme }) => theme.typography.size.sm}; 
-  font-weight: ${({ theme }) => theme.typography.weight.medium}; 
-  color: ${({ theme }) => theme.color.neutral.text};
+  font-size: ${({ theme }) => theme.typography.size.sm};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  color: ${({ theme }) => theme.color.text.muted};
 `;

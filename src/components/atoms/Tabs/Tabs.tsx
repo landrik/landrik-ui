@@ -10,9 +10,10 @@ export interface TabItemProps {
 }
 
 export interface TabsProps {
-  tabs: [TabItemProps];
-  activeTab: string;
+  tabs: TabItemProps[];
+  activeTab?: string;
   onChange: (value: string) => void;
+  
   color?: string;
   variant?: 'line' | 'enclosed' | 'pills';
 }

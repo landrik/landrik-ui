@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 import { PaginationSize, PaginationVariant } from './Pagination.types';
 
 export const PaginationContainer = styled.nav`
-  display: flex; 
-  align-items: center; 
-  gap: ${({ theme }) => theme.spacing[4]}px;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing[1]}px;
 `;
 
 interface PageButtonProps {
@@ -15,45 +15,71 @@ interface PageButtonProps {
 }
 
 const sizeStyles: Record<PaginationSize, ReturnType<typeof css>> = {
-  sm: css`min-width: 32px; height: 32px; padding: 0 ${({ theme }) => theme.spacing[2]}px; font-size: ${({ theme }) => theme.typography.size.sm};`,
-  md: css`min-width: 40px; height: 40px; padding: 0 ${({ theme }) => theme.spacing[3]}px; font-size: ${({ theme }) => theme.typography.size.base};`,
-  lg: css`min-width: 48px; height: 48px; padding: 0 ${({ theme }) => theme.spacing[4]}px; font-size: ${({ theme }) => theme.typography.size.lg};`,
+  sm: css`
+    min-width: 32px;
+    height: 32px;
+    padding: 0 ${({ theme }) => theme.spacing[2]}px;
+    font-size: ${({ theme }) => theme.typography.size.sm};
+  `,
+  md: css`
+    min-width: 40px;
+    height: 40px;
+    padding: 0 ${({ theme }) => theme.spacing[3]}px;
+    font-size: ${({ theme }) => theme.typography.size.base};
+  `,
+  lg: css`
+    min-width: 48px;
+    height: 48px;
+    padding: 0 ${({ theme }) => theme.spacing[4]}px;
+    font-size: ${({ theme }) => theme.typography.size.lg};
+  `,
 };
 
-const variantStyles: Record<PaginationVariant, any> = { 
+const variantStyles: Record<PaginationVariant, ReturnType<typeof css<PageButtonProps>>> = {
   default: css<PageButtonProps>`
-    background-color: ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.accent.onFill};
-    color: ${p => p.$active ? p.theme.color.accent.onFill : p.theme.color.neutral[700]};
-    border: 1px solid ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.neutral[300]};
+    background-color: ${(p) =>
+      p.$active ? p.theme.color.accent.bgDefault : p.theme.color.surface.raised};
+    color: ${(p) =>
+      p.$active ? p.theme.color.accent.onFill : p.theme.color.text.default};
+    border: 1px solid
+      ${(p) =>
+        p.$active ? p.theme.color.accent.bgDefault : p.theme.color.border.default};
 
     &:hover:not(:disabled) {
-      background-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[50]};
-      border-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.text.muted};
+      background-color: ${(p) =>
+        p.$active ? p.theme.color.accent.bgHover : p.theme.color.neutral.bgSubtle};
+      border-color: ${(p) =>
+        p.$active ? p.theme.color.accent.bgHover : p.theme.color.border.strong};
     }
+  `,
 
-  `, 
-  
   outlined: css<PageButtonProps>`
     background-color: transparent;
-    color: ${(p) => p.$active ? p.theme.color.accent.text : p.theme.color.text.default};
-    border: 2px solid ${p => p.$active ? p.theme.color.accent[600] : p.theme.color.neutral[300]};
+    color: ${(p) =>
+      p.$active ? p.theme.color.accent.text : p.theme.color.text.default};
+    border: 2px solid
+      ${(p) =>
+        p.$active ? p.theme.color.accent.border : p.theme.color.border.default};
 
     &:hover:not(:disabled) {
-      border-color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.text.muted};
-      background-color: ${p => p.$active ? p.theme.color.accent[50] : p.theme.color.neutral[50]};
+      border-color: ${(p) =>
+        p.$active ? p.theme.color.accent.bgHover : p.theme.color.border.strong};
+      background-color: ${(p) =>
+        p.$active ? p.theme.color.accent.bgSubtle : p.theme.color.neutral.bgSubtle};
     }
+  `,
 
-  `, 
-  
   minimal: css<PageButtonProps>`
-    background-color: ${p => p.$active ? p.theme.color.accent[100] : 'transparent' };
-    color: ${p => p.$active ? p.theme.color.accent[700] : p.theme.color.neutral[700] };
+    background-color: ${(p) =>
+      p.$active ? p.theme.color.accent.bgSubtle : 'transparent'};
+    color: ${(p) =>
+      p.$active ? p.theme.color.accent.text : p.theme.color.text.default};
     border: none;
 
     &:hover:not(:disabled) {
-      background-color: ${p => p.$active ? p.theme.color.accent[200] : p.theme.color.neutral[100]};
+      background-color: ${(p) =>
+        p.$active ? p.theme.color.accent.bgSubtle : p.theme.color.neutral.bgSubtle};
     }
-
   `,
 };
 
@@ -72,7 +98,6 @@ const activeStyles: Record<PaginationVariant, ReturnType<typeof css>> = {
     font-weight: ${({ theme }) => theme.typography.weight.semibold};
     position: relative;
 
-    /* underline indicator */
     &::after {
       content: '';
       position: absolute;
@@ -86,11 +111,6 @@ const activeStyles: Record<PaginationVariant, ReturnType<typeof css>> = {
   `,
 };
 
-
-
-
-
-
 export const PageButton = styled.button<PageButtonProps>`
   display: inline-flex;
   align-items: center;
@@ -98,8 +118,8 @@ export const PageButton = styled.button<PageButtonProps>`
   font-family: ${({ theme }) => theme.typography.family.sans};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
   border-radius: ${({ theme }) => theme.radius.md};
-  cursor: ${p => p.$disabled ? 'not-allowed' : 'pointer'};
-  transition: all ${({ theme }) => theme.transitions.duration.base};
+  cursor: ${(p) => (p.$disabled ? 'not-allowed' : 'pointer')};
+  transition: ${({ theme }) => theme.transitions.preset.base};
   user-select: none;
 
   &:disabled {
@@ -108,18 +128,19 @@ export const PageButton = styled.button<PageButtonProps>`
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.color.border.focus};;
+    outline: 2px solid ${({ theme }) => theme.color.border.focus};
     outline-offset: 2px;
   }
 
-  ${p => sizeStyles[p.$size]}
-  ${p => variantStyles[p.$variant]}
-  ${p => p.$active &&
+  ${(p) => sizeStyles[p.$size]}
+  ${(p) => variantStyles[p.$variant]}
+  ${(p) =>
+    p.$active &&
     css`
       cursor: default;
       ${activeStyles[p.$variant]}
     `}
-  `;
+`;
 
 export const Ellipsis = styled.span<{ $size: PaginationSize }>`
   display: inline-flex;
@@ -127,5 +148,5 @@ export const Ellipsis = styled.span<{ $size: PaginationSize }>`
   justify-content: center;
   color: ${({ theme }) => theme.color.text.muted};
 
-  ${p => sizeStyles[p.$size]}
+  ${(p) => sizeStyles[p.$size]}
 `;
