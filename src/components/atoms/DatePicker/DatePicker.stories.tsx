@@ -6,7 +6,7 @@ import { FormField } from '../../molecules/FormField';
 import { TextInput } from '../../atoms/TextInput/TextInput';
 
 const meta: Meta<typeof DatePicker> = {
-  title: 'Atoms/DatePicker',
+  title: 'Components/DatePicker',
   component: DatePicker,
   parameters: {
     layout: 'centered',
