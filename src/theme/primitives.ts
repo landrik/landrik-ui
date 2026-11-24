@@ -6,53 +6,49 @@
  * Always reference semantic tokens from theme.ts instead.
  *
  * Color scale convention:
- *   0    = white / lightest
- *   50–900 = incremental steps (lighter → darker)
- *   1000 = black / darkest
+ *   0      = white / lightest
+ *   50–950 = incremental steps (lighter → darker)
  */
-
 
 // ─── Color Palette ────────────────────────────────────────────────────────────
 
 export const palette = {
-
-  // ── Primary ──────────────────────────────────────────────────────────────────
+  // ── Primary ─────────────────────────────────────────────────────────────────
   // Destructured in theme.ts as:
   //   const { neutral, accent, overlay } = palette.primary
 
   primary: {
-
     // Neutral gray scale
     // neutral[0]   → white (#ffffff)
-    // neutral[900] → darkest (#111827)
+    // neutral[950] → darkest (#090d16)
     neutral: {
-          0: "#ffffff",
-          50: "#f9fafb",
-          100: "#f3f4f6",
-          200: "#e5e7eb",
-          300: "#d1d5db",
-          400: "#9ca3af",
-          500: "#6b7280",
-          600: "#4b5563",
-          700: "#374151",
-          800: "#1f2937",
-          900: "#111827",
-          950: "#090d16",
+      0:   "#ffffff",
+      50:  "#f9fafb",
+      100: "#f3f4f6",
+      200: "#e5e7eb",
+      300: "#d1d5db",
+      400: "#9ca3af",
+      500: "#6b7280",
+      600: "#4b5563",
+      700: "#374151",
+      800: "#1f2937",
+      900: "#111827",
+      950: "#090d16",
     },
 
     // Brand accent — purple
     // accent[500] → default brand color
     accent: {
-         50: "#f3f1ff", // Soft light-mode subtle tint
-        100: "#e4dfff",
-        200: "#c7bdff", // High-contrast light purple for dark-mode text & links
-        300: "#a594ff", // Dark-mode link hover
-        400: "#6c53ff", // Vibrant purple for dark-mode borders, focus rings & active fills
-        500: "#1a0596", // Primary brand purple (WCAG AAA with white text)
-        600: "#16047d", // Pressed / active state
-        700: "#120363",
-        800: "#0e024a",
-        900: "#140a4a", // Deep purple tint for dark-mode bgSubtle
+      50:  "#f3f1ff", // Soft light-mode subtle tint
+      100: "#e4dfff",
+      200: "#c7bdff", // High-contrast light purple for dark-mode text & links
+      300: "#a594ff", // Dark-mode link hover
+      400: "#6c53ff", // Vibrant purple for dark-mode borders, focus rings & active fills
+      500: "#1a0596", // Primary brand purple (WCAG AAA with white text)
+      600: "#16047d", // Pressed / active state
+      700: "#120363",
+      800: "#0e024a",
+      900: "#140a4a", // Deep purple tint for dark-mode bgSubtle
     },
 
     // Alpha overlays — named by color + opacity, not a linear scale
@@ -63,10 +59,9 @@ export const palette = {
       whiteA10: "rgba(255,255,255,0.10)",
       whiteA20: "rgba(255,255,255,0.20)",
     },
-
   },
 
-  // ── Semantic ─────────────────────────────────────────────────────────────────
+  // ── Semantic ────────────────────────────────────────────────────────────────
   // Feedback and status ramps.
   //   50  → lightest (light-mode bg)
   //   950 → darkest  (dark-mode subtle bg)
@@ -74,9 +69,8 @@ export const palette = {
   //   const { success, warning, danger, info } = palette.semantic
 
   semantic: {
-
     success: {
-       50: "#EDFAF3",
+      50:  "#EDFAF3",
       200: "#A8DFC4",
       400: "#7EC8A4",
       600: "#3A9E70",
@@ -85,7 +79,7 @@ export const palette = {
     },
 
     warning: {
-       50: "#FFF8E6",
+      50:  "#FFF8E6",
       200: "#F5D47A",
       400: "#E6A817",
       600: "#B07D0A",
@@ -94,7 +88,7 @@ export const palette = {
     },
 
     danger: {
-       50: "#FDEFEF",
+      50:  "#FDEFEF",
       200: "#F0AAAA",
       400: "#E07070",
       600: "#C03A3A",
@@ -103,18 +97,15 @@ export const palette = {
     },
 
     info: {
-       50: "#EDF5FA",
+      50:  "#EDF5FA",
       200: "#AACDE0",
       400: "#7AABCF",
       600: "#3A7EA8",
       800: "#1A4E6E",
       950: "#0A1820",
     },
-
   },
-
 } as const;
-
 
 // ─── Spacing Scale (4px base) ─────────────────────────────────────────────────
 // Access via theme.spacing[4] → 16
@@ -122,7 +113,6 @@ export const palette = {
 export const spacing = [
   0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96,
 ] as const;
-
 
 // ─── Border Radius ────────────────────────────────────────────────────────────
 
@@ -136,7 +126,6 @@ export const radius = {
   "2xl": "1rem",
   full:  "9999px",
 } as const;
-
 
 // ─── Typography ───────────────────────────────────────────────────────────────
 
@@ -180,7 +169,6 @@ export const typography = {
   },
 } as const;
 
-
 // ─── Shadows ──────────────────────────────────────────────────────────────────
 
 export const shadows = {
@@ -190,7 +178,6 @@ export const shadows = {
   lg:   "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
   xl:   "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
 } as const;
-
 
 // ─── Transitions ──────────────────────────────────────────────────────────────
 // Pair with prefers-reduced-motion — see useReducedMotion / GlobalStyles.
@@ -219,7 +206,6 @@ export const transitions = {
   },
 } as const;
 
-
 // ─── Breakpoints ──────────────────────────────────────────────────────────────
 
 export const breakpoints = {
@@ -243,11 +229,24 @@ export const zIndices = {
   tooltip:  1500,
 } as const;
 
-
 // ─── Primitive Types ──────────────────────────────────────────────────────────
 // Explicit interfaces — consumed by theme.types.ts and component prop types.
 
 export type Palette = typeof palette;
+
+export type Spacing = typeof spacing;
+// → readonly [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96]
+
+type TupleIndices<T extends readonly unknown[], Acc extends number[] = []> =
+  Acc["length"] extends T["length"]
+    ? Acc[number]
+    : TupleIndices<T, [...Acc, Acc["length"]]>;
+
+export type NumericSpacingIndex = TupleIndices<Spacing>;
+// → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+export type SpacingIndex = NumericSpacingIndex | `${NumericSpacingIndex}`;
+// Accepts both numeric (gap={4}) and string (gap="4") indices
 
 export interface Typography {
   family: {
@@ -307,19 +306,6 @@ export interface Shadows {
   lg:   string;
   xl:   string;
 }
-
-//export type Spacing = readonly number[];
-//export type Spacing = (typeof spacing)[number];
-//export const space = (value: Spacing) => `${value}px`;
-
-export type SpacingIndex = Exclude<keyof Spacing, keyof readonly unknown[]>;
-// // → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-
-
-export type Spacing = typeof spacing;
-// → readonly [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96]
-
 
 export interface Transitions {
   duration: {

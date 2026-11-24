@@ -1,33 +1,29 @@
 import { HTMLAttributes, ReactNode } from 'react';
 //export type BoxVariant = 'primary' | 'secondary' | 'danger';
+export type BackgroundVariant = 'transparent' | 'subtle' | 'surface'
 
 
 export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
-  // as?: keyof JSX.IntrinsicElements;
-  // padding?: number | string;
-  // paddingX?: number | string;
-  // paddingY?: number | string;
-  // margin?: number | string;
-  // marginX?: number | string;
-  // marginY?: number | string;
-  // width?: string;
-  // maxWidth?: string;
-  // height?: string;
   // display?: 'block' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'none';
   // backgroundColor?: string;
   // borderRadius?: number | string;
+  // $borderRadius?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  // $backgroundColor?: BackgroundVariant;
+  // width?: string;
+  // maxWidth?: string;
+  // height?: string;
 
   as?: 'div' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'main';
-  p?: number;
-  px?: number;
-  py?: number;
-  m?: number;
-  mx?: number;
-  my?: number;
-  bg?: string;
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-
+  padding?: number;
+  paddingX?: number;
+  paddingY?: number;
+  margin?: number;
+  marginX?: number;
+  marginY?: number;
+  background?: BackgroundVariant | (string & {});
+  radius?: string;
+  
 }
 
 

@@ -59,9 +59,9 @@ describe('Card', () => {
       ['elevated', lightTheme.color.surface.raised],
       ['outlined', lightTheme.color.surface.raised],
       ['filled', lightTheme.color.surface.sunken],
-    ] as const)('applies %s variant background', ($variant, expectedBg) => {
+    ] as const)('applies %s variant background', (variant, expectedBg) => {
       render(
-        <Card $variant={$variant} data-testid="variant-card">
+        <Card variant={variant} data-testid="variant-card">
           Card content
         </Card>
       );
@@ -73,7 +73,7 @@ describe('Card', () => {
 
     it('renders full width when $fullWidth is true', () => {
       render(
-        <Card $fullWidth data-testid="full-card">
+        <Card fullWidth data-testid="full-card">
           Full width card
         </Card>
       );

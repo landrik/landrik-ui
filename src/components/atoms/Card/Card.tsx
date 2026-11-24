@@ -1,15 +1,3 @@
-// import React, { FC } from 'react';
-//   import { StyledCard } from './Card.styled';
-//   import { CardProps } from './Card.types';
-
-//   export const Card:FC<CardProps> = (props) => {
-//     return (
-//       <StyledCard>
-//         Card Component
-//       </StyledCard>
-//     );
-//   };
-
 import React, { forwardRef } from "react";
 import {
   CardProps,
@@ -41,12 +29,14 @@ import {
 const Card = forwardRef<HTMLDivElement, CardProps>(
   (
     {
-      $variant = "elevated",
+      variant = "elevated",
       size = "md",
       radius = "lg",
       interactive = false,
       disabled = false,
-      $fullWidth = false,
+      fullWidth = false,
+      onClick,
+      onKeyDown,
       children,
       ...rest
     },
@@ -75,18 +65,28 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       return child;
     });
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown?.(e);
+      if (interactive && !disabled && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        onClick?.(e as unknown as React.MouseEvent<HTMLDivElement>);
+      }
+    };
+
     return (
       <StyledCard
         ref={ref}
-        $variant={$variant}
+        variant={variant}
         size={size}
         radius={radius}
         interactive={interactive}
         disabled={disabled}
-        $fullWidth={$fullWidth}
+        fullWidth={fullWidth}
         role={interactive ? "button" : undefined}
         tabIndex={interactive && !disabled ? 0 : undefined}
         aria-disabled={disabled || undefined}
+        onClick={!disabled ? onClick : undefined}
+        onKeyDown={handleKeyDown}
         {...rest}
       >
         {childrenWithSize}
@@ -139,23 +139,16 @@ CardFooter.displayName = "CardFooter";
 const CardMedia = forwardRef<
   HTMLDivElement,
   CardMediaProps & CardSizeProp
->(
-  (
-    { src, alt, $height, $objectFit, size: _size, ...rest },
-    ref
-  ) => (
-    // Only $height and $objectFit go to the styled div;
-    // src/alt are passed directly to the <img> — not the wrapper div.
-    <StyledCardMedia
-      ref={ref}
-      $height={$height}
-      $objectFit={$objectFit}
-      {...rest}
-    >
-      <img src={src} alt={alt} loading="lazy" />
-    </StyledCardMedia>
-  )
-);
+>(({ src, alt, height, objectFit, size: _size, ...rest }, ref) => (
+  <StyledCardMedia
+    ref={ref}
+    height={height}
+    objectFit={objectFit}
+    {...rest}
+  >
+    <img src={src} alt={alt} loading="lazy" />
+  </StyledCardMedia>
+));
 CardMedia.displayName = "CardMedia";
 
 // ─── Card Divider ────────────────────────────────────────────────────────────
@@ -169,7 +162,6 @@ CardDivider.displayName = "CardDivider";
 
 const CardBadge = forwardRef<HTMLSpanElement, CardBadgeProps>(
   ({ color = "default", children, ...rest }, ref) => (
-    // $color is transient — not forwarded to the <span> DOM element
     <StyledCardBadge ref={ref} color={color} {...rest}>
       {children}
     </StyledCardBadge>

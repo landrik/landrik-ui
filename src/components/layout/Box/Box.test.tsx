@@ -29,7 +29,7 @@ describe('Box', () => {
   describe('Spacing (p, px, py, m, mx, my)', () => {
     it('applies theme spacing tokens for p and m', () => {
       render(
-        <Box p={4} m={2} data-testid="spaced-box">
+        <Box padding={4} margin={2} data-testid="spaced-box">
           Spaced
         </Box>
       );
@@ -42,7 +42,7 @@ describe('Box', () => {
 
     it('applies directional padding (px, py) and margin (mx, my)', () => {
       render(
-        <Box px={6} py={2} mx={4} my={1} data-testid="axis-box">
+        <Box paddingX={6} paddingY={2} marginX={4} marginY={1} data-testid="axis-box">
           Axis Spaced
         </Box>
       );
@@ -64,7 +64,7 @@ describe('Box', () => {
   describe('Background & Border Radius', () => {
     it('applies custom background color via bg prop', () => {
       render(
-        <Box bg="#f3f4f6" data-testid="bg-box">
+        <Box background="#f3f4f6" data-testid="bg-box">
           Tinted
         </Box>
       );

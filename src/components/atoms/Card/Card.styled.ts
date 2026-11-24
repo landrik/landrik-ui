@@ -120,21 +120,21 @@ export const StyledCard = styled.div<CardProps>`
     transform 0.2s ease;
 
   /* Width */
-  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 
   /* Radius */
   border-radius: ${({ radius = 'lg' }) => ({ theme }) => theme.radius[radius]};
 
   /* Variant */
-  ${({ $variant = 'elevated' }) => variantStyles[$variant]}
+  ${({ variant = 'elevated' }) => variantStyles[variant]}
 
   /* Interactive */
-  ${({ interactive, $variant = 'elevated' }) =>
+  ${({ interactive, variant = 'elevated' }) =>
     interactive &&
     css`
       cursor: pointer;
       user-select: none;
-      ${interactiveStyles[$variant]}
+      ${interactiveStyles[variant]}
     `}
 
   /* Disabled */
@@ -218,20 +218,20 @@ export const StyledCardFooterInner = styled.div<Pick<CardFooterProps, 'align'> &
   }};
 `;
 
-export type StyledCardMediaProps = Pick<CardMediaProps, '$height' | '$objectFit'>;
+export type StyledCardMediaProps = Pick<CardMediaProps, 'height' | 'objectFit'>;
 
 export const StyledCardMedia = styled.div<StyledCardMediaProps>`
   position: relative;
   width: 100%;
-  height: ${({ theme, $height }) =>
-    $height !== undefined ? `${theme.spacing[$height]}px` : undefined};
+  height: ${({ theme, height }) =>
+    height !== undefined ? `${theme.spacing[12]}px` : undefined};
   overflow: hidden;
   flex-shrink: 0;
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: ${({ $objectFit = 'cover' }) => $objectFit};
+    object-fit: ${({ objectFit = 'cover' }) => objectFit};
     display: block;
     transition: transform 0.4s ease;
   }

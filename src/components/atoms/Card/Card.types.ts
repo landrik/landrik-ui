@@ -1,19 +1,17 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
 
 // ─── Primitive Types ─────────────────────────────────────────────────────────
 
-export type CardVariant = "elevated" | "outlined" | "filled" | "glass";
-export type CardSize = "sm" | "md" | "lg";
-export type CardRadius = "none" | "sm" | "md" | "lg" | "xl" | "full";
-export type CardFooterAlign = "left" | "center" | "right" | "space-between";
-export type CardBadgeColor = "default" | "primary" | "success" | "warning" | "danger";
-import type { SpacingIndex } from "@/theme";
-import type { DefaultTheme } from 'styled-components';
+export type CardVariant = 'elevated' | 'outlined' | 'filled' | 'glass';
+export type CardSize = 'sm' | 'md' | 'lg';
+export type CardRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type CardFooterAlign = 'left' | 'center' | 'right' | 'space-between';
+export type CardBadgeColor = 'default' | 'primary' | 'success' | 'warning' | 'danger';
+export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 
 // ─── Internal prop passed from Card root to sub-components via cloneElement ──
 
 /** @internal — injected automatically by <Card>; do not pass manually */
-
 export interface CardSizeProp {
   size?: CardSize;
 }
@@ -21,12 +19,13 @@ export interface CardSizeProp {
 // ─── Component Prop Interfaces ───────────────────────────────────────────────
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  $variant?: CardVariant;
+  variant?: CardVariant;
   size?: CardSize;
+  padding?: CardPadding;
   radius?: CardRadius;
   interactive?: boolean;
+  fullWidth?: boolean;
   disabled?: boolean;
-  $fullWidth?: boolean;
   children?: ReactNode;
 }
 
@@ -42,16 +41,15 @@ export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
   /** Horizontal alignment of footer children
    * @default "left"
    */
-  //$align?: CardFooterAlign;
   align?: CardFooterAlign;
   children?: ReactNode;
 }
 
-export interface CardMediaProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+export interface CardMediaProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
-  $height?:  keyof DefaultTheme['spacing'];
-  $objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  height?: number | string;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 }
 
 export interface CardBadgeProps extends HTMLAttributes<HTMLSpanElement> {
