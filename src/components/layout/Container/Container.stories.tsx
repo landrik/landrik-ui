@@ -5,7 +5,7 @@ import { Container } from './Container';
 const meta: Meta<typeof Container> = {
   title: 'Layout/Container',
   component: Container,
-  parameters: {layout: 'centered'},
+  parameters: {layout: 'fullscreen'},
   tags: ['autodocs'],
 };
 
@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Container>;
 
 export const Default: Story = {
   render: () => (
-    <div style={{ background: '#f3f4f6' }}>
+    <div style={{ background: '#f3f4f6', padding: '2rem', textAlign: 'center' }}>
       <Container>
         <div style={{ background: '#e0f2fe', padding: '2rem', borderRadius: '0.5rem' }}>
           Container content
@@ -27,7 +27,7 @@ export const Default: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', background: '#f3f4f6', padding: '2rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', background: '#f3f4f6', padding: '2rem', textAlign: 'center' }}>
       <div>
         <h4 style={{ marginBottom: '1rem' }}>Small (640px)</h4>
         <Container size="sm">

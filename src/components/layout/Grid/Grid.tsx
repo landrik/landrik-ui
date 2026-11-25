@@ -4,7 +4,7 @@ import { GridProps } from './Grid.types';
 
 export const Grid:FC<GridProps> = ({
   children,
-  columns = 3,
+  columns,
   minColumnWidth,
   gap = 4,
   rowGap,
@@ -13,11 +13,11 @@ export const Grid:FC<GridProps> = ({
 }) => {
   return (
     <StyledGrid
-      $columns={columns}
-      $minColumnWidth={minColumnWidth}
-      $gap={gap}
-      $rowGap={rowGap}
-      $columnGap={columnGap}
+      columns={columns}
+      minColumnWidth={minColumnWidth}
+      gap={gap}
+      rowGap={rowGap}
+      columnGap={columnGap}
       {...props}
     >
       {children}

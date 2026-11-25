@@ -20,6 +20,8 @@ export const Placeholder = ({
       fontFamily: 'monospace',
       fontSize: '13px',
       textAlign: 'center',
+      justifyContent: 'center',
+      alignContent:'center',
       height,
       minWidth,
     }}
