@@ -18,7 +18,7 @@ describe('Container', () => {
       expect(screen.getByText('Page content')).toBeInTheDocument();
     });
 
-    it('applies default props (size="lg", center=true, px=4) when omitted', () => {
+    it('applies default props (maxWidth="lg", center=true, paddingX=4) when omitted', () => {
       render(
         <Container data-testid="default-container">
           Default layout
@@ -55,7 +55,7 @@ describe('Container', () => {
       ['xl', lightTheme.breakpoints.xl],
     ] as const)('applies size="%s" max-width (%s)', (size, expectedWidth) => {
       render(
-        <Container size={size} data-testid="sized-container">
+        <Container maxWidth={size} data-testid="sized-container">
           Content
         </Container>
       );
@@ -67,7 +67,7 @@ describe('Container', () => {
 
     it('sets max-width to 100% when size="full"', () => {
       render(
-        <Container size="full" data-testid="full-container">
+        <Container maxWidth="full" data-testid="full-container">
           Full width content
         </Container>
       );
@@ -94,7 +94,7 @@ describe('Container', () => {
 
     it('applies custom horizontal padding via px spacing token', () => {
       render(
-        <Container px={6} data-testid="padded-container">
+        <Container paddingX={6} data-testid="padded-container">
           Padded content
         </Container>
       );
@@ -107,7 +107,7 @@ describe('Container', () => {
 
     it('removes horizontal padding when px={0}', () => {
       render(
-        <Container px={0} data-testid="zero-pad-container">
+        <Container paddingX={0} data-testid="zero-pad-container">
           Edge-to-edge
         </Container>
       );

@@ -1,13 +1,15 @@
 import { HTMLAttributes } from 'react';
-import type { SpacingIndex } from '../../../theme/primitives';
+import type { SpacingIndex } from '../../../theme';
+import { BoxProps } from '../Box';
+import { ResponsiveValue } from '@/components/utils/responsive';
 
-export type StackDirection = 'row' | 'column';
-export type StackAlign = 'start' | 'center' | 'end' | 'stretch';
-export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
+export type StackDirection = 'vertical' | 'horizontal'| "column" | "row";
+export type StackAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+export type StackJustify = 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
 
-export interface StackProps extends HTMLAttributes<HTMLDivElement> {
-  direction?: StackDirection;
-  gap?: SpacingIndex;
+export interface StackProps extends BoxProps {
+  direction?: ResponsiveValue<StackDirection>;
+  gap?: ResponsiveValue<SpacingIndex>;
   align?: StackAlign;
   justify?: StackJustify;
   wrap?: boolean;

@@ -9,6 +9,7 @@ import type { Preview } from '@storybook/react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 //import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { lightTheme, darkTheme, GlobalStyles } from '../src/theme';
+import { GridOverlay } from "../src/stories/GridOverlay";
 
 /**
  * Global decorator — wraps every story with ThemeProvider + GlobalStyles.
@@ -17,10 +18,12 @@ import { lightTheme, darkTheme, GlobalStyles } from '../src/theme';
 
 
 const withTheme = (Story: React.ComponentType, context: any) => {
-  const selectedTheme = context.globals.theme === "dark" ? darkTheme : lightTheme;
-
+  const activeTheme = context.globals.theme === "dark" ? darkTheme : lightTheme;
+  const showGrid = Boolean(context.globals.showGridOverlay)
+  const maxWidthKey = context.globals.gridMaxWidth as string;
+  const resolvedMaxWidth = maxWidthKey === "full" ? "100%" : activeTheme.breakpoints[maxWidthKey as keyof typeof activeTheme.breakpoints] ?? "100%";
   return (
-    <ThemeProvider theme={selectedTheme}>
+    <ThemeProvider theme={activeTheme}>
       
       <div
         style={{
@@ -30,7 +33,9 @@ const withTheme = (Story: React.ComponentType, context: any) => {
         }}
       >
         <GlobalStyles />
-        <Story />
+        <GridOverlay show={showGrid} maxWidth={resolvedMaxWidth}>
+          <Story />
+        </GridOverlay>
       </div>
     </ThemeProvider>
   );
@@ -38,7 +43,6 @@ const withTheme = (Story: React.ComponentType, context: any) => {
 
 const preview: Preview = {
   decorators: [withTheme],
-
   parameters: {
     // Default backgrounds aligned with your themes
     backgrounds: {
@@ -90,6 +94,36 @@ const preview: Preview = {
           { value: "dark",  icon: "moon", title: "Dark"  },
         ],
         showName: true,
+        dynamicTitle: true,
+      },
+    },
+    showGridOverlay: {
+      description: "Toggle layout grod column overlay",
+      defaultValue: false,
+      toolbar: {
+        title: "Grid Overlay",
+        icon: "grid",
+        items: [
+          { value: false, title: "Hide Grid" },
+          { value: true, title: "Show 6-Col Grid" },
+        ],
+        dynamicTitle: true,
+      }
+    },
+    gridMaxWidth: {
+      description: "Container maxWidth guide for Grid Overlay",
+      defaultValue: "full",
+      toolbar: {
+        title: "Container Width",
+        icon: "grow",
+        items: [
+          { value: "full", title: "Full (100%)" },
+          { value: "sm", title: "sm (640px)" },
+          { value: "md", title: "md (768px)" },
+          { value: "lg", title: "lg (1024px)" },
+          { value: "xl", title: "xl (1280px)" },
+          { value: "2xl", title: "2xl (1536px)" },
+        ],
         dynamicTitle: true,
       },
     },

@@ -1,36 +1,52 @@
 import styled from 'styled-components';
-import { StackDirection, StackAlign, StackJustify } from './Stack.types';
-import type { SpacingIndex } from '../../../theme/primitives';
+import { StyledBox } from '../Box/Box.styled';
+import { StackProps, StackAlign, StackJustify } from './Stack.types';
+import { resolveResponsive, resolveSpace } from '@/components/utils/responsive';
 
-interface StyledStackProps {
-  $direction: StackDirection;
-  $gap: SpacingIndex;
-  $align: StackAlign;
-  $justify: StackJustify;
-  $wrap: boolean;
-}
 
 const alignMap: Record<StackAlign, string> = {
   start: 'flex-start',
   center: 'center',
   end: 'flex-end',
   stretch: 'stretch',
+  baseline: 'baseline',
 };
 
 const justifyMap: Record<StackJustify, string> = {
   start: 'flex-start',
   center: 'center',
   end: 'flex-end',
-  between: 'space-between',
-  around: 'space-around',
-  evenly: 'space-evenly',
+  "space-between": 'space-between',
+  "space-around": 'space-around',
+  "space-evenly": 'space-evenly',
 };
 
-export const StyledStack = styled.div<StyledStackProps>`
+const blockedStackProps = new Set([
+  "direction",
+  "gap",
+  "align",
+  "justify",
+  "wrap"
+]);
+
+export const StyledStack = styled(StyledBox).withConfig({
+  shouldForwardProp: (prop) => !blockedStackProps.has(prop)
+})<StackProps>`
   display: flex;
-  flex-direction: ${(p) => p.$direction};
-  gap: ${({ theme, $gap = 0 }) => theme.spacing[$gap]}px;
-  align-items: ${(p) => alignMap[p.$align]};
-  justify-content: ${(p) => justifyMap[p.$justify]};
-  flex-wrap: ${(p) => (p.$wrap ? 'wrap' : 'nowrap')};
+  flex-direction: column;
+
+  ${(p) =>
+    resolveResponsive(p.direction, p.theme, (dir) =>
+      `flex-direction: ${dir === "horizontal" || dir === "row" ? "row" : "column"};`
+    )}
+  
+    ${(p) => resolveResponsive(
+    p.gap, 
+    p.theme, 
+    (val) => `gap: ${resolveSpace(val, p.theme.spacing)};`
+  )}
+
+  ${(p) => p.align && `align-items: ${alignMap[p.align]};`}
+  ${(p) => p.justify && `justify-content: ${justifyMap[p.justify]};`}
+  ${(p) => p.wrap && `flex-wrap: wrap;`}
 `;

@@ -124,13 +124,14 @@ export const lightTheme: Theme = {
       onFill:    neutral[0],
     },
   },
-
+  
   spacing,
   radius,
   typography,
   shadows,
   transitions,
   breakpoints,
+  grid: { columns: 6 },
   zIndices,
 };
 
@@ -226,7 +227,3 @@ export const theme = {
   dark:  darkTheme,
 } as const;
 
-// // ── Styled-Components DefaultTheme Augmentation ───────────────────────────────
-// declare module 'styled-components' {
-//   export interface DefaultTheme extends Theme {}
-// }

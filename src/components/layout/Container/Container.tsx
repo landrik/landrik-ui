@@ -5,16 +5,16 @@ import React, { FC } from 'react';
 
 export const Container: React.FC<ContainerProps> = ({
   children,
-  size = 'lg',
+  maxWidth = 'lg',
   center = true,
-  px = 4,
+  paddingX = 4,
   ...props
 }) => {
   return (
     <StyledContainer
-      $size={size}
-      $center={center}
-      $px={px}
+      maxWidth={maxWidth}
+      center={center}
+      paddingX={paddingX}
       {...props}
     >
       {children}

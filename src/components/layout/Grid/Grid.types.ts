@@ -1,19 +1,22 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import type { BoxProps } from '../Box';
+
+// Grid.types.ts
+import type { BoxProps } from "../Box/Box.types";
+import type { ResponsiveValue } from "../../utils/responsive";
+import type { SpacingIndex } from "../../../theme";
+
+export type GridColumnsValue = number | "auto-fit" | "auto-fill" | (string & {});
 
 export interface GridProps extends BoxProps {
   children: ReactNode;
+  columns?: ResponsiveValue<GridColumnsValue>;
   minColumnWidth?: string;
- columns?: number | "auto-fit" | "auto-fill" | (string & {});
   rows?: number | string;
-  gap?: number;
-  rowGap?: number;
-  columnGap?: number;
-  /** e.g. ['Header Header', 'SideBar Main'] */
-  areas?: string[];
-  
-  /** Grid placement properties (when used as a child inside another Grid) */
+  gap?: ResponsiveValue<SpacingIndex>;
+  columnGap?: ResponsiveValue<SpacingIndex>;
+  rowGap?: ResponsiveValue<SpacingIndex>;
+  areas?: ResponsiveValue<string[]>;
   gridArea?: string;
-  colSpan?: number;
-  rowSpan?: number;
+  colSpan?: ResponsiveValue<number>;
+  rowSpan?: ResponsiveValue<number>;
 }

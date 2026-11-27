@@ -1,29 +1,22 @@
-import { HTMLAttributes, ReactNode } from 'react';
-//export type BoxVariant = 'primary' | 'secondary' | 'danger';
-export type BackgroundVariant = 'transparent' | 'subtle' | 'surface'
+import type { HTMLAttributes, ReactNode } from 'react';
+import type { DefaultTheme } from 'styled-components';
+import type { ResponsiveValue } from '@/components/utils/responsive';
+import type { SpacingIndex } from '@/theme'; // adjust path if needed
 
+export type BackgroundVariant = 'transparent' | 'subtle' | 'surface';
+export type SpaceKey = SpacingIndex;
+export type RadiusKey = keyof DefaultTheme['radius'];
 
 export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
-  // display?: 'block' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'none';
-  // backgroundColor?: string;
-  // borderRadius?: number | string;
-  // $borderRadius?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-  // $backgroundColor?: BackgroundVariant;
-  // width?: string;
-  // maxWidth?: string;
-  // height?: string;
-
   as?: 'div' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'main';
-  padding?: number;
-  paddingX?: number;
-  paddingY?: number;
-  margin?: number;
-  marginX?: number;
-  marginY?: number;
+  padding?: ResponsiveValue<SpaceKey>;
+  paddingX?: ResponsiveValue<SpaceKey>;
+  paddingY?: ResponsiveValue<SpaceKey>;
+  margin?: ResponsiveValue<SpaceKey>;
+  marginX?: ResponsiveValue<SpaceKey>;
+  marginY?: ResponsiveValue<SpaceKey>;
   background?: BackgroundVariant | (string & {});
-  radius?: string;
-  
+  radius?: RadiusKey;
+  gridArea?: string;
 }
-
-

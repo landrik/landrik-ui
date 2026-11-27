@@ -1,36 +1,98 @@
-import styled, { css } from "styled-components";
+import styled, { css, DefaultTheme } from "styled-components";
 import { BoxProps, BackgroundVariant } from "./Box.types";
+import { resolveResponsive, resolveSpace } from "@/components/utils/responsive";
 
-
-
-const BgVariant: Record<BackgroundVariant, ReturnType<typeof css>> = {
-  transparent: css`background-color: transparent;`,
-  subtle: css`background-color: var(--bg-subtle, #f8fafc);`,
-  surface: css`background-color: var(--bg-surface, #ffffff);`,
+const getBgVariant = (
+  variant: BackgroundVariant,
+  theme: DefaultTheme
+): ReturnType<typeof css> => {
+  switch (variant) {
+    case "transparent":
+      return css`
+        background-color: transparent;
+      `;
+    case "subtle":
+      return css`
+        background-color: ${theme.color.surface.sunken};
+      `;
+    case "surface":
+      return css`
+        background-color: ${theme.color.surface.raised};
+      `;
+  }
 };
 
 const isBackgroundVariant = (value: string): value is BackgroundVariant =>
-  value in BgVariant;
+  value === "transparent" || value === "subtle" || value === "surface";
 
-export const StyledBox = styled.div<BoxProps>`
+const blockedBoxProps = new Set([
+  "padding",
+  "paddingX",
+  "paddingY",
+  "margin",
+  "marginX",
+  "marginY",
+  "background",
+  "radius",
+  "gridArea",
+]);
 
-  ${p => p.padding !== undefined &&`padding: ${p.theme.spacing[p.padding]}px;`} 
-  ${p => p.paddingX !== undefined && `padding-left: ${p.theme.spacing[p.paddingX]}px; padding-right: ${p.theme.spacing[p.paddingX]}px;`} 
-  ${p => p.paddingY !== undefined && `padding-top: ${p.theme.spacing[p.paddingY]}px; padding-bottom: ${p.theme.spacing[p.paddingY]}px;`} 
+export const StyledBox = styled.div.withConfig({
+  shouldForwardProp: (prop) => !blockedBoxProps.has(prop),
+})<BoxProps>`
+  box-sizing: border-box;
 
-  ${p => p.margin !== undefined && `margin: ${p.theme.spacing[p.margin]}px;`} 
-  ${p => p.marginX !== undefined && `margin-left: ${p.theme.spacing[p.marginX]}px; margin-right: ${p.theme.spacing[p.marginX]}px;`} 
-  ${p => p.marginY !== undefined && `margin-top: ${p.theme.spacing[p.marginY]}px; margin-bottom: ${p.theme.spacing[p.marginY]}px;`} 
+  ${(p) =>
+    resolveResponsive(
+      p.padding,
+      p.theme,
+      (val) => `padding: ${resolveSpace(val, p.theme.spacing)};`
+    )}
+  ${(p) =>
+    resolveResponsive(
+      p.paddingX,
+      p.theme,
+      (val) =>
+        `padding-left: ${resolveSpace(val, p.theme.spacing)}; padding-right: ${resolveSpace(val, p.theme.spacing)};`
+    )}
+  ${(p) =>
+    resolveResponsive(
+      p.paddingY,
+      p.theme,
+      (val) =>
+        `padding-top: ${resolveSpace(val, p.theme.spacing)}; padding-bottom: ${resolveSpace(val, p.theme.spacing)};`
+    )}
+
+  ${(p) =>
+    resolveResponsive(
+      p.margin,
+      p.theme,
+      (val) => `margin: ${resolveSpace(val, p.theme.spacing)};`
+    )}
+  ${(p) =>
+    resolveResponsive(
+      p.marginX,
+      p.theme,
+      (val) =>
+        `margin-left: ${resolveSpace(val, p.theme.spacing)}; margin-right: ${resolveSpace(val, p.theme.spacing)};`
+    )}
+  ${(p) =>
+    resolveResponsive(
+      p.marginY,
+      p.theme,
+      (val) =>
+        `margin-top: ${resolveSpace(val, p.theme.spacing)}; margin-bottom: ${resolveSpace(val, p.theme.spacing)};`
+    )}
 
   ${(p) => {
     const bg = p.background ?? "transparent";
     return isBackgroundVariant(bg)
-      ? BgVariant[bg]
+      ? getBgVariant(bg, p.theme)
       : css`
           background-color: ${bg};
         `;
   }}
 
-  ${p => p.radius && `border-radius: ${p.theme.radius[p.radius as keyof typeof p.theme.radius]};`} 
-
+  ${(p) => p.radius && `border-radius: ${p.theme.radius[p.radius!]};`}
+  ${(p) => p.gridArea && `grid-area: ${p.gridArea};`}
 `;

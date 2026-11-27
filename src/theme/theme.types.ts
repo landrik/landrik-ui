@@ -156,6 +156,7 @@ export interface Theme {
   transitions: Transitions;
   breakpoints: Breakpoints;
   zIndices:    ZIndices;
+  grid: { columns: number;};
 }
 
 

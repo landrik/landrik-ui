@@ -66,7 +66,7 @@ export const FourColumns: Story = {
 export const UILayout: Story = {
   render: () => (
     <Grid 
-      columns="240px 1fr"
+      columns="390px 1fr"
       rows="auto 1fr auto"
       areas={["Header Header", "Sidebar Main", "Footer Footer"]}
       gap={5}
